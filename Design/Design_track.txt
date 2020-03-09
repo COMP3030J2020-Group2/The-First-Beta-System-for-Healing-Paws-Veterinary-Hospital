@@ -1,0 +1,59 @@
+title keep track of pets
+
+actor Staff
+boundary StaffUI
+control HospitalSystem
+participant Hospital
+participant PetMapper
+database db
+
+
+
+
+Staff->StaffUI:trackPets(petId:integer)
+activate StaffUI
+
+StaffUI->HospitalSystem:trackPets(petId:integer)
+activate HospitalSystem
+
+HospitalSystem->Hospital:getPets(petId:integer)
+activate Hospital
+
+Hospital->PetMapper:getPets(petId:integer)
+activate PetMapper
+
+PetMapper->db:executeQuery()
+activate db
+
+db-->Hospital:return data
+deactivate db
+
+
+
+
+
+Hospital-->HospitalSystem:return data
+deactivate Hospital
+
+HospitalSystem-->StaffUI:
+deactivate HospitalSystem
+
+StaffUI-->Staff:
+deactivate StaffUI
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

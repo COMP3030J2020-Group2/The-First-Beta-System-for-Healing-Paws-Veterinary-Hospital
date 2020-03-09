@@ -1,0 +1,60 @@
+title organize pets
+
+actor Staff
+boundary StaffUI
+control HospitalSystem
+participant Hospital
+participant PetMapper
+database db
+entity organizing
+
+
+
+Staff->StaffUI:organizePets()
+activate StaffUI
+
+StaffUI->HospitalSystem:organizePets()
+activate HospitalSystem
+
+HospitalSystem->Hospital:getPets()
+activate Hospital
+
+Hospital->PetMapper:getPets()
+activate PetMapper
+
+PetMapper->db:executeQuery()
+activate db
+
+
+db->organizing:getPetsData()
+activate organizing
+deactivate db
+
+organizing-->Hospital:return data
+deactivate organizing
+
+Hospital-->HospitalSystem:return data
+deactivate Hospital
+
+HospitalSystem-->StaffUI:
+deactivate HospitalSystem
+
+StaffUI-->Staff:
+deactivate StaffUI
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
