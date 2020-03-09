@@ -1,0 +1,28 @@
+title keep track of pets
+
+actor Staff
+control HospitalSystem
+participant Hospital
+entity Tracking
+
+
+Staff->HospitalSystem:trackPets()
+activate HospitalSystem
+
+HospitalSystem->Hospital:getPets()
+activate Hospital
+
+Hospital->Tracking:getPets()
+activate Tracking
+
+Tracking-->Hospital:return data
+deactivate Tracking
+
+Hospital-->HospitalSystem:return Tracking
+deactivate Hospital
+
+HospitalSystem->HospitalSystem:updateDisplay
+
+HospitalSystem-->Staff:
+deactivate HospitalSystem
+

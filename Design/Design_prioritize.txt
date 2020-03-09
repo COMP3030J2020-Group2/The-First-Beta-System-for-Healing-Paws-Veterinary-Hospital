@@ -1,0 +1,60 @@
+title prioritizing
+
+actor Staff
+boundary StaffUI
+control HospitalSystem
+participant Hospital
+participant PetMapper
+database db
+entity prioritizing
+
+
+
+Staff->StaffUI:prioritizePets()
+activate StaffUI
+
+StaffUI->HospitalSystem:prioritizePets()
+activate HospitalSystem
+
+HospitalSystem->Hospital:getPets()
+activate Hospital
+
+Hospital->PetMapper:getPets()
+activate PetMapper
+
+PetMapper->db:executeQuery()
+activate db
+
+
+db->prioritizing:getPetsData()
+activate prioritizing
+deactivate db
+
+prioritizing-->Hospital:return data
+deactivate prioritizing
+
+Hospital-->HospitalSystem:return data
+deactivate Hospital
+
+HospitalSystem-->StaffUI:
+deactivate HospitalSystem
+
+StaffUI-->Staff:
+deactivate StaffUI
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
