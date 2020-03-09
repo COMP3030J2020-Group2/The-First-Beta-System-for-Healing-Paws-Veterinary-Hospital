@@ -1,0 +1,28 @@
+title organize pets
+
+actor Staff
+control HospitalSystem
+participant Hospital
+entity organizing
+
+
+Staff->HospitalSystem:organizePets()
+activate HospitalSystem
+
+HospitalSystem->Hospital:getPets()
+activate Hospital
+
+Hospital->organizing:getPets()
+activate organizing
+
+organizing-->Hospital:return data
+deactivate organizing
+
+Hospital-->HospitalSystem:return organizing
+deactivate Hospital
+
+HospitalSystem->HospitalSystem:updateDisplay
+
+HospitalSystem-->Staff:
+deactivate HospitalSystem
+

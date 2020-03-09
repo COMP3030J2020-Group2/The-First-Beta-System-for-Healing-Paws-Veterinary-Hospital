@@ -1,0 +1,28 @@
+title prioritize
+
+actor Staff
+control HospitalSystem
+participant Hospital
+entity prioritizing
+
+
+Staff->HospitalSystem:prioritizingPets()
+activate HospitalSystem
+
+HospitalSystem->Hospital:getPets()
+activate Hospital
+
+Hospital->prioritizing:getPets()
+activate prioritizing
+
+prioritizing-->Hospital:return data
+deactivate prioritizing
+
+Hospital-->HospitalSystem:return prioritizing
+deactivate Hospital
+
+HospitalSystem->HospitalSystem:updateDisplay
+
+HospitalSystem-->Staff:
+deactivate HospitalSystem
+
