@@ -1,0 +1,79 @@
+
+actor User
+boundary UserUI
+control Management System
+participant Hospital
+participant PetMapper
+database db
+entity PersistentPet
+entity Pet(current)
+
+User->UserUI:checkPets()
+activate UserUI
+UserUI->Management System:checkPets(userID : Integer)
+activate Management System
+
+Management System->Hospital:getPets(userID : Integer)
+activate Hospital
+
+Hospital->PetMapper:getPets(userID : Integer)
+activate PetMapper
+PetMapper->db:executeQuery(sql : String)
+
+loop for every row returned for pets
+
+
+PetMapper->*PersistentPet:PersistentPet(oid : Integer,cusId: Integer,  name : String, \n    inDate : Date, surgeryDate: Date,surgeryTime: Time, status : String)
+activate PersistentPet
+PersistentPet-->PetMapper:
+deactivate PersistentPet
+end
+
+PetMapper-->Hospital:return pets
+deactivate PetMapper
+
+
+Hospital-->Management System:return pets
+deactivate Hospital
+
+Management System->Management System:notifyObservers()
+activate Management System
+
+Management System->UserUI:update()
+activate UserUI
+
+
+UserUI->Management System:getPets()
+activate Management System
+Management System-->UserUI:return pets
+deactivate Management System
+
+UserUI-->Management System:
+deactivate UserUI
+
+Management System-->Management System:
+deactivate Management System
+Management System-->UserUI:
+deactivate Management System
+UserUI-->User:
+deactivate UserUI
+
+User->UserUI:mousePressed(x : Integer)
+activate UserUI
+UserUI->UserUI:pno := xToPet(x : Integer)
+
+UserUI->Management System:selectPet(pno : Integer)
+activate Management System
+
+loop for each current Pet
+Management System->Pet(current):getInformation()
+end
+
+Management System->Management System:notifyObservers()
+Management System->UserUI:update()
+
+Management System-->UserUI:
+deactivate Management System
+UserUI-->User:
+deactivate UserUI
+
