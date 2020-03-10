@@ -1,0 +1,19 @@
+actor User
+control Management System
+participant Hospital
+
+
+User->Management System:checkPets()
+activate Management System
+
+Management System->Hospital:listOfPets()
+activate Hospital
+
+Hospital-->Management System:return pets
+deactivate Hospital
+
+Management System->Management System:updateDisplay
+
+Management System-->User:
+deactivate Management System
+
