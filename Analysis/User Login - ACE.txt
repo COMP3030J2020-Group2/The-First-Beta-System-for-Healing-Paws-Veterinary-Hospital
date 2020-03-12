@@ -1,0 +1,27 @@
+title Hospital System – User Login
+
+actor User
+control Management System
+participant Hospital
+
+
+User->Management System:login()
+activate Management System
+ 
+Management System->Management System:updateDisplay
+
+Management System-->User:
+deactivate Management System
+
+User->Management System:submitLogin (userInfor.)
+activate Management System
+
+Management System->Hospital:checkLogin(details)
+
+activate Hospital
+Hospital-->Management System:return false
+deactivate Hospital
+
+Management System->Management System:updateDisplay
+Management System-->User:
+deactivate Management System
