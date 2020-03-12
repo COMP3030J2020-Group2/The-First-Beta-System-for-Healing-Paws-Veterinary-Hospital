@@ -1,0 +1,57 @@
+actor Staff/User
+boundary UI
+boundary Alert
+control Hospital System
+participant Hospital
+entity Question (selected)
+participant QuestionMapper
+database Database
+
+
+
+Staff/User->UI:removeQuestion()
+activate UI
+
+
+UI->Hospital System:removeSelected()
+activate Hospital System
+Hospital System->Hospital System:message(s : String, confirm : boolean)
+activate Hospital System
+Hospital System->*Alert:Alert( confirmation : AlertType)
+activate Alert
+Alert-->Hospital System:
+deactivate Alert
+
+Hospital System->Alert:showAndWait();
+activate Alert
+Alert->Staff/User:
+Staff/User-->Alert:
+note over Alert:user selects OK
+Alert-->Hospital System:return true
+deactivate Alert
+deactivate Hospital System
+
+
+Hospital System->Hospital:removeQuestion(selectedQuestion : Question)
+
+activate Hospital
+Hospital->QuestionMapper:removeQuestion(selectedQuestion : Question)
+activate QuestionMapper
+
+QuestionMapper->QuestionMapper:performUpdate(sql :String)
+activate QuestionMapper
+
+QuestionMapper->Database:executeQuery(sql : String)
+QuestionMapper-->QuestionMapper:
+deactivate QuestionMapper
+
+QuestionMapper-->Hospital:
+deactivate QuestionMapper
+Hospital-->Hospital System:
+deactivate Hospital
+Hospital System-->UI:
+deactivate Hospital System
+
+UI-->Staff/User:
+deactivate UI
+

@@ -1,0 +1,28 @@
+actor Staff
+control Hospital System
+participant Hospital
+entity Question
+entity Answer
+Staff->Hospital System:selectQuestion()
+activate Hospital System
+Hospital System->Question:*getDetails()
+Hospital System-->Staff:
+
+
+
+Staff->Hospital System:addAnswer(contents)
+
+Hospital System->Hospital:addAnswer(selected,contents)
+activate Hospital
+
+
+Hospital->Answer:Answer(selected,contents)
+activate Answer
+Answer-->Hospital:
+deactivate Answer
+Hospital-->Hospital System:
+deactivate Hospital
+Hospital System->Hospital System:updateDisplay()
+Hospital System-->Staff:
+
+deactivate Hospital System

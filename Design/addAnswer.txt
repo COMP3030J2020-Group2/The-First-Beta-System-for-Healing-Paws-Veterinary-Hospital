@@ -1,0 +1,60 @@
+actor Staff
+boundary AnswerAlert
+boundary StaffUI
+
+control Hospital System
+participant Hospital
+
+
+participant AnswerMapper
+database Database
+
+Staff->StaffUI:displayQuestion()
+activate StaffUI
+
+StaffUI->Hospital System:getSelectedQuestion()
+activate Hospital System
+
+
+Hospital System-->StaffUI:return question
+deactivate Hospital System
+
+
+StaffUI->*AnswerAlert:
+activate AnswerAlert
+AnswerAlert-->StaffUI:
+deactivate AnswerAlert
+
+StaffUI->AnswerAlert:showAndWait()
+activate AnswerAlert
+AnswerAlert->Staff:
+Staff-->AnswerAlert:
+AnswerAlert-->StaffUI:return answerInfo
+deactivate AnswerAlert
+
+StaffUI->Hospital System:addAnswer(content:String)
+activate Hospital System
+Hospital System->Hospital:addAnswer(content : String, selectedQuestion : Question)
+activate Hospital
+Hospital->AnswerMapper:addAnswer(content : String, oid : Integer)
+activate AnswerMapper
+AnswerMapper->AnswerMapper:performUpdate(sql:String)
+activate AnswerMapper
+AnswerMapper->Database:executeQuery()
+
+AnswerMapper-->AnswerMapper:
+deactivate AnswerMapper
+AnswerMapper-->Hospital:
+deactivate AnswerMapper
+
+Hospital-->Hospital System:
+deactivate Hospital
+
+Hospital System-->StaffUI:
+deactivate Hospital System
+
+StaffUI-->Staff:
+deactivate StaffUI
+
+
+

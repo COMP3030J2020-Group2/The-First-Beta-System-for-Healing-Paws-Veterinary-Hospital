@@ -1,0 +1,25 @@
+actor Customer
+control Hospital System
+participant Hospital
+entity Question
+
+
+Customer->Hospital System:addQuestion(details)
+activate Hospital System
+
+Hospital System->Hospital:addQuestion(details)
+activate Hospital 
+
+Hospital->Question:Question(Topic,Content)
+activate Question
+
+Question-->Hospital:
+deactivate Question
+
+
+Hospital-->Hospital System:
+deactivate Hospital
+Hospital System->Hospital System:updateDisplay()
+
+Hospital System-->Customer:
+deactivate Hospital System

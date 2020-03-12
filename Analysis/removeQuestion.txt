@@ -1,0 +1,25 @@
+actor Staff/Customer
+control Hospital System
+participant Hospital
+entity Question (current)
+entity Question  (selected)
+Staff/Customer->Hospital System:selectQuestion ()
+activate Hospital System
+Hospital System->Question (current):*getDetails()
+Hospital System-->Staff/Customer:
+deactivate Hospital System
+
+
+Staff/Customer->Hospital System:removeQuestion()
+activate Hospital System
+Hospital System->Staff/Customer:confirm()
+activate Staff/Customer
+Staff/Customer-->Hospital System:return true
+deactivate Staff/Customer
+
+Hospital System->Question  (selected):<<destroy>>
+destroy Question  (selected)
+Hospital System->Hospital System:updateDisplay()
+Hospital System-->Staff/Customer:
+deactivate Hospital System
+

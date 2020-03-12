@@ -1,0 +1,67 @@
+actor Staff/Customer
+boundary UI
+control Hospital System
+participant Hospital
+participant CustomerMapper
+
+participant QuestionMapper
+database db
+
+
+
+Staff/Customer ->UI:displayQuestion(Oid:Integer)
+activate UI
+
+UI->Hospital System:displayQuestion(Oid:Integer)
+activate Hospital System
+
+Hospital System->Hospital:getQuestion(Oid:Integer)
+activate Hospital 
+
+Hospital->CustomerMapper:getQuestion(Oid:Integer)
+activate CustomerMapper
+
+CustomerMapper->db:executeQuery(sql: String)
+
+loop for every row returned for customer
+
+CustomerMapper->QuestionMapper:c:= getQuestionforOid(customer: Integer)
+CustomerMapper<--QuestionMapper:
+
+
+end
+
+CustomerMapper-->Hospital:return questions
+deactivate CustomerMapper
+
+Hospital-->Hospital System:return questions
+deactivate Hospital
+
+Hospital System->Hospital System:notifyObserver()
+activate Hospital System
+Hospital System->UI:update()
+UI->Hospital System:getStartDate()
+activate UI
+
+activate Hospital System
+
+Hospital System-->UI:return startDate
+deactivate Hospital System
+
+UI->Hospital System:getTopic()
+activate Hospital System
+Hospital System-->UI:return Topic
+deactivate Hospital System
+
+UI-->Hospital System:
+deactivate UI
+
+Hospital System-->Hospital System:
+deactivate Hospital System
+
+Hospital System-->UI:
+deactivate Hospital System
+
+UI-->Staff/Customer:
+deactivate UI
+

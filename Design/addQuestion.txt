@@ -1,0 +1,52 @@
+actor Customer
+boundary QuestionAlert
+boundary CustomerUI
+
+control Hospital System
+participant Hospital
+
+
+participant QuestionMapper
+database Database
+
+Customer->CustomerUI:addQuestion()
+activate CustomerUI
+
+CustomerUI->*QuestionAlert:
+activate QuestionAlert
+QuestionAlert-->CustomerUI:
+deactivate QuestionAlert
+
+CustomerUI->QuestionAlert:showAndWait()
+activate QuestionAlert
+QuestionAlert->Customer:
+Customer-->QuestionAlert:
+QuestionAlert-->CustomerUI:return questionInfo
+deactivate QuestionAlert
+
+CustomerUI->Hospital System:addQuestion(topic:String, content:String)
+activate Hospital System
+Hospital System->Hospital:addQuestion(topic : String, content : String)
+activate Hospital
+Hospital->QuestionMapper:addQuestion(topic : String, content : String, oid : Integer)
+activate QuestionMapper
+QuestionMapper->QuestionMapper:performUpdate(sql:String)
+activate QuestionMapper
+QuestionMapper->Database:executeQuery()
+
+QuestionMapper-->QuestionMapper:
+deactivate QuestionMapper
+QuestionMapper-->Hospital:
+deactivate QuestionMapper
+
+Hospital-->Hospital System:
+deactivate Hospital
+
+Hospital System-->CustomerUI:
+deactivate Hospital System
+
+CustomerUI-->Customer:
+deactivate CustomerUI
+
+
+
