@@ -1,0 +1,27 @@
+title Hospital System – Add Appointment (St.)
+
+actor Customer
+control Management System
+participant Hospital
+
+
+Customer->Management System:addApointmentSt()
+activate Management System
+
+Management System->Management System:updateDisplay
+
+Management System-->Customer:
+deactivate Management System
+
+Customer->Management System:setAppointment(details)
+activate Management System
+
+Management System->Hospital:checkAppointment(details)
+
+activate Hospital
+Hospital-->Management System:return true
+deactivate Hospital
+
+Management System->Management System:updateDisplay
+Management System-->Customer:
+deactivate Management System

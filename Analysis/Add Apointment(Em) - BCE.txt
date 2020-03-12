@@ -1,0 +1,27 @@
+title Hospital System – Add Appointment (Em.)
+
+actor User
+control Management System
+participant Hospital
+
+
+User->Management System:addApointmentEm()
+activate Management System
+
+Management System->Management System:updateDisplay
+
+Management System-->User:
+deactivate Management System
+
+User->Management System:setAppointment(details)
+activate Management System
+
+Management System->Hospital:checkAppointment(details)
+
+activate Hospital
+Hospital-->Management System:return true
+deactivate Hospital
+
+Management System->Management System:updateDisplay
+Management System-->User:
+deactivate Management System
