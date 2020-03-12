@@ -1,0 +1,33 @@
+title Hospital System – Handle Appointment(Em.)
+
+actor Employee
+control Management System
+participant Hospital
+
+
+Management System->Employee:alter new Appointment(Em)
+
+Employee->Management System:confirmAppointment()
+activate Management System
+Management System->Hospital:labelProcessing()
+activate Hospital
+Hospital-->Management System:
+deactivate Hospital
+Management System-->Employee:
+deactivate Management System
+
+Employee->Management System:cancelAppointment()
+
+activate Management System
+
+Management System->Hospital:labelFinish()
+activate Hospital
+
+Hospital-->Management System:
+deactivate Hospital
+
+Management System->Management System:updateDisplay
+
+Management System-->Employee:
+deactivate Management System
+
