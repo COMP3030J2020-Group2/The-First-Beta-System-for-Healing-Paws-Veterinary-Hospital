@@ -1,0 +1,18 @@
+title Hospital System – Display Welcome
+
+actor User
+control Browser
+control Management System
+
+User->Browser:Requst Resourse
+
+activate Browser
+Browser->Management System:
+
+
+activate Management System
+Management System->Browser:return
+deactivate Management System
+Browser->Browser:updateDisplay
+Browser-->User:
+deactivate Browser
