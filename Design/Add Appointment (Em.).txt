@@ -1,0 +1,81 @@
+title Hospital System – Add Appointment (Em.)
+
+
+actor User
+boundary UserUI
+control Management System
+participant Hospital
+participant AppointmentMapper
+database db
+
+User->UserUI:addAppointmentEm()
+activate UserUI
+UserUI->Management System:displayAppointment(userID : Integer, type : Em)
+
+activate Management System
+Management System->UserUI:update()
+deactivate Management System
+UserUI-->User:
+deactivate UserUI
+
+User->UserUI:setAppointment(details)
+activate UserUI
+
+UserUI->Management System:addAppointment(userID : Integer, type : Em, date : LocalDate,\ntime : LocalTime, name : String, phone : String, pet)
+
+
+activate Management System
+expandable− see ACE (appointment not available)
+
+	Management System->Management System:checkAvailability()                                                                              
+end 
+ 
+
+
+Management System->Hospital:addAppointment(userID : Integer, type : Em, date : LocalDate,\ntime : LocalTime, name : String, phone : String, pet)
+
+activate Hospital
+Hospital->AppointmentMapper:addAppointment(userID : Integer, type : Em, date : LocalDate,\ntime : LocalTime, name : String, phone : String, pet)
+activate AppointmentMapper
+AppointmentMapper->db:storeInfor(sql : String)
+activate db
+db-->AppointmentMapper:
+deactivate db
+deactivate Hospital
+deactivate Management System
+
+
+
+
+activate Hospital
+
+AppointmentMapper-->Hospital:return true
+deactivate AppointmentMapper
+
+
+Hospital-->Management System:return pets
+deactivate Hospital
+
+Management System->Management System:notifyObservers()
+activate Management System
+
+Management System->UserUI:update()
+activate UserUI
+
+
+
+activate Management System
+
+deactivate Management System
+
+UserUI-->Management System:
+deactivate UserUI
+
+Management System-->Management System:
+deactivate Management System
+Management System-->UserUI:
+UserUI-->User:
+deactivate UserUI
+
+
+
