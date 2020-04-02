@@ -9,3 +9,4 @@ class Config(object):
                               'sqlite:///' +os.path.join(basedir,'systemdb.db')
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    PIC_UPLOAD_DIR = os.path.join(basedir,'images')
