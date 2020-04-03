@@ -27,3 +27,26 @@ def signup():
 		session["USERNAME"] = customer.username
 		return render_template('after_login_page.html')
 	return render_template('signup.html', title='Register a new user', form=form)
+
+@app.route('/checkuser', methods=['POST'])
+def check_username():
+	chosen_name = request.form['username']
+	customer_in_db = Customer.query.filter(Customer.username == chosen_name).first()
+	if not customer_in_db:
+		return jsonify({'text': 'Username is available',
+						'returnvalue': 0})
+	else:
+		return jsonify({'text': 'Sorry! Username is already taken',
+						'returvalue': 1})
+
+
+@app.route('/checkemail', methods=['POST'])
+def check_email():
+	chosen_email = request.form['email']
+	email_in_db = Customer.query.filter(Customer.email == chosen_email).first()
+	if not email_in_db:
+		return jsonify({'text': 'Email is available',
+						'returnvalue': 0})
+	else:
+		return jsonify({'text': 'Sorry! Email is already taken',
+						'returvalue': 1})
