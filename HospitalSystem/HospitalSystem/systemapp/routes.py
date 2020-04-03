@@ -1,5 +1,8 @@
-from systemapp import app
-from flask import render_template
+from systemapp import app,db
+from flask import render_template, session, request, jsonify
+from werkzeug.security import generate_password_hash, check_password_hash
+from systemapp.forms import SignupForm
+from systemapp.models import Customer
 
 @app.route('/')
 

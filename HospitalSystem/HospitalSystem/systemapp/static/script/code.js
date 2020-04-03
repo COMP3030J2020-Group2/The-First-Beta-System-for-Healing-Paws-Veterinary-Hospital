@@ -67,16 +67,7 @@ if(form!=null){
 	}
 }
 
-if(password2!=null){
-	password2.onmouseover = function(){
-    	password2.style.borderColor = 'blue';
 
-	}
-	password2.onmouseout = function(){
-    	password2.style.borderColor = 'black';
-    
-	}
-}
 
 /* username and email format*/
 var regEmail = /^[a-zA-Z][a-zA-Z0-9_@\-\!\?]*@[a-zA-Z0-9]+.[a-z]+/;

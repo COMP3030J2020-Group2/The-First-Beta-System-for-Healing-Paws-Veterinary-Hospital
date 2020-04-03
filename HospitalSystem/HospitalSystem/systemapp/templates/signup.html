@@ -1,37 +1,47 @@
-<!DOCTYPE html>
 
-<html>
-    <div id="signup">
-        <h1>Ready to organize your day!</h1>
-        <p>Please fill the form below</p>
-        <form action="" method="post" id="signup_form" novalidate>
-            {{ form.hidden_tag() }}
-            <p class="signup">
-                {{ form.username.label }}<br>
-                {{ form.username(size=32) }}
-                <span style="color: red">{{ usernameerror }}</span>
-                <span id="validation_username"></span>
-            </p>
-            <p>
-                {{ form.email.label }}<br>
-                {{ form.email(size=32) }}
-                <span style="color: red">{{ emailerror }}</span>
-                <span id="validation_email"></span>
-            </p>
-            <p>
-                {{ form.password.label }}<br>
-                {{ form.password(size=35) }}
-                <span id="validation_password"></span>
+{% extends"nav.html" %}
 
-            </p>
-            <p>
-                {{ form.password2.label }}<br>
-                {{ form.password2(size=35) }}
-                <span id="validation_password2"></span>
-            </p>
-            <p class="signup">{{ form.submit() }}</p>
-        </form>
+{% block content %}
+    <div id="signup" class="container">
+        <div class="row row-centered">
+            <div class="well col-md-6 col-centered">
+                <h1>Please fill the form below</h1>
+                <form action="" method="post" id="signup_form" novalidate role="form" class="form-horizontal">
+                    {{ form.hidden_tag() }}
+                    <div class="input-group">
+                        {{ form.username.label }}<br>
+                        {{ form.username(size=32) }}
+                        <span style="color: red">{{ usernameerror }}</span>
+                        <span id="validation_username"></span>
+                    </div>
+                    <div class="input-group">
+                        {{ form.email.label }}<br>
+                        {{ form.email(size=32) }}
+                        <span style="color: red">{{ emailerror }}</span>
+                        <span id="validation_email"></span>
+                    </div>
+                    <div class="input-group">
+                        {{ form.password.label }}<br>
+                        {{ form.password(size=35) }}
+                        <span id="validation_password"></span>
+                    </div>
+                    <div class="input-group">
+                        {{ form.password2.label }}<br>
+                        {{ form.password2(size=35) }}
+                        <span id="validation_password2"></span>
+                    </div>
+                    <div>
+                        
+                    </div>
+                    <div class="input-group">
+                        {{ form.submit() }}
+                    </div>
+                </form>
+            </div>
+         
+        </div>
+        
     </div>
     <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static',filename='script/code.js') }}"></script>
-</html>
+{% endblock %}
