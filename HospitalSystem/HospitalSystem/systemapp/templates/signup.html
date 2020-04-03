@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html>
+    <div id="signup">
+        <h1>Ready to organize your day!</h1>
+        <p>Please fill the form below</p>
+        <form action="" method="post" id="signup_form" novalidate>
+            {{ form.hidden_tag() }}
+            <p class="signup">
+                {{ form.username.label }}<br>
+                {{ form.username(size=32) }}
+                <span style="color: red">{{ usernameerror }}</span>
+                <span id="validation_username"></span>
+            </p>
+            <p>
+                {{ form.email.label }}<br>
+                {{ form.email(size=32) }}
+                <span style="color: red">{{ emailerror }}</span>
+                <span id="validation_email"></span>
+            </p>
+            <p>
+                {{ form.password.label }}<br>
+                {{ form.password(size=35) }}
+                <span id="validation_password"></span>
+
+            </p>
+            <p>
+                {{ form.password2.label }}<br>
+                {{ form.password2(size=35) }}
+                <span id="validation_password2"></span>
+            </p>
+            <p class="signup">{{ form.submit() }}</p>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='script/code.js') }}"></script>
+</html>
