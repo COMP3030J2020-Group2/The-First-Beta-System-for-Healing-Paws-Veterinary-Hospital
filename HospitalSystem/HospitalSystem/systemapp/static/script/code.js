@@ -67,7 +67,35 @@ if(form!=null){
 	}
 }
 
+var passwordform = document.querySelector('#password_form');
+if(passwordform!=null){
+	passwordform.onsubmit = function(){
+	    console.log('submit');
+	    var password = checkPassword();
+	    var equal = checkEqualPassword();
+	    if(password && equal){
+	        return true;
+	    }else{
+	        return false;
+	    }
+    
+	}
+}
 
+var informationform = document.querySelector('#information_form');
+if(informationform!=null){
+	informationform.onsubmit = function(){
+	    console.log('submit');
+	    var username = checkUsernameFormat();
+	    var email = checkEmailFormat();
+	    if(username && email){
+	        return true;
+	    }else{
+	        return false;
+	    }
+    
+	}
+}
 
 /* username and email format*/
 var regEmail = /^[a-zA-Z][a-zA-Z0-9_@\-\!\?]*@[a-zA-Z0-9]+.[a-z]+/;

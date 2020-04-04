@@ -1,0 +1,67 @@
+{% extends"nav.html" %}
+
+{% block content %}
+
+<h2>Your Account</h2>
+
+    <div class="container">
+        <div class="row row-centered">
+            <div class="well col-md-6 col-centered">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Your Information</th>
+                            <th><a class="btn btn-primary btn-sm" href="/personal_information/update" role="button">Edit Information</a>
+                            <a class="btn btn-primary btn-sm" href="/personal_information/check_password" role="button">Change password</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Name:</th>
+                            <td>{{user.username}}</td>
+                        </tr>
+                        <tr>
+                            <th>Email:</th>
+                            <td>{{user.email}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row row-centered">
+            <div class="well col-md-6 col-centered">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Your Pets</th>
+                            <th colspan="2"><a class="btn btn-primary btn-sm" href="/pet_signup" role="button">Sign up for your pets</a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if pets %}
+                        <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        {% for pet in pets%}
+                        <tr>
+                            <td>{{pet.name}}</td>
+                            <td>{{pet.type}}</td>
+                            <td><a class="btn btn-primary btn-sm" href="/personal_information/update_pet/{{pet.id}}" role="button">Edit</a>
+                                <a class="btn btn-primary btn-sm" href="/personal_information/check_password" role="button">Delete</a></td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
