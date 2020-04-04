@@ -1,0 +1,47 @@
+{% extends"nav.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row row-centered">
+            <div class="well col-md-6 col-centered">
+
+                <h1>Welcome!<br>Let's get start.</h1>
+
+                <form action="" method="post" id="customer_login_form" novalidate role="form" class="form-horizontal">
+                    {{ form.hidden_tag() }}
+
+                    <div class="input-group">
+                        {{ form.username.label }}<br>
+                        {{ form.username(size=32) }}
+                         <span>{{ noneerror }}</span>
+<!--                        {% for error in form.username.errors %}-->
+<!--                            <span>{{ error }}</span>-->
+<!--                        {% endfor %}-->
+                        <span id="notice_username"></span>
+                    </div>
+
+                    <div class="input-group">
+                        {{ form.password.label }}<br>
+                        {{ form.password(size=32) }}
+                         <span>{{ pwerror }}</span>
+<!--                        {% for error in form.password.errors %}-->
+<!--                            <span>{{ error }}</span>-->
+<!--                        {% endfor %}-->
+                        <span id="notice_password"></span>
+                    </div>
+
+                    <div class="input-group">
+                        {{ form.remember_me() }} {{ form.remember_me.label }}
+                        <br>
+                        {{ form.submit() }}
+                    </div>
+
+            </form>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='script/customer_login.js') }}"></script>
+{% endblock %}
