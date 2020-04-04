@@ -5,40 +5,36 @@
     <div id="signup" class="container">
         <div class="row row-centered">
             <div class="well col-md-6 col-centered">
-                <h1>Please fill the form below</h1>
+                <h1 class="text-center">Please fill the form below</h1>
                 <form action="" method="post" id="signup_form" novalidate role="form" class="form-horizontal">
                     {{ form.hidden_tag() }}
-                    <div class="input-group">
+                    <div class="form-group">
                         {{ form.username.label }}<br>
-                        {{ form.username(size=32) }}
+                        {{ form.username(size=32, class="form-control") }}
                         <span style="color: red">{{ usernameerror }}</span>
                         <span id="validation_username"></span>
                     </div>
-                    <div class="input-group">
+                    <div class="form-group">
                         {{ form.email.label }}<br>
-                        {{ form.email(size=32) }}
+                        {{ form.email(size=32, class="form-control form-control-lg") }}
                         <span style="color: red">{{ emailerror }}</span>
                         <span id="validation_email"></span>
                     </div>
-                    <div class="input-group">
+                    <div class="form-group">
                         {{ form.password.label }}<br>
-                        {{ form.password(size=35) }}
+                        {{ form.password(size=35, class="form-control form-control-lg") }}
                         <span id="validation_password"></span>
                     </div>
-                    <div class="input-group">
+                    <div class="form-group">
                         {{ form.password2.label }}<br>
-                        {{ form.password2(size=35) }}
+                        {{ form.password2(size=35, class="form-control form-control-lg") }}
                         <span id="validation_password2"></span>
                     </div>
-                    <div>
-                        
-                    </div>
-                    <div class="input-group">
-                        {{ form.submit() }}
+                    <div class="form-group">
+                        {{ form.submit(class="btn btn-outline-info") }}
                     </div>
                 </form>
             </div>
-         
         </div>
         
     </div>
