@@ -35,3 +35,9 @@ class InformationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired()])
     submit = SubmitField('Register')
 
+class StaffLoginForm(FlaskForm):
+    staffname = StringField('Staff Name',validators=[DataRequired()])
+    password = PasswordField('Password',validators=[DataRequired()])
+    remember_me = BooleanField('remember me',default=False)
+    submit = SubmitField('Sign in')
+

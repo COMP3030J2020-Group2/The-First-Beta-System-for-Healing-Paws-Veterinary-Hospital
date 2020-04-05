@@ -1,8 +1,9 @@
 from systemapp import app,db
 from flask import render_template, session, request, jsonify,redirect,url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from systemapp.forms import SignupForm, PetSignUpForm, LoginForm, PasswordForm, InformationForm
-from systemapp.models import Customer, Pet
+from systemapp.forms import SignupForm, PetSignUpForm, LoginForm, PasswordForm, InformationForm, StaffLoginForm
+from systemapp.models import Customer, Pet, Staff
+from datetime import datetime
 
 @app.route('/')
 
@@ -192,3 +193,27 @@ def delete_pet(id):
             return redirect('/personal_information')
     else:
         return redirect(url_for('index'))
+
+
+@app.route('/staff_login', methods=['GET','POST'])
+def staff_login():
+    form = StaffLoginForm()
+    if form.validate_on_submit():
+        staff_in_db = Staff.query.filter(Staff.name == form.staffname.data).first()
+        if not staff_in_db:
+            return render_template('staff_login.html',title="Control System Login",form=form, noneerror=" No such staff, please check your name.")
+        if check_password_hash(staff_in_db.password_hash, form.password.data):
+            session["STAFF"] = staff_in_db.name
+            update_staff = Staff.query.filter(Staff.id == staff_in_db.id).update({"last_login":datetime.utcnow()})
+            return render_template('control_system.html',staff = staff_in_db)
+        else:
+            return render_template('staff_login.html',title="Control System Login",form=form, pwerror="Password incorrect!")
+    return render_template('staff_login.html',title="Control System Login",form=form)
+
+@app.route('/control_system',methods=['GET','POST'])
+def control_system():
+    if not session.get("STAFF") is None:
+        return redirect(url_for('staff_login'))
+    else:
+        staff = Staff.query.filter(Staff.name == session.get("STAFF"))
+        return render_template('control_system.html',staff = staff)
