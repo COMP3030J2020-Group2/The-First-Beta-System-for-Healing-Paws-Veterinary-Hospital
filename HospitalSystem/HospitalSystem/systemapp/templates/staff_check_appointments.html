@@ -1,0 +1,32 @@
+
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap2.min.css') }}">
+<body>
+    <div class="card">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item"><a class="{{ class_on_going }}" href="{{ url_for('on_going')}}">On Going</a></li>
+                <li class="nav-item"><a class="{{ class_unchecked }}" href="{{ url_for('unchecked')}}">Unchecked</a></li>
+                <li class="nav-item"><a class="{{ class_finished }}" href="{{ url_for('finished')}}">Finished</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Column 1</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ appointment }}</td>
+                    <td><button class="btn btn-primary" type="button">{{ button }}</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div></div>
+    <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+</body>

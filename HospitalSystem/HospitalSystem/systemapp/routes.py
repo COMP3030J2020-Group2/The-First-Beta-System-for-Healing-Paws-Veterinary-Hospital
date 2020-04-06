@@ -217,3 +217,18 @@ def control_system():
     else:
         staff = Staff.query.filter(Staff.name == session.get("STAFF"))
         return render_template('control_system.html',staff = staff)
+
+
+
+@app.route('/staff_check_appointments/on_going',methods=['GET','POST'])
+def on_going():
+    return render_template('staff_check_appointments.html',appointment  = 'On Going', button = 'Finish',class_on_going = "nav-link active", class_unchecked = "nav-link", class_finished = "nav-link")
+
+
+@app.route('/staff_check_appointments/unchecked',methods=['GET','POST'])
+def unchecked():
+    return render_template('staff_check_appointments.html',appointment = 'Unchecked', button = 'Check',class_on_going = "nav-link", class_unchecked = "nav-link active", class_finished = "nav-link")
+
+@app.route('/staff_check_appointments/finished',methods=['GET','POST'])
+def finished():
+    return render_template('staff_check_appointments.html',appointment  = 'Finished', button = 'Active',class_on_going = "nav-link", class_unchecked = "nav-link", class_finished = "nav-link active")
