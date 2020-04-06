@@ -1,0 +1,22 @@
+{% extends"nav.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row row-centered">
+            <div class="well col-md-6 col-centered">
+                    <h1 class="text-center">Please fill the form below</h1>
+<form action="/personal_information/update_pet/{{pet.id}}" method="POST">
+    <label>Name：</label>
+    <input type="text" name="name" value="{{pet.name}}">
+    <br><br>
+    <label>Type：</label>
+    <input type="text" name="type" value="{{pet.type}}">
+    <br><br>
+    <input type="submit" value="Update">
+</form>
+ </div>
+        </div>
+        
+    </div>
+
+{% endblock %}

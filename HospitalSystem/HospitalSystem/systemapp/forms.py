@@ -21,3 +21,23 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('remember me', default=False)
     submit = SubmitField('Sign In')
+
+
+
+class PasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired()])
+    password2 = PasswordField('Repeat Password', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+
+class InformationForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired()])
+    submit = SubmitField('Register')
+
+class StaffLoginForm(FlaskForm):
+    staffname = StringField('Staff Name',validators=[DataRequired()])
+    password = PasswordField('Password',validators=[DataRequired()])
+    remember_me = BooleanField('remember me',default=False)
+    submit = SubmitField('Sign in')
+

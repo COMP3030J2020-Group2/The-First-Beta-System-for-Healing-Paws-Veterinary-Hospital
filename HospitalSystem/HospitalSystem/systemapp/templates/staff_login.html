@@ -1,0 +1,40 @@
+{% extends nav.html %}
+
+{% block content %}
+    <div class="container">
+        <h1>
+            <form action="" method="post" id="staff_login_form" novalidate role="form" class="form-horizontal">
+                {{ form.hidden_tag() }}
+                <div class="input-group">
+                    {{ form.staffname.label }}<br>
+                    {{ form.staffname(size=32) }}
+                    <span>
+                        {{ noneerror }}
+                    </span>
+                    {% for error in form.staffname.errors %}
+                    {{ error }}
+                    {% endfor %}
+                <span id="notice_staffname"></span>
+                </div>
+                <div class="input-group">
+                    {{ form.password.label }}<br>
+                    {{ form.password(size=32) }}
+                </div>
+                <span>
+                    {{ pwerror }}
+                </span>
+                {% for error in form.password.errors %}
+                    {{ error }}
+                {% endfor %}
+                <span id="notice_password"></span>
+            <div class="input-group">
+                {{ form.remember_me() }} {{ form.remember_me.label }}<br>
+                {{ form.submit() }}
+            </div>
+            </form>
+        </h1>
+    </div>
+
+    <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='script/staff_login.js') }}"></script>
+{% endblock %}
