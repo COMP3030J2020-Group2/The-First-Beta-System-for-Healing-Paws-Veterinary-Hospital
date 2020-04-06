@@ -29,7 +29,7 @@ def signup():
         db.session.add(customer)
         db.session.commit()
         session["USERNAME"] = customer.username
-        return render_template('after_login_page.html')
+        return render_template('customer_main.html')
     return render_template('signup.html', title='Register a new user', form=form)
 
 @app.route('/pet_signup', methods=['GET', 'POST'])
@@ -83,20 +83,43 @@ def customer_base():
     return render_template('customer_base.html')
 
 
+@app.route('/customer_main')
+def customer_main():
+    if not session.get("USERNAME") is None:
+        customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+    return render_template('customer_main.html', user=customer_in_db)
+
+
+@app.route('/customer_appointments')
+def customer_appointments():
+    if not session.get("USERNAME") is None:
+        customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+    return render_template('customer_appointments.html', user=customer_in_db)
+
+
 @app.route('/customer_login', methods=['GET', 'POST'])
 def customer_login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        customer_in_db = Customer.query.filter(Customer.username == form.username.data).first()
-        if not customer_in_db:
-            return render_template('customer_login.html', title="Login as Customer", form=form, noneerror=" No such user. Register please")
-        if check_password_hash(customer_in_db.password_hash, form.password.data):
-            session["USERNAME"] = customer_in_db.username
-            return render_template('after_login_page.html', user=customer_in_db)
-        else:
-            return render_template('customer_login.html', title="Login as Customer", form=form, pwerror="Password incorrect!")
-    return render_template('customer_login.html', title="Login as Customer", form=form)
-
+    if not session.get("USERNAME") is None:
+        customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+        return render_template('customer_main.html', user=customer_in_db)
+    else:
+        form = LoginForm()
+        if form.validate_on_submit():
+            customer_in_db = Customer.query.filter(Customer.username == form.username.data).first()
+            if not customer_in_db:
+                return render_template('customer_login.html', title="Login as Customer", form=form, noneerror=" No such user. Register please")
+            if check_password_hash(customer_in_db.password_hash, form.password.data):
+                session["USERNAME"] = customer_in_db.username
+                return render_template('customer_main.html', user=customer_in_db)
+            else:
+                return render_template('customer_login.html', title="Login as Customer", form=form, pwerror="Password incorrect!")
+        return render_template('customer_login.html', title="Login as Customer", form=form)
+    
+    
+@app.route('/customer_logout')
+def customer_logout():
+    session.pop("USERNAME", None)
+    return redirect(url_for('index'))
 
 
 @app.route('/personal_information',methods = ['GET'])
