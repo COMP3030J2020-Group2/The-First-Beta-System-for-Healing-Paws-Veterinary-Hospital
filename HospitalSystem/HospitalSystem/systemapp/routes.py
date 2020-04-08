@@ -87,14 +87,14 @@ def customer_base():
 def customer_main():
     if not session.get("USERNAME") is None:
         customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-    return render_template('customer_main.html', user=customer_in_db)
+    return render_template('customer_main.html', user=customer_in_db, title='My Healing Paws')
 
 
 @app.route('/customer_appointments')
 def customer_appointments():
     if not session.get("USERNAME") is None:
         customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-    return render_template('customer_appointments.html', user=customer_in_db)
+    return render_template('customer_appointments.html', user=customer_in_db, title='My Appointment')
 
 
 @app.route('/customer_login', methods=['GET', 'POST'])
