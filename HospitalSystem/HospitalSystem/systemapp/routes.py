@@ -1,8 +1,8 @@
 from systemapp import app,db
 from flask import render_template, session, request, jsonify,redirect,url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from systemapp.forms import SignupForm, PetSignUpForm, LoginForm, PasswordForm, InformationForm, StaffLoginForm
-from systemapp.models import Customer, Pet, Staff
+from systemapp.forms import SignupForm, PetSignUpForm, LoginForm, PasswordForm, InformationForm, StaffLoginForm, QuestionForm
+from systemapp.models import Customer, Pet, Staff, Question, Answer
 from datetime import datetime
 
 @app.route('/')
@@ -129,6 +129,8 @@ def personal_information():
             user = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
             pets=user.pets
             return render_template('personal_information.html',user=user,pets=pets)
+    else:
+        return redirect(url_for('customer_login'))
 
 
 @app.route('/personal_information/update',methods = ['GET', 'POST'])
@@ -156,7 +158,7 @@ def update_information():
         else:
             return render_template('update_information.html', form=form, email = user.email, username=user.username)
     else:
-        return redirect(url_for('index'))
+        return redirect(url_for('customer_login'))
 
 
 
@@ -175,7 +177,7 @@ def check_password():
             flash('Incorrect Password')
             return redirect(url_for('check_password'))
     else:
-        return redirect(url_for('index'))
+        return redirect(url_for('customer_login'))
 
 @app.route('/personal_information/change_password',methods = ['GET', 'POST'])
 def change_password():
@@ -190,7 +192,7 @@ def change_password():
             return render_template('personal_information.html', user = user, pets = pets)
         return render_template('password_change.html', form=form)
     else:
-        return redirect(url_for('index'))
+        return redirect(url_for('customer_login'))
 
 @app.route('/personal_information/update_pet/<id>',methods = ['GET', 'POST'])
 def update_pet(id):
@@ -205,7 +207,7 @@ def update_pet(id):
             db.session.commit()
             return redirect('/personal_information')
     else:
-        return redirect(url_for('index'))
+        return redirect(url_for('customer_login'))
 
 
 @app.route('/personal_information/delete_pet/<id>')
@@ -215,7 +217,7 @@ def delete_pet(id):
             db.session.commit()
             return redirect('/personal_information')
     else:
-        return redirect(url_for('index'))
+        return redirect(url_for('customer_login'))
 
 
 @app.route('/staff_login', methods=['GET','POST'])
@@ -240,3 +242,39 @@ def control_system():
     else:
         staff = Staff.query.filter(Staff.name == session.get("STAFF"))
         return render_template('control_system.html',staff = staff)
+
+
+@app.route('/customer_questions')
+def customer_questions():
+    if not session.get("USERNAME") is None:
+        customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+        questions=customer_in_db.questions.all()
+
+        answered_questions=[]
+        for question in questions:
+            if question.answer.all():
+                answered_questions.append(question)
+
+        unanswered_questions=customer_in_db.questions.filter(Question.answer == None).all()
+
+        return render_template('customer_questions.html', user=customer_in_db, unanswered_questions=unanswered_questions, answered_questions=answered_questions)
+    else:
+        return redirect(url_for('customer_login'))
+
+
+@app.route('/create_questions',methods=['GET','POST'])
+def create_questions():
+    form = QuestionForm()
+    if not session.get("USERNAME") is None:
+        customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+
+        if form.validate_on_submit():
+            question = Question(title=form.title.data, content=form.content.data, questioner=customer_in_db)
+            db.session.add(question)
+
+            db.session.commit()
+
+            return redirect(url_for('customer_questions'))
+        return render_template('question_create.html', user=customer_in_db, form=form)
+    else:
+        return redirect(url_for('customer_login'))
