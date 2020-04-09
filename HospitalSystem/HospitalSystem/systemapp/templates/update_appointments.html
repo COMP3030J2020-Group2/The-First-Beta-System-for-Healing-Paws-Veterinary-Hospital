@@ -1,0 +1,37 @@
+{% extends"nav.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row row-centered">
+            <div class="well col-md-6 col-centered">
+                    <h1 class="text-center">Please fill the form below</h1>
+<form action="/customer_appointments/update_appointments/{{appointment.id}}" method="POST">
+
+    <label>Appointment ID：{{appointment.id}}</label>
+    <br><br>
+    <label>Operator ID：{{appointment.operator_id}}</label>
+    <br><br>
+    <label>Appointment type：</label>
+    <input type="text" name="type" value="{{appointment.type}}">
+    <br><br>
+    <label>Appointment Time：</label>
+
+
+    <input type="date" name="time1" value="{{appointment.time}}">
+
+
+    <br><br>
+    <label>Appointment Description：</label>
+    <input type="text" name="description" value="{{appointment.description}}">
+    <br><br>
+    <label>Appointment Pet ID：</label>
+    <input type="text" name="pet_id" value="{{appointment.pet_id}}">
+    <br><br>
+    <input type="submit" value="Update">
+</form>
+ </div>
+        </div>
+
+    </div>
+
+{% endblock %}

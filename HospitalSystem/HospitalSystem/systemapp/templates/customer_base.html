@@ -9,7 +9,13 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Customer</title>
+    <title>
+        {% if title %}
+            {{ title }} - Healing Paws
+        {% else %}
+            Healing Paws Hospital
+        {% endif %}
+    </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -97,25 +103,32 @@
           <!-- Sidebar Navidation Menus-->
           <hr class="heading">
 <!--          <span class="heading">Main</span>-->
-            <ul class="list-unstyled">
-                <li class="active">
+            <ul class="list-unstyled" id="sidebarList">
+                <li class="active" id="main">
                   <a href="{{url_for('customer_main')}}">
+<!--                  <a href="../templates/customer_main.html">-->
 <!--                           <i class="icon-home"></i>-->
                     Main</a>
                 </li>
-            </ul>
+<!--            </ul>-->
 
             <span class="heading">Me</span>
-          <ul class="list-unstyled">
-            <li>
+<!--          <ul class="list-unstyled">-->
+            <li id="appointment">
               <a href="{{url_for('customer_appointments')}}">
+<!--              <a href="customer_appointments.html">-->
 <!--                        <i class="icon-grid"></i>-->
                 My Appointments</a>
             </li>
             <li>
-              <a href="#">
+              <a>
 <!--                        <i class="fa fa-bar-chart"></i>-->
                 My Pets</a>
+            </li>
+            <li>
+              <a href="{{url_for('customer_questions')}}">
+<!--                        <i class="fa fa-bar-chart"></i>-->
+                My Questions</a>
             </li>
 <!--              Example dropdown-->
 <!--            <li>-->
@@ -128,10 +141,10 @@
 <!--                <li><a href="#">Page</a></li>-->
 <!--              </ul>-->
 <!--            </li>-->
-          </ul>
+<!--          </ul>-->
 
           <span class="heading">Setting</span>
-          <ul class="list-unstyled">
+<!--          <ul class="list-unstyled">-->
             <li> <a href="#">
 <!--                <i class="icon-flask"></i>-->
                 Profile</a>
