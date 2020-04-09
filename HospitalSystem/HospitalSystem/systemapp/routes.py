@@ -2,8 +2,9 @@ from systemapp import app,db
 from flask import render_template, session, request, jsonify,redirect,url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from systemapp.forms import SignupForm, PetSignUpForm, LoginForm, PasswordForm, InformationForm, StaffLoginForm
-from systemapp.models import Customer, Pet, Staff
+from systemapp.models import Customer, Pet, Staff,Appointment
 from datetime import datetime
+
 
 @app.route('/')
 
@@ -245,13 +246,68 @@ def control_system():
 
 @app.route('/staff_check_appointments/on_going',methods=['GET','POST'])
 def on_going():
-    return render_template('staff_check_appointments.html',appointment  = 'On Going', button = 'Finish',class_on_going = "nav-link active", class_unchecked = "nav-link", class_finished = "nav-link")
+    ongoing_appoints = Appointment.query.filter(Appointment.status == 0).all()
+    customer_list = []
+    pet_list = []
+    for appoint in ongoing_appoints:
+        pet = Pet.query.filter(Pet.id == appoint.pet_id).first()
+        customer = Customer.query.filter(Customer.id == pet.owner_id).first()
+        customer_list.append(customer.username)
+        pet_list.append(pet)
 
+    if request.method == 'GET':
+        list_ongoing_appoints=list(enumerate(ongoing_appoints))
+        return render_template('staff_check_appointments.html',appoints = list_ongoing_appoints,appointment  = 'On Going', 
+            button = 'Finish',class_on_going = "nav-link active", class_unchecked = "nav-link", class_finished = "nav-link",button_style="btn btn-primary", pets=pet_list,customers=customer_list)
+    else:
+        data = request.form.to_dict()
+        rowIndex = data.get('id')
+        appointment = Appointment.query.filter(Appointment.id == rowIndex).first()
+        appointment.status = 2
+        db.session.commit()
+        return redirect(url_for('on_going'))
 
 @app.route('/staff_check_appointments/unchecked',methods=['GET','POST'])
 def unchecked():
-    return render_template('staff_check_appointments.html',appointment = 'Unchecked', button = 'Check',class_on_going = "nav-link", class_unchecked = "nav-link active", class_finished = "nav-link")
+    unchecked_appoints = Appointment.query.filter(Appointment.status == 1).all()
+    customer_list = []
+    pet_list = []
+    for appoint in unchecked_appoints:
+        pet = Pet.query.filter(Pet.id == appoint.pet_id).first()
+        customer = Customer.query.filter(Customer.id == pet.owner_id).first()
+        customer_list.append(customer.username)
+        pet_list.append(pet)
+
+    if request.method == 'GET':
+        list_unchecked_appoints=list(enumerate(unchecked_appoints))
+        return render_template('staff_check_appointments.html',appoints = list_unchecked_appoints,appointment = 'Unchecked', 
+            button = 'Check',class_on_going = "nav-link", class_unchecked = "nav-link active", class_finished = "nav-link",button_style="btn btn-success",pets=pet_list,customers=customer_list)
+    else:
+        data = request.form.to_dict()
+        rowIndex = data.get('id')
+        appointment = Appointment.query.filter(Appointment.id == rowIndex).first()
+        appointment.status = 0
+        db.session.commit()
+        return redirect(url_for('unchecked'))
 
 @app.route('/staff_check_appointments/finished',methods=['GET','POST'])
 def finished():
-    return render_template('staff_check_appointments.html',appointment  = 'Finished', button = 'Active',class_on_going = "nav-link", class_unchecked = "nav-link", class_finished = "nav-link active")
+    finished_appoints = Appointment.query.filter(Appointment.status == 2).all()
+    customer_list = []
+    pet_list = []
+    for appoint in finished_appoints:
+        pet = Pet.query.filter(Pet.id == appoint.pet_id).first()
+        customer = Customer.query.filter(Customer.id == pet.owner_id).first()
+        customer_list.append(customer.username)
+        pet_list.append(pet)
+    if request.method == 'GET':
+        list_finished_appoints=list(enumerate(finished_appoints))
+        return render_template('staff_check_appointments.html',appoints = list_finished_appoints,appointment  = 'Finished', 
+            button = 'Active',class_on_going = "nav-link", class_unchecked = "nav-link", class_finished = "nav-link active",button_style="btn btn-secondary",pets=pet_list,customers=customer_list)
+    else:
+        data = request.form.to_dict()
+        rowIndex = data.get('id')
+        appointment = Appointment.query.filter(Appointment.id == rowIndex).first()
+        appointment.status = 0
+        db.session.commit()
+        return redirect(url_for('finished'))
