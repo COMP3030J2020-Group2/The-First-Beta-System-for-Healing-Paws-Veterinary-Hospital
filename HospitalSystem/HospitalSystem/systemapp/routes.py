@@ -2,7 +2,7 @@ from systemapp import app,db
 from flask import render_template, session, request, jsonify,redirect,url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from systemapp.forms import SignupForm, PetSignUpForm, LoginForm, PasswordForm, InformationForm, StaffLoginForm, QuestionForm
-from systemapp.models import Customer, Pet, Staff, Question, Answer
+from systemapp.models import Customer, Pet, Staff, Question, Answer, Appointment
 from datetime import datetime
 
 @app.route('/')
@@ -90,11 +90,48 @@ def customer_main():
     return render_template('customer_main.html', user=customer_in_db, title='My Healing Paws')
 
 
-@app.route('/customer_appointments')
+@app.route('/customer_appointments',methods = ['GET'])
 def customer_appointments():
     if not session.get("USERNAME") is None:
-        customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-    return render_template('customer_appointments.html', user=customer_in_db, title='My Appointment')
+        if request.method == 'GET':
+            user = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+            #pets = user.pets
+            pets = Pet.query.filter(Pet.owner_id == user.id)
+
+            appointments = Appointment.query.filter(Appointment.pet_id == Pet.id)
+
+    return render_template('customer_appointments.html', user=user, pets=pets, appointments=appointments)
+
+@app.route('/customer_appointments/update_appointments/<id>',methods = ['GET', 'POST'])
+def update_appointments(id):
+    if not session.get("USERNAME") is None:
+        if request.method == 'GET':
+            appointment = db.session.query(Appointment).filter_by(id = id).first()
+            return render_template('update_appointments.html',appointment = appointment)
+        else:
+            appointment_type = request.form['type']
+            appointment_time = request.form['time1']
+            appointment_description = request.form['description']
+            appointment_pet_id = request.form['pet_id']
+            appointment = Appointment.query.filter_by(id=id).update({'type': appointment_type, 'time': datetime.utcnow(), 'description': appointment_description, 'pet_id': appointment_pet_id})
+            db.session.commit()
+            return redirect('/customer_appointments')
+    else:
+        return redirect(url_for('index'))
+
+
+@app.route('/customer_appointments/delete_appointment/<id>',methods = ['GET', 'POST'])
+def delete_appointment(id):
+    if not session.get("USERNAME") is None:
+        if request.method == 'GET':
+            appointment = db.session.query(Appointment).filter_by(id=id).first()
+            return render_template('delete_appointment.html', appointment=appointment)
+        else:
+             db.session.query(Appointment).filter_by(id = id).delete()
+             db.session.commit()
+             return redirect('/customer_appointments')
+    else:
+        return redirect(url_for('index'))
 
 
 @app.route('/customer_login', methods=['GET', 'POST'])

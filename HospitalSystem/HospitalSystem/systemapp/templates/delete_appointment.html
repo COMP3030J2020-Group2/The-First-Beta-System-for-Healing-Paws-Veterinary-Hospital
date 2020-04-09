@@ -1,0 +1,17 @@
+{% extends"nav.html" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row row-centered">
+            <div class="well col-md-6 col-centered">
+
+<form action="/customer_appointments/delete_appointment/{{appointment.id}}" method="POST">
+
+    <input type="submit" value="Delete">
+</form>
+ </div>
+        </div>
+
+    </div>
+
+{% endblock %}
