@@ -29,6 +29,11 @@ class AppointmentForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
+class EmergencyAppointmentForm(FlaskForm):
+    pets = SelectField('Choose Pet', validators=[DataRequired()], default=1, coerce=int)
+    submit = SubmitField('Submit')
+
+
 class PasswordForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     password2 = PasswordField('Repeat Password', validators=[DataRequired()])
