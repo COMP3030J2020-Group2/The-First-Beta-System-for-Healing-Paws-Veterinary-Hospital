@@ -1,31 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0f3c06a8-8da0-4104-92f9-feadd74b4e40" name="Default Changelist" comment="" />
+    <list default="true" id="6719e32f-de17-4f0d-9ebb-aef591b88eae" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/HospitalSystem.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/HospitalSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HospitalSystem.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/systemapp/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/systemapp/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/systemapp/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/systemapp/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/systemapp/systemdb.db" beforeDir="false" afterPath="$PROJECT_DIR$/systemapp/systemdb.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/systemapp/templates/customer_main.html" beforeDir="false" afterPath="$PROJECT_DIR$/systemapp/templates/customer_main.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="HTML File" />
-        <option value="Python Script" />
-      </list>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
     </option>
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="systemdb" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="systemdb" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="systemdb" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="main: schema" type="981a47c2:SqliteImplModel$Schema" />
+      </path>
+    </expand>
+    <select />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="IgnoredFileRootStore">
-    <option name="generatedRoots">
-      <set>
-        <option value="C:\Users\shixiaohan\Desktop\mygit\The-First-Beta-System-for-Healing-Paws-Veterinary-Hospital\HospitalSystem\.idea" />
-      </set>
-    </option>
-  </component>
-  <component name="ProjectId" id="1ZtwsLpBk8xDW1SFbElL1GZhYbJ" />
+  <component name="ProjectId" id="1aNILKskc3icdhfbvSKC7zO35zR" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -33,40 +65,56 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Flask (system.py)" type="Python.FlaskServer" nameIsGenerated="true">
+      <module name="HospitalSystem" />
+      <option name="target" value="C:\Aspirin\WorkSpace\COMP3030JSEP\Github-Project\The-First-Beta-System-for-Healing-Paws-Veterinary-Hospital\HospitalSystem\HospitalSystem\system.py" />
+      <option name="targetType" value="PATH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="C:\Program Files (x86)\Python38-32\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.FlaskServer">
+      <module name="HospitalSystem" />
+      <option name="target" value="C:\Aspirin\WorkSpace\COMP3030JSEP\Github-Project\The-First-Beta-System-for-Healing-Paws-Veterinary-Hospital\HospitalSystem\HospitalSystem\system.py" />
+      <option name="targetType" value="PATH" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="C:\Aspirin\WorkSpace\COMP3030JSEP\Github-Project\The-First-Beta-System-for-Healing-Paws-Veterinary-Hospital\HospitalSystem\HospitalSystem\flaskenv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0f3c06a8-8da0-4104-92f9-feadd74b4e40" name="Default Changelist" comment="" />
-      <created>1585671904153</created>
+      <changelist id="6719e32f-de17-4f0d-9ebb-aef591b88eae" name="Default Changelist" comment="" />
+      <created>1586569567446</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1585671904153</updated>
-      <workItem from="1585671907463" duration="2960000" />
-      <workItem from="1585721056219" duration="577000" />
-      <workItem from="1585721637767" duration="454000" />
-      <workItem from="1585722094584" duration="121000" />
-      <workItem from="1585722224152" duration="3429000" />
-      <workItem from="1585727921822" duration="600000" />
-      <workItem from="1585824395212" duration="194000" />
-      <workItem from="1585824631047" duration="7594000" />
-      <workItem from="1585832691661" duration="24000" />
-      <workItem from="1586444493251" duration="21000" />
-      <workItem from="1586444521852" duration="96000" />
-      <workItem from="1586444636395" duration="15000" />
+      <updated>1586569567446</updated>
+      <workItem from="1586569569015" duration="15019000" />
+      <workItem from="1586598600989" duration="10252000" />
     </task>
     <servers />
   </component>
@@ -74,21 +122,37 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="65" y="0" key="CommitChangelistDialog2" timestamp="1585824914727">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="225" y="68" width="1086" height="721" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586572353530">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="65" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1585824914727" />
-    <state x="458" y="108" key="FileChooserDialogImpl" timestamp="1585824701329">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="225" y="68" width="1086" height="721" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1586572353530" />
+    <state x="550" y="184" key="FileChooserDialogImpl" timestamp="1586569597321">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="458" y="108" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1585824701329" />
-    <state x="186" y="9" key="SettingsEditor" timestamp="1585824462256">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="550" y="184" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586569597321" />
+    <state width="1492" height="132" key="GridCell.Tab.0.bottom" timestamp="1586617002215">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="186" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1585824462256" />
-    <state x="375" y="191" key="com.intellij.ide.util.TipDialog" timestamp="1585832692078">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="1492" height="132" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586617002215" />
+    <state width="1492" height="132" key="GridCell.Tab.0.center" timestamp="1586617002215">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="375" y="191" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1585832692078" />
+    <state width="1492" height="132" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586617002215" />
+    <state width="1492" height="132" key="GridCell.Tab.0.left" timestamp="1586617002215">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1492" height="132" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586617002215" />
+    <state width="1492" height="132" key="GridCell.Tab.0.right" timestamp="1586617002215">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1492" height="132" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586617002215" />
+    <state x="271" y="55" key="SettingsEditor" timestamp="1586572373082">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="271" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1586572373082" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/HospitalSystem$HospitalSystem.coverage" NAME="HospitalSystem Coverage Results" MODIFIED="1586569572723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/HospitalSystem$Flask__system_py_.coverage" NAME="Flask (system.py) Coverage Results" MODIFIED="1586617002210" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

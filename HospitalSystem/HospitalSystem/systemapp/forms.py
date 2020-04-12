@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, SelectField, BooleanField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, SelectField, BooleanField, TextAreaField, IntegerField, SelectMultipleField, SelectField, RadioField
 from wtforms.validators import DataRequired
 
 class SignupForm(FlaskForm):
@@ -22,6 +22,16 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('remember me', default=False)
     submit = SubmitField('Sign In')
 
+
+class AppointmentForm(FlaskForm):
+    pets = SelectField('Choose Pet', validators=[DataRequired()], default=1, coerce=int)
+    description = StringField('Description', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+
+class EmergencyAppointmentForm(FlaskForm):
+    pets = SelectField('Choose Pet', validators=[DataRequired()], default=1, coerce=int)
+    submit = SubmitField('Submit')
 
 
 class PasswordForm(FlaskForm):

@@ -1,7 +1,7 @@
 from systemapp import app,db
 from flask import render_template, session, request, jsonify,redirect,url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from systemapp.forms import SignupForm, PetSignUpForm, LoginForm, PasswordForm, InformationForm, StaffLoginForm, QuestionForm
+from systemapp.forms import SignupForm, PetSignUpForm, LoginForm, PasswordForm, InformationForm, StaffLoginForm, QuestionForm, AppointmentForm, EmergencyAppointmentForm
 from systemapp.models import Customer, Pet, Staff, Question, Answer, Appointment
 from datetime import datetime
 
@@ -29,7 +29,7 @@ def signup():
         db.session.add(customer)
         db.session.commit()
         session["USERNAME"] = customer.username
-        return render_template('customer_main.html')
+        return redirect(url_for('customer_main'))
     return render_template('signup.html', title='Register a new user', form=form)
 
 @app.route('/pet_signup', methods=['GET', 'POST'])
@@ -82,11 +82,28 @@ def customer_base():
     return render_template('customer_base.html')
 
 
-@app.route('/customer_main')
+@app.route('/customer_main', methods=['GET', 'POST'])
 def customer_main():
-    if not session.get("USERNAME") is None:
-        customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-    return render_template('customer_main.html', user=customer_in_db, title='My Healing Paws')
+    form = AppointmentForm()
+    formEm = EmergencyAppointmentForm()
+    customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+    pets = Pet.query.filter(Pet.owner_id == customer_in_db.id).all()
+    pets_list = [(i.id, i.name) for i in pets]
+    form.pets.choices = pets_list
+    formEm.pets.choices = pets_list
+    if form.validate_on_submit():
+        pet_selected = request.form['pets']
+        appointment = Appointment(description=form.description.data, type=1, pet_id=pet_selected)
+        db.session.add(appointment)
+        db.session.commit()
+        return redirect(url_for('customer_main'))
+    if formEm.validate_on_submit():
+        pet_selected = request.form['pets']
+        appointment = Appointment(description="Emergency Appointment, please prepare!", type=0, pet_id=pet_selected)
+        db.session.add(appointment)
+        db.session.commit()
+        return redirect(url_for('customer_main'))
+    return render_template('customer_main.html', user=customer_in_db, title='My Healing Paws', form=form, form0=formEm)
 
 
 @app.route('/customer_appointments',methods = ['GET'])
@@ -137,7 +154,8 @@ def delete_appointment(id):
 def customer_login():
     if not session.get("USERNAME") is None:
         customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-        return render_template('customer_main.html', user=customer_in_db)
+        # return render_template('customer_main.html', user=customer_in_db)
+        return redirect(url_for('customer_main'))
     else:
         form = LoginForm()
         if form.validate_on_submit():
@@ -146,7 +164,8 @@ def customer_login():
                 return render_template('customer_login.html', title="Login as Customer", form=form, noneerror=" No such user. Register please")
             if check_password_hash(customer_in_db.password_hash, form.password.data):
                 session["USERNAME"] = customer_in_db.username
-                return render_template('customer_main.html', user=customer_in_db)
+                # return render_template('customer_main.html', user=customer_in_db)
+                return redirect(url_for('customer_main'))
             else:
                 return render_template('customer_login.html', title="Login as Customer", form=form, pwerror="Password incorrect!")
         return render_template('customer_login.html', title="Login as Customer", form=form)
