@@ -54,7 +54,6 @@ def pet_signup():
         return redirect(url_for('signup'))
 
 
-
 @app.route('/checkuser', methods=['POST'])
 def check_username():
     chosen_name = request.form['username']
