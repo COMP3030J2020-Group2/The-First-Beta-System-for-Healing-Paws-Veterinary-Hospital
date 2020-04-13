@@ -38,7 +38,7 @@ class Appointment(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     type = db.Column(db.Integer,nullable=False)
     time = db.Column(db.DateTime,index=True,default=datetime.utcnow())
-    status = db.Column(db.Integer,index=True,default=0)
+    status = db.Column(db.Integer,index=True,default=1)
     description = db.Column(db.String(256))
     pet_id = db.Column(db.Integer,db.ForeignKey('pet.id'))
     operator_id = db.Column(db.Integer,db.ForeignKey('staff.id'))
