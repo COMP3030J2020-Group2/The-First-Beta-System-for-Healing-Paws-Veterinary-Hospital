@@ -400,11 +400,15 @@ def create_questions():
     else:
         return redirect(url_for('customer_login'))
 
-@app.route('/check_appiontment',methods=['GET','POST'])
-def check_appiontment():
-    apm_id = request.form('id')
-    apm_in_db = Appointment.query.filter(Appointment.id == id).first()
-    return render_template('staff_check_appointments.html', appoints=apm_in_db)
+@app.route('/check_appointment/<id>',methods=['GET','POST'])
+def check_appointment(id):
+    if not session.get("STAFF"):
+        return redirect(url_for('index'))
+    else:
+        apm_in_db = Appointment.query.filter(Appointment.id == id).first()
+        if not apm_in_db:
+            return redirect(url_for('control_system'))
+        return render_template('staff_check_appointments.html', appoints=apm_in_db)
 
 
 @app.route('/staffsignup', methods=['GET', 'POST'])
@@ -416,7 +420,8 @@ def staffsignup():
             return render_template('staff_signup_fortest.html', title='Register a new user',form=form)
 
         passw_hash = generate_password_hash(form.password.data)
-        staff = Staff(name=form.staffname.data, level=form.level.data, password_hash=passw_hash)
+        int_level = int(form.level.data)
+        staff = Staff(name=form.staffname.data, level=int_level, password_hash=passw_hash)
         db.session.add(staff)
         db.session.commit()
         session["STAFF"] = staff.name

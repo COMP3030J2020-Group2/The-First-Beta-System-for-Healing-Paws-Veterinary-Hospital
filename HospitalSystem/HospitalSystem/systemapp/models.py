@@ -15,7 +15,7 @@ class Customer(db.Model):
 class Staff(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     name  = db.Column(db.String(64),index=True,unique=True)
-    level = db.Column(db.Integer,index=True,unique=True)
+    level = db.Column(db.Integer,index=True)
     password_hash = db.Column(db.String(128))
     last_login = db.Column(db.DateTime,index=True,default=datetime.utcnow())
     appointments = db.relationship('Appointment',backref='operator',lazy='dynamic')
