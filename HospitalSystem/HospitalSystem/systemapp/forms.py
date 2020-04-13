@@ -56,3 +56,9 @@ class QuestionForm(FlaskForm):
     content = TextAreaField('Content', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
+class StaffSignupForm(FlaskForm):
+    staffname = StringField('Staff Name',validators=[DataRequired()])
+    level = IntegerField('Level',validators=[DataRequired()])
+    password = PasswordField('Password',validators=[DataRequired()])
+    password2 = PasswordField('Repeat Password',validators=[DataRequired()])
+    submit = SubmitField('Sign up')
