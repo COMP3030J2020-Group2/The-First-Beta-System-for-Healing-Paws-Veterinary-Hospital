@@ -1,3 +1,52 @@
 {% extends staff_base.html %}
 {% block content %}
+    <table>
+    <tr>
+        <th>Appointment ID</th>
+        <td id="apm_id">{{ appointment.id }}</td>
+    </tr>
+    <tr>
+        <th>Appointment type</th>
+        <td>{{ appointment.type }}</td>
+    </tr>
+    <tr>
+        <th>Appointment time</th>
+        <td>{{ appointment.time }}</td>
+    </tr>
+    <tr>
+        <th>Appointment status</th>
+        {% if appointment.status ==  0 %}
+            <td>On Going</td>
+        {% elif appointment.status == 1 %}
+            <td>Unchecked</td>
+        {% elif appoinement.status == 2 %}
+            <td>Finished</td>
+        {% endif %}
+    </tr>
+    <tr>
+        <th>Pet Name</th>
+        <td>{{ pet.name }}</td>
+    </tr>
+    <tr>
+        <th>Pet Owner Name</th>
+        <td>{{ customer.name }}</td>
+    </tr>
+    <tr>
+        <th>Operate Staff ID</th>
+        {% if appointment.operator_id %}
+            <td>{{ appointment.operator_id }}</td>
+        {% else %}
+            <td>No Operator Yet.</td>
+        {% endif %}
+    </tr>
+    <tr>
+        <th>Appointment Description</th>
+        <td>{{ appointment.description }}</td>
+    </tr>
+    </table>
+    <button id="ongoing">On Going</button>
+    <button id="finish">Finish</button>
+
+    <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='script/staff_operate_appointment.js') }}"></script>
 {% endblock %}
