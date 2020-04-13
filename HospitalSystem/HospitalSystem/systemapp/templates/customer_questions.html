@@ -16,7 +16,7 @@
             <div class="card-body no-padding">
             {% for unanswered_question in unanswered_questions%}
               <div class="item d-flex align-items-center">
-                <div class="text"><a href="#">
+                <div class="text"><a href="/customer_questions/{{unanswered_question.id}}">
                     <h3 class="h5">{{unanswered_question.title}}</h3></a><small>{{unanswered_question.time}}</small></div>
               </div>
             {% endfor %}
@@ -36,7 +36,7 @@
             <div class="card-body no-padding">
             {% for answered_question in answered_questions%}
               <div class="item d-flex align-items-center">
-                <div class="text"><a href="#">
+                <div class="text"><a href="/customer_questions/{{answered_question.id}}">
                     <h3 class="h5">{{answered_question.title}}</h3></a><small>{{answered_question.time}}</small></div>
               </div>
             {% endfor %}
