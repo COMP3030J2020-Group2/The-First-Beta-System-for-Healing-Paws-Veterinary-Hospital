@@ -409,7 +409,7 @@ def check_appiontment():
 
 
 @app.route('/staffsignup', methods=['GET', 'POST'])
-def signup():
+def staff_signup():
     form = StaffSignupForm()
     if form.validate_on_submit():
         staff = Staff.query.filter(Staff.name == form.staffname.data).first()
