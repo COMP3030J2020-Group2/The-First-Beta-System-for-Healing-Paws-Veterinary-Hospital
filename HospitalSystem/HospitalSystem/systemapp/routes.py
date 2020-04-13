@@ -409,12 +409,12 @@ def check_appiontment():
 
 
 @app.route('/staffsignup', methods=['GET', 'POST'])
-def staff_signup():
+def staffsignup():
     form = StaffSignupForm()
     if form.validate_on_submit():
         staff = Staff.query.filter(Staff.name == form.staffname.data).first()
         if staff:
-            return render_template('signup.html', title='Register a new user',form=form, emailerror = "This name is already been used by other people")
+            return render_template('staff_signup_fortest.html', title='Register a new user',form=form)
 
         passw_hash = generate_password_hash(form.password.data)
         staff = Staff(name=form.staffname.data, level=form.level.data, password_hash=passw_hash)
