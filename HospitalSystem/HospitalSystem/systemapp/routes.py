@@ -435,3 +435,18 @@ def staff_search():
         apm_list = Appointment.query.filter(Appointment.description.like('%'+query+'%')).all()
         customer_list = Customer.query.filter(Customer.username.like('%'+query+'%')).all()
         return render_template('staff_search.html',apmlist = apm_list, customerlist = customer_list, query = query)
+
+@app.route('/customer_main/my_pets', methods=['GET', 'POST'])
+def customer_my_pets():
+	if not session.get("USERNAME") is None:
+		if request.method == 'GET':
+			customer = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+			pets = Pet.query.filter(Pet.owner_id == customer.id).all()
+			return render_template('pet.html',pets=pets,user=customer)
+		else:
+			data = request.form.to_dict()
+			id = data.get("id");
+			pet = Pet.query.filter(Pet.id == id).first()
+			return render_template('pet_information.html',pet=pet)
+	else:
+		return redirect(url_for('login'))
