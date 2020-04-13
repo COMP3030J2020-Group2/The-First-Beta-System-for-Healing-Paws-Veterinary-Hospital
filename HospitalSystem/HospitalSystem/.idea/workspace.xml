@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6719e32f-de17-4f0d-9ebb-aef591b88eae" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/HospitalSystem.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/systemapp/templates/customer_appointments.html" beforeDir="false" afterPath="$PROJECT_DIR$/systemapp/templates/customer_appointments.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/systemapp/static/script/staff_search.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/systemapp/static/script/staff_search_list.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/systemapp/templates/staff_search.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/systemapp/templates/staff_signup_fortest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/systemapp/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/systemapp/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/systemapp/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/systemapp/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/systemapp/templates/staff_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/systemapp/templates/staff_base.html" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,18 +61,40 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/systemapp" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/systemapp" />
+      <recent name="$PROJECT_DIR$/systemapp/templates" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/systemapp/static/script" />
+      <recent name="$PROJECT_DIR$/systemapp/templates" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
   <component name="RunManager">
-    <configuration name="Flask (system.py)" type="Python.FlaskServer" nameIsGenerated="true">
+    <configuration name="Flask" type="Python.FlaskServer" nameIsGenerated="true">
       <module name="HospitalSystem" />
       <option name="target" value="C:\Aspirin\WorkSpace\COMP3030JSEP\Github-Project\The-First-Beta-System-for-Healing-Paws-Veterinary-Hospital\HospitalSystem\HospitalSystem\system.py" />
       <option name="targetType" value="PATH" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="C:\Program Files (x86)\Python38-32\python.exe" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
@@ -107,11 +130,23 @@
       <updated>1586569567446</updated>
       <workItem from="1586569569015" duration="15019000" />
       <workItem from="1586598600989" duration="10833000" />
+      <workItem from="1586751392924" duration="360000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="225" y="68" width="1086" height="721" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586572353530">

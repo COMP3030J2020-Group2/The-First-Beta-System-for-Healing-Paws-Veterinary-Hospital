@@ -1,7 +1,7 @@
 from systemapp import app,db
 from flask import render_template, session, request, jsonify,redirect,url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from systemapp.forms import SignupForm, PetSignUpForm, LoginForm, PasswordForm, InformationForm, StaffLoginForm, QuestionForm, AppointmentForm, EmergencyAppointmentForm
+from systemapp.forms import SignupForm, PetSignUpForm, LoginForm, PasswordForm, InformationForm, StaffLoginForm, QuestionForm, AppointmentForm, EmergencyAppointmentForm, StaffSignupForm
 from systemapp.models import Customer, Pet, Staff, Question, Answer, Appointment
 from datetime import datetime
 
@@ -400,3 +400,39 @@ def create_questions():
         return render_template('question_create.html', user=customer_in_db, form=form)
     else:
         return redirect(url_for('customer_login'))
+
+@app.route('/check_appiontment',methods=['GET','POST'])
+def check_appiontment():
+    apm_id = request.form('id')
+    apm_in_db = Appointment.query.filter(Appointment.id == id).first()
+    return render_template('staff_check_appointments.html', appoints=apm_in_db)
+
+
+@app.route('/staffsignup', methods=['GET', 'POST'])
+def signup():
+    form = StaffSignupForm()
+    if form.validate_on_submit():
+        staff = Staff.query.filter(Staff.name == form.staffname.data).first()
+        if staff:
+            return render_template('signup.html', title='Register a new user',form=form, emailerror = "This name is already been used by other people")
+
+        passw_hash = generate_password_hash(form.password.data)
+        staff = Staff(name=form.staffname.data, level=form.level.data, password_hash=passw_hash)
+        db.session.add(staff)
+        db.session.commit()
+        session["STAFF"] = staff.name
+        return render_template('control_system.html' ,staff = staff)
+    return render_template('staff_signup_fortest.html', title='Register a new staff(test version)', form=form)
+
+@app.route('/staff_search',methods=['POST'])
+def staff_search():
+    query = request.form('query')
+    if query.isnumeric():
+        id = int(query)
+        apm_in_db = Appointment.query.filter(Appointment.id == id).first()
+        customer_in_db = Customer.query.filter(Customer.id == id).first()
+        return render_template('staff_search.html',apm = apm_in_db , customer = customer_in_db, query = query)
+    else:
+        apm_list = Appointment.query.filter(Appointment.description.like('%'+query+'%')).all()
+        customer_list = Customer.query.filter(Customer.username.like('%'+query+'%')).all()
+        return render_template('staff_search.html',apmlist = apm_list, customerlist = customer_list, query = query)
