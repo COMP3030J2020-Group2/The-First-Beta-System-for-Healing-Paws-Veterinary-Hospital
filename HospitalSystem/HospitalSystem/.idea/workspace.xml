@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6719e32f-de17-4f0d-9ebb-aef591b88eae" name="Default Changelist" comment="">
+<<<<<<< Updated upstream
       <change afterPath="$PROJECT_DIR$/systemapp/static/script/staff_search.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/systemapp/static/script/staff_search_list.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/systemapp/templates/staff_search.html" afterDir="false" />
@@ -10,6 +11,16 @@
       <change beforePath="$PROJECT_DIR$/systemapp/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/systemapp/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/systemapp/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/systemapp/routes.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/systemapp/templates/staff_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/systemapp/templates/staff_base.html" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/HospitalSystem.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -129,8 +140,13 @@
       <option name="presentableId" value="Default" />
       <updated>1586569567446</updated>
       <workItem from="1586569569015" duration="15019000" />
+<<<<<<< Updated upstream
       <workItem from="1586598600989" duration="10833000" />
       <workItem from="1586751392924" duration="360000" />
+=======
+      <workItem from="1586598600989" duration="11351000" />
+      <workItem from="1586743150481" duration="1346000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
@@ -157,22 +173,22 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="550" y="184" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586569597321" />
-    <state width="1492" height="132" key="GridCell.Tab.0.bottom" timestamp="1586617525384">
+    <state width="1492" height="91" key="GridCell.Tab.0.bottom" timestamp="1586618001001">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1492" height="132" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586617525384" />
-    <state width="1492" height="132" key="GridCell.Tab.0.center" timestamp="1586617525384">
+    <state width="1492" height="91" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586618001001" />
+    <state width="1492" height="91" key="GridCell.Tab.0.center" timestamp="1586618001001">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1492" height="132" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586617525384" />
-    <state width="1492" height="132" key="GridCell.Tab.0.left" timestamp="1586617525384">
+    <state width="1492" height="91" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586618001001" />
+    <state width="1492" height="91" key="GridCell.Tab.0.left" timestamp="1586618001001">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1492" height="132" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586617525384" />
-    <state width="1492" height="132" key="GridCell.Tab.0.right" timestamp="1586617525384">
+    <state width="1492" height="91" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586618001001" />
+    <state width="1492" height="91" key="GridCell.Tab.0.right" timestamp="1586618001001">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1492" height="132" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586617525384" />
+    <state width="1492" height="91" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586618001001" />
     <state x="271" y="55" key="SettingsEditor" timestamp="1586572373082">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -180,6 +196,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HospitalSystem$HospitalSystem.coverage" NAME="HospitalSystem Coverage Results" MODIFIED="1586569572723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/HospitalSystem$Flask__system_py_.coverage" NAME="Flask (system.py) Coverage Results" MODIFIED="1586617525378" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/HospitalSystem$Flask__system_py_.coverage" NAME="Flask (system.py) Coverage Results" MODIFIED="1586617873933" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
