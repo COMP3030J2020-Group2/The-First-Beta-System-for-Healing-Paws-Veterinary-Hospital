@@ -48,7 +48,7 @@ def pet_signup():
                     new_pet = Pet(name=form.petname.data,type=form.type.data,owner = customer)
                     db.session.add(new_pet)
                     db.session.commit()
-            return render_template('pet_signup.html', information='Successful!', form=form)
+            return redirect(url_for('customer_my_pets'))
         return render_template('pet_signup.html', information='Register a new pet', form=form)
     else:
         return redirect(url_for('signup'))
@@ -474,7 +474,7 @@ def customer_my_pets():
 		if request.method == 'GET':
 			customer = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
 			pets = Pet.query.filter(Pet.owner_id == customer.id).all()
-			return render_template('pet.html',pets=pets,user=customer)
+			return render_template('customer_mypets.html',pets=pets,user=customer)
 		else:
 			data = request.form.to_dict()
 			id = data.get("id");

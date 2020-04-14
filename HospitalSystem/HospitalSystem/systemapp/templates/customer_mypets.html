@@ -3,8 +3,17 @@
     <div class="content=inner">
         <header class="page-header">
             <div class="container-fluid">
-              <h2 class="no-margin-bottom">My Pets</h2>
+                <div class="row">
+                    <div class="col">
+                        <h2 class="no-margin-bottom">My Pets</h2>
+                    </div>
+                    <div class="col">
+                        <a class="btn btn-primary" href="{{ url_for('pet_signup') }}">Add Pet</a>
+                    </div>
+                </div>
             </div>
+           
+          
         </header>
         <div class="container-fluid">
             <div class="table-responsive">
@@ -31,7 +40,7 @@
             </div>
         </div>      
     </div>
-    <script>
+    <!-- <script>
         var a_list = document.querySelectorAll('a');
         for(var i = 0;i<a_list.length;i++){
             a_list[i].addEventListener('click', informationPage);
@@ -51,5 +60,5 @@
             document.body.appendChild(form);
             form.submit();
         }
-    </script>
+    </script> -->
 {% endblock %}
