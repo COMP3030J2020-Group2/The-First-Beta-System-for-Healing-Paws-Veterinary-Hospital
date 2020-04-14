@@ -29,7 +29,7 @@ def signup():
         db.session.add(customer)
         db.session.commit()
         session["USERNAME"] = customer.username
-        return redirect(url_for('customer_main'))
+        return redirect(url_for('customer_console_main'))
     return render_template('signup.html', title='Register a new user', form=form)
 
 @app.route('/pet_signup', methods=['GET', 'POST'])
@@ -78,9 +78,9 @@ def check_email():
                         'returvalue': 1})
 
 
-@app.route('/customer_base')
-def customer_base():
-    return render_template('customer_base.html')
+# @app.route('/customer_base')
+# def customer_base():
+#     return render_template('customer_base.html')
 
 
 @app.route('/customer_console_base')
@@ -112,28 +112,28 @@ def customer_console_main():
     return render_template('customer_console_main.html', user=customer_in_db, title='My Healing Paws', form=form, form0=formEm)
 
 
-@app.route('/customer_main', methods=['GET', 'POST'])
-def customer_main():
-    form = AppointmentForm()
-    formEm = EmergencyAppointmentForm()
-    customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-    pets = Pet.query.filter(Pet.owner_id == customer_in_db.id).all()
-    pets_list = [(i.id, i.name) for i in pets]
-    form.pets.choices = pets_list
-    formEm.pets.choices = pets_list
-    if form.validate_on_submit():
-        pet_selected = request.form['pets']
-        appointment = Appointment(description=form.description.data, type=1, pet_id=pet_selected)
-        db.session.add(appointment)
-        db.session.commit()
-        return redirect(url_for('customer_main'))
-    if formEm.validate_on_submit():
-        pet_selected = request.form['pets']
-        appointment = Appointment(description="Emergency Appointment, please prepare!", type=0, pet_id=pet_selected)
-        db.session.add(appointment)
-        db.session.commit()
-        return redirect(url_for('customer_main'))
-    return render_template('customer_main.html', user=customer_in_db, title='My Healing Paws', form=form, form0=formEm)
+# @app.route('/customer_main', methods=['GET', 'POST'])
+# def customer_main():
+#     form = AppointmentForm()
+#     formEm = EmergencyAppointmentForm()
+#     customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+#     pets = Pet.query.filter(Pet.owner_id == customer_in_db.id).all()
+#     pets_list = [(i.id, i.name) for i in pets]
+#     form.pets.choices = pets_list
+#     formEm.pets.choices = pets_list
+#     if form.validate_on_submit():
+#         pet_selected = request.form['pets']
+#         appointment = Appointment(description=form.description.data, type=1, pet_id=pet_selected)
+#         db.session.add(appointment)
+#         db.session.commit()
+#         return redirect(url_for('customer_main'))
+#     if formEm.validate_on_submit():
+#         pet_selected = request.form['pets']
+#         appointment = Appointment(description="Emergency Appointment, please prepare!", type=0, pet_id=pet_selected)
+#         db.session.add(appointment)
+#         db.session.commit()
+#         return redirect(url_for('customer_main'))
+#     return render_template('customer_main.html', user=customer_in_db, title='My Healing Paws', form=form, form0=formEm)
 
 
 @app.route('/customer_appointments',methods = ['GET'])
@@ -185,7 +185,7 @@ def customer_login():
     if not session.get("USERNAME") is None:
         customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
         # return render_template('customer_main.html', user=customer_in_db)
-        return redirect(url_for('customer_main'))
+        return redirect(url_for('customer_console_main'))
     else:
         form = LoginForm()
         if form.validate_on_submit():
@@ -195,7 +195,7 @@ def customer_login():
             if check_password_hash(customer_in_db.password_hash, form.password.data):
                 session["USERNAME"] = customer_in_db.username
                 # return render_template('customer_main.html', user=customer_in_db)
-                return redirect(url_for('customer_main'))
+                return redirect(url_for('customer_console_main'))
             else:
                 return render_template('customer_login.html', title="Login as Customer", form=form, pwerror="Password incorrect!")
         return render_template('customer_login.html', title="Login as Customer", form=form)
@@ -498,7 +498,7 @@ def staff_search(query):
         return render_template('staff_search.html',apmlist = apm_list, customerlist = customer_list, query = query)
 
 
-@app.route('/customer_main/my_pets', methods=['GET', 'POST'])
+@app.route('/customer_console_main/my_pets', methods=['GET', 'POST'])
 def customer_my_pets():
 	if not session.get("USERNAME") is None:
 		if request.method == 'GET':
