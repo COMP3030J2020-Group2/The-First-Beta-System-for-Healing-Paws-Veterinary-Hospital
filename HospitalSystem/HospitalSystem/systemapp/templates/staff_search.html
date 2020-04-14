@@ -1,13 +1,13 @@
 {% extends staff_base.html %}
 {% block content %}
-    <div>
+    <div id="search_title">
     <h1>Here is the searching result for
     <b>{{ query }}</b>
         </h1>
     </div>
     <div id='results'>
     {% if apm %}
-        <a href="staff_check_appointments.html" class="appointment_link"><h3><b>[Appointment]</b>id=
+        <a href="check_appointments/{{ apm.id }}" class="appointment_link"><h3><b>[Appointment]</b>id=
             <span class="appoint_id">{{ apm.id }}</span><br></h3></a>
         <h3>Text description:{{ apm.description }}</h3>
     {% endif %}
@@ -16,17 +16,21 @@
         Customer Name:{{ customer.username }}</h3>
     {% endif %}
     {% if apmlist %}
+        <ul>
         {% for appoint in apmlist %}
-            <a href="staff_check_appointments.html" class="appiontment_link"><h3><b>[Appointment]</b>id=
-                <span class="appoint_id">{{ appoint.id }}</span><br></h3></a>
-        <h3>Text description:{{ appoint.description }}</h3>
+        <li><a href="staff_check_appointments/{{ appoint.id }}" class="appiontment_link"><h3><b>[Appointment]</b>id=
+                {{ appoint.id }}<br></h3></a>
+        <h3>Text description:{{ appoint.description }}</h3></li>
         {% endfor %}
+        </ul>
     {% endif %}
     {% if customerlist %}
+        <ul>
         {% for cust in customerlist %}
-             <h3><b>[Customer]</b>id={{ cust.id }}<br>
-        Customer Name:{{ cust.username }}</h3>
+             <li><h3><b>[Customer]</b>id={{ cust.id }}<br>
+        Customer Name:{{ cust.username }}</h3></li>
         {% endfor %}
+        </ul>
     {% endif %}
     </div>
 

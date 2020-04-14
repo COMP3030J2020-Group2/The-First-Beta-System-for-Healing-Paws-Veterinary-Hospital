@@ -1,7 +1,7 @@
 from systemapp import app,db
 from flask import render_template, session, request, jsonify,redirect,url_for, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from systemapp.forms import SignupForm, PetSignUpForm, LoginForm, PasswordForm, InformationForm, StaffLoginForm, QuestionForm, AppointmentForm, EmergencyAppointmentForm, StaffSignupForm
+from systemapp.forms import SignupForm, PetSignUpForm, LoginForm, PasswordForm, InformationForm, StaffLoginForm, QuestionForm, AppointmentForm, EmergencyAppointmentForm, StaffSignupForm, AnswerForm
 from systemapp.models import Customer, Pet, Staff, Question, Answer, Appointment
 from datetime import datetime
 
@@ -285,17 +285,17 @@ def staff_login():
         if check_password_hash(staff_in_db.password_hash, form.password.data):
             session["STAFF"] = staff_in_db.name
             update_staff = Staff.query.filter(Staff.id == staff_in_db.id).update({"last_login":datetime.utcnow()})
-            return render_template('control_system.html',staff = staff_in_db)
+            return redirect(url_for('control_system'))
         else:
             return render_template('staff_login.html',title="Control System Login",form=form, pwerror="Password incorrect!")
     return render_template('staff_login.html',title="Control System Login",form=form)
 
 @app.route('/control_system',methods=['GET','POST'])
 def control_system():
-    if not session.get("STAFF") is None:
+    if not session.get("STAFF"):
         return redirect(url_for('staff_login'))
     else:
-        staff = Staff.query.filter(Staff.name == session.get("STAFF"))
+        staff = Staff.query.filter(Staff.name == session.get("STAFF")).first()
         return render_template('control_system.html',staff = staff)
 
 
@@ -400,11 +400,40 @@ def create_questions():
     else:
         return redirect(url_for('customer_login'))
 
-@app.route('/check_appiontment',methods=['GET','POST'])
-def check_appiontment():
-    apm_id = request.form('id')
+@app.route('/check_appointment/<id>',methods=['GET','POST'])
+def check_appointment(id):
+    if not session.get("STAFF"):
+        return redirect(url_for('staff_login'))
+    else:
+        apm_in_db = Appointment.query.filter(Appointment.id == id).first()
+        pet = Pet.query.filter(Pet.id == apm_in_db.pet_id).first()
+        customer = Customer.query.filter(Customer.id == pet.owner_id).first()
+        if not apm_in_db:
+            return redirect(url_for('control_system'))
+        return render_template('staff_operate_appointment.html', appointment=apm_in_db, pet = pet, customer = customer)
+
+@app.route('/appointment_ongoing/<id>',methods=['GET','POST'])
+def appointment_ongoing(id):
+    if not session.get("STAFF"):
+        return redirect(url_for('staff_login'))
     apm_in_db = Appointment.query.filter(Appointment.id == id).first()
-    return render_template('staff_check_appointments.html', appoints=apm_in_db)
+    if apm_in_db:
+        apm_in_db = Appointment.query.filter_by(id == id).update({"status":0})
+        return redirect(url_for('/check_appointment/'+id))
+    else:
+        return redirect(url_for('control_system'))
+
+@app.route('/appointment_finish/<id>',methods=['GET','POST'])
+def appointment_finish(id):
+    if not session.get("STAFF"):
+        return redirect(url_for('staff_login'))
+    apm_in_db = Appointment.query.filter(Appointment.id == id).first()
+    if apm_in_db:
+        apm_in_db = Appointment.query.filter_by(id == id).update({"status":2})
+        return redirect(url_for('/check_appointment/'+id))
+    else:
+        return redirect(url_for('control_system'))
+
 
 
 @app.route('/staffsignup', methods=['GET', 'POST'])
@@ -416,16 +445,18 @@ def staffsignup():
             return render_template('staff_signup_fortest.html', title='Register a new user',form=form)
 
         passw_hash = generate_password_hash(form.password.data)
-        staff = Staff(name=form.staffname.data, level=form.level.data, password_hash=passw_hash)
+        int_level = int(form.level.data)
+        staff = Staff(name=form.staffname.data, level=int_level, password_hash=passw_hash)
         db.session.add(staff)
         db.session.commit()
         session["STAFF"] = staff.name
         return render_template('control_system.html' ,staff = staff)
     return render_template('staff_signup_fortest.html', title='Register a new staff(test version)', form=form)
 
-@app.route('/staff_search',methods=['POST'])
-def staff_search():
-    query = request.form('query')
+@app.route('/staff_search/<query>',methods=['POST'])
+def staff_search(query):
+    if not session.get("STAFF"):
+        return redirect(url_for('staff_login'))
     if query.isnumeric():
         id = int(query)
         apm_in_db = Appointment.query.filter(Appointment.id == id).first()
@@ -435,6 +466,7 @@ def staff_search():
         apm_list = Appointment.query.filter(Appointment.description.like('%'+query+'%')).all()
         customer_list = Customer.query.filter(Customer.username.like('%'+query+'%')).all()
         return render_template('staff_search.html',apmlist = apm_list, customerlist = customer_list, query = query)
+
 
 @app.route('/customer_main/my_pets', methods=['GET', 'POST'])
 def customer_my_pets():
@@ -450,3 +482,55 @@ def customer_my_pets():
 			return render_template('pet_information.html',pet=pet)
 	else:
 		return redirect(url_for('login'))
+
+@app.route('/staff_questions')
+def staff_questions():
+    if not session.get("STAFF") is None:
+        staff = Staff.query.filter(Staff.name == session.get("STAFF")).first()
+        questions=Question.query.all()
+
+        answered_questions=[]
+        for question in questions:
+            if question.answer.all():
+                answered_questions.append(question)
+
+        unanswered_questions=Question.query.filter(Question.answer == None).all()
+
+        return render_template('staff_questions.html', unanswered_questions=unanswered_questions, answered_questions=answered_questions)
+    else:
+        return redirect(url_for('staff_login'))
+
+@app.route('/staff_questions/<id>',methods = ['GET', 'POST'])
+def staff_questiondetail(id):
+    if not session.get("STAFF") is None:
+        question = Question.query.filter_by(id = id).first()
+        answer=question.answer.all()
+        return render_template('staff_questiondetail.html',question = question, answer=answer)
+    else:
+        return redirect(url_for('staff_login'))
+
+
+@app.route('/staff_questions/answer_question/<id>',methods = ['GET', 'POST'])
+def answer_question(id):
+    form = AnswerForm()
+    if not session.get("STAFF") is None:
+        question = Question.query.filter_by(id = id).first()
+        if form.validate_on_submit():
+            answer = Answer(content=form.content.data, question=question)
+            db.session.add(answer)
+            db.session.commit()
+            return redirect(url_for('staff_questions'))
+        return render_template('answer_question.html',question = question, form=form)
+    else:
+        return redirect(url_for('staff_login'))
+
+@app.route('/customer_questions/<id>',methods = ['GET', 'POST'])
+def customer_questiondetail(id):
+    if not session.get("USERNAME") is None:
+        user = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+        question = Question.query.filter_by(id = id).first()
+        answer=question.answer.all()
+        return render_template('customer_questiondetail.html',question = question, answer=answer, user=user)
+    else:
+        return redirect(url_for('customer_login'))
+

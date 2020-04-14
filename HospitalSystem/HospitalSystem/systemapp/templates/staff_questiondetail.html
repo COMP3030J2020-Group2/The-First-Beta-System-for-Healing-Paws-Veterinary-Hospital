@@ -1,0 +1,51 @@
+{% extends"staff_base.html" %}
+
+{% block content %}
+
+<div class="col-md-10">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            {{question.title}}
+        </h3>
+    </div>
+    <div class="panel-body">
+        {{question.content}}
+    </div>
+</div>
+</div>
+
+
+
+    {% if answer %}
+{% for a in answer%}
+<div class="col-md-9 col-md-offset-1">
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Answer
+        </h3>
+    </div>
+    <div class="panel-body">
+        {{a.content}}
+    </div>
+      <div class="panel-footer">
+      {{a.time}}
+      </div>
+</div>
+</div>
+{% endfor %}
+    {% else %}
+<div class="col-md-10">
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Please answer the question.
+        </h3>
+        <button type="button" class="btn btn-default btn-sm" onclick="window.location.href='/staff_questions/answer_question/{{question.id}}'">Answer</button>
+    </div>
+
+</div>
+</div>
+        {% endif %}
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends"staff_base.html" %}
+
+{% block content %}
+<section>
+    <div class="container-fluid">
+      <span><strong>Click question to check detail and answer it.</strong></span>
+    </div>
+<br>
+    {% if unanswered_questions %}
+    <div class="container">
+        <div class="row row-centered">
+            <div class="well col-md-12">
+                <table class="table">
+                        <caption><h3>Unanswered Questions</h3></caption>
+                    <thead>
+                        <tr>
+                            <th width="50%">Title</th>
+                            <th width="50%">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for unanswered_question in unanswered_questions%}
+                        <tr onclick="location.href='/staff_questions/{{unanswered_question.id}}'">
+                            <td>{{unanswered_question.title}}</td>
+                            <td>{{unanswered_question.time}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <p>No questions</p>
+    {% endif %}
+
+    {% if answered_questions %}
+    <div class="container">
+        <div class="row row-centered">
+            <div class="well col-md-12 col-centered">
+                <table class="table">
+                <caption><h3>Answered Questions</h3></caption>
+                    <thead>
+                        <tr>
+                            <th width="50%">Title</th>
+                            <th width="50%">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for answered_question in answered_questions%}
+                        <tr onclick="location.href='/staff_questions/{{answered_question.id}}'">
+                            <td>{{answered_question.title}}</td>
+                            <td>{{answered_question.time}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <p>No answered_questions</p>
+</section>
+    {% endif %}
+{% endblock %}
