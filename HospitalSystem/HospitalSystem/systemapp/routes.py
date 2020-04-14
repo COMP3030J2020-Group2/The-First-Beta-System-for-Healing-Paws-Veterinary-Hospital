@@ -534,3 +534,27 @@ def customer_questiondetail(id):
     else:
         return redirect(url_for('customer_login'))
 
+
+@app.route('/staff_checkpets',methods = ['GET', 'POST'])
+def staff_checkpets():
+    if not session.get("USERNAME") is None:
+        pets = Pet.query.filter().all()
+        customers = Customer.query.filter(Customer.id == Pet.owner_id)
+
+        return render_template('staff_checkpets.html',pets = pets,customers = customers)
+
+
+@app.route('/staff_checkpets/update_pet/<id>',methods = ['GET', 'POST'])
+def staff_updatepet(id):
+    if not session.get("USERNAME") is None:
+        if request.method == 'GET':
+            pet = Pet.query.filter_by(id = id).first()
+            return render_template('staff_updatepet.html',pet = pet)
+        else:
+            pet_name = request.form['name']
+            pet_type = request.form['type']
+            pet = Pet.query.filter_by(id = id).update({'name':pet_name, 'type':pet_type})
+            db.session.commit()
+            return redirect('/staff_checkpets')
+    else:
+        return redirect(url_for('staff_login'))

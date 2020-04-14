@@ -49,8 +49,8 @@
                                     <th>Appointments Time </th>
                                     <th>Appointments Description </th>
                                     <th>Operator ID </th>
-
                                 </tr>
+
                                 {% for a in appointments%}
                                 {% for pet in pets%}
                                 {%  if pet.id==a.pet_id %}
@@ -82,10 +82,7 @@
     </section>
 
 
-<script>
-    document.getElementById("main").setAttribute("class", "");
-    document.getElementById("appointment").setAttribute("class", "active");
-</script>
+
 
 {% endblock %}
 
