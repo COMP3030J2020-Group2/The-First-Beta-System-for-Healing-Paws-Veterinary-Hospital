@@ -77,9 +77,39 @@ def check_email():
         return jsonify({'text': 'Sorry! Email is already taken',
                         'returvalue': 1})
 
+
 @app.route('/customer_base')
 def customer_base():
     return render_template('customer_base.html')
+
+
+@app.route('/customer_console_base')
+def customer_console_base():
+    return render_template('customer_console_base.html')
+
+
+@app.route('/customer_console_main', methods=['GET', 'POST'])
+def customer_console_main():
+    form = AppointmentForm()
+    formEm = EmergencyAppointmentForm()
+    customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+    pets = Pet.query.filter(Pet.owner_id == customer_in_db.id).all()
+    pets_list = [(i.id, i.name) for i in pets]
+    form.pets.choices = pets_list
+    formEm.pets.choices = pets_list
+    if form.validate_on_submit():
+        pet_selected = request.form['pets']
+        appointment = Appointment(description=form.description.data, type=1, pet_id=pet_selected)
+        db.session.add(appointment)
+        db.session.commit()
+        return redirect(url_for('customer_console_main'))
+    if formEm.validate_on_submit():
+        pet_selected = request.form['pets']
+        appointment = Appointment(description="Emergency Appointment, please prepare!", type=0, pet_id=pet_selected)
+        db.session.add(appointment)
+        db.session.commit()
+        return redirect(url_for('customer_console_main'))
+    return render_template('customer_console_main.html', user=customer_in_db, title='My Healing Paws', form=form, form0=formEm)
 
 
 @app.route('/customer_main', methods=['GET', 'POST'])
