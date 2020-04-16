@@ -1,13 +1,13 @@
-{% extends staff_base.html %}
+{% extends "staff_base.html" %}
 {% block content %}
     <div id="search_title">
-    <h1>Here is the searching result for
+    <h2>Here is the searching result for
     <b>{{ query }}</b>
-        </h1>
+        </h2>
     </div>
     <div id='results'>
     {% if apm %}
-        <a href="check_appointments/{{ apm.id }}" class="appointment_link"><h3><b>[Appointment]</b>id=
+        <a href="{{ url_for("check_appointment",id=apm.id ) }}" class="appointment_link"><h3><b>[Appointment]</b>id=
             <span class="appoint_id">{{ apm.id }}</span><br></h3></a>
         <h3>Text description:{{ apm.description }}</h3>
     {% endif %}
@@ -18,7 +18,7 @@
     {% if apmlist %}
         <ul>
         {% for appoint in apmlist %}
-        <li><a href="staff_check_appointments/{{ appoint.id }}" class="appiontment_link"><h3><b>[Appointment]</b>id=
+        <li><a href="check_appointment/{{ appoint.id }}" class="appiontment_link"><h3><b>[Appointment]</b>id=
                 {{ appoint.id }}<br></h3></a>
         <h3>Text description:{{ appoint.description }}</h3></li>
         {% endfor %}

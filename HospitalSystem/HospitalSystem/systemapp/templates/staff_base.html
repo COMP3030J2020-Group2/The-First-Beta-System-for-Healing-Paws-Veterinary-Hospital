@@ -44,12 +44,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
 
-            <li><a href="#">Control System</a></li>
+            <li><a href="{{ url_for('control_system') }}">Control System</a></li>
             <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li><a href="#">Check Customer Information</a></li>
-                <li><a href="#">Check Appointment</a></li>
+                <li><a href="{{ url_for('unchecked') }}">Check Appointments</a></li>
                 <li><a href="{{url_for('staff_questions')}}">Check Questions</a></li>
                 <li><a href="#">Add Appointment</a></li>
                 <li><a href="{{url_for('staff_checkpets')}}">Check Pets</a></li>

@@ -448,8 +448,8 @@ def appointment_ongoing(id):
         return redirect(url_for('staff_login'))
     apm_in_db = Appointment.query.filter(Appointment.id == id).first()
     if apm_in_db:
-        apm_in_db = Appointment.query.filter_by(id == id).update({"status":0})
-        return redirect(url_for('/check_appointment/'+id))
+        apm_in_db = Appointment.query.filter_by(id = id).update({"status":0})
+        return redirect(url_for('on_going'))
     else:
         return redirect(url_for('control_system'))
 
@@ -459,8 +459,8 @@ def appointment_finish(id):
         return redirect(url_for('staff_login'))
     apm_in_db = Appointment.query.filter(Appointment.id == id).first()
     if apm_in_db:
-        apm_in_db = Appointment.query.filter_by(id == id).update({"status":2})
-        return redirect(url_for('/check_appointment/'+id))
+        apm_in_db = Appointment.query.filter_by(id = id).update({"status":2})
+        return redirect(url_for('finished'))
     else:
         return redirect(url_for('control_system'))
 
@@ -483,7 +483,7 @@ def staffsignup():
         return render_template('control_system.html' ,staff = staff)
     return render_template('staff_signup_fortest.html', title='Register a new staff(test version)', form=form)
 
-@app.route('/staff_search/<query>',methods=['POST'])
+@app.route('/staff_search/<query>',methods=['GET','POST'])
 def staff_search(query):
     if not session.get("STAFF"):
         return redirect(url_for('staff_login'))
@@ -500,18 +500,18 @@ def staff_search(query):
 
 @app.route('/customer_console_main/my_pets', methods=['GET', 'POST'])
 def customer_my_pets():
-	if not session.get("USERNAME") is None:
-		if request.method == 'GET':
-			customer = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-			pets = Pet.query.filter(Pet.owner_id == customer.id).all()
-			return render_template('customer_mypets.html',pets=pets,user=customer)
-		else:
-			data = request.form.to_dict()
-			id = data.get("id");
-			pet = Pet.query.filter(Pet.id == id).first()
-			return render_template('pet_information.html',pet=pet)
-	else:
-		return redirect(url_for('login'))
+    if not session.get("USERNAME") is None:
+        if request.method == 'GET':
+            customer = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+            pets = Pet.query.filter(Pet.owner_id == customer.id).all()
+            return render_template('customer_mypets.html',pets=pets,user=customer)
+        else:
+            data = request.form.to_dict()
+            id = data.get("id");
+            pet = Pet.query.filter(Pet.id == id).first()
+            return render_template('pet_information.html',pet=pet)
+    else:
+        return redirect(url_for('login'))
 
 @app.route('/staff_questions')
 def staff_questions():
