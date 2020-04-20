@@ -46,8 +46,9 @@
                                     <th>Pet ID</th>
                                     <th>Appointment ID</th>
                                     <th>Appointments Type </th>
-                                    <th>Appointments Time </th>
+                                    <th>Construction Time </th>
                                     <th>Appointments Description </th>
+                                    <th>Current Status</th>
                                     <th>Operator ID </th>
                                 </tr>
 
@@ -58,9 +59,14 @@
                                     <td>{{pet.name}}</td>
                                     <td>{{pet.id}}</td>
                                     <td>{{a.id}}</td>
-                                    <td>{{a.type}}</td>
+                                    {% if a.type == 0 %}
+                                    <td>Emergent</td>
+                                    {% elif a.type == 1 %}
+                                    <td>Standard</td>
+                                    {% endif %}
                                     <td>{{a.time}}</td>
                                     <td>{{a.description}}</td>
+                                    <td>{{ a.pet_status }}</td>
                                     <td>{{a.operator_id}}</td>
                                     <td><a class="btn btn-primary btn-sm" href="/customer_appointments/update_appointments/{{a.id}}" role="button">Edit</a>
                                         <a class="btn btn-primary btn-sm" href="/customer_appointments/delete_appointment/{{a.id}}" role="button">Delete</a></td>
