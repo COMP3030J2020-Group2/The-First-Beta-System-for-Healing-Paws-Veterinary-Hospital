@@ -349,7 +349,21 @@ def on_going():
         data = request.form.to_dict()
         rowIndex = data.get('id')
         appointment = Appointment.query.filter(Appointment.id == rowIndex).first()
-        appointment.status = 2
+        buttonType = data.get('buttonType')
+        if buttonType == "Finish":
+            appointment.status = 2
+            appointment.pet_status = "Released"
+        elif buttonType == "Take in":
+            appointment.pet_status = "Was Taken"
+        elif buttonType == "Complete Surgery":
+            appointment.pet_status = "Surgery Completed"
+        elif buttonType == "Inform Customer for Releasing":
+            appointment.pet_status = "Ready for release"
+        elif buttonType == "Confirm Surgery Date":
+            meeting_date =  data.get('meetingDate')
+            appointment.surgery_date = datetime.strptime(meeting_date, "%Y-%m-%d %H:%M")
+            appointment.pet_status = "Surgery Date Confirmed"
+
         db.session.commit()
         return redirect(url_for('on_going'))
 

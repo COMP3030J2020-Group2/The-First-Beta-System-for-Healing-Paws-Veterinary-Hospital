@@ -35,6 +35,7 @@
                     <th>Customer</th>
                     <th>Pet Name</th>
                     <th>Pet Type</th>
+                    <th>Pet Status</th>
                     <th>Description</th>
                     <th>Operation</th>
                 </tr>
@@ -56,10 +57,28 @@
                     {% elif pets[index].type == 2 %}
                     <td>Dog</td>
                     {% endif %}
+                    <td>{{ appoint.pet_status }}</td>
                     <!-- <td><button class="btn btn-link" type="button"  id="description" data-toggle="modal" data-target="#myModal">view</button></td> -->
                     <td><button class="btn btn-link description" type="button" id="{{ appoint.id }}" value="{{ appoint.description }}" >view</button></td>
+                   
+                    {% if button == 'Finish' %}
+                    <td>
+                        <div class="dropdown">
+                            <button class="{{ button_style }} dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</button>
+                            <div class="dropdown-menu">
+                                <button class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}">Finish</button>
+                                <button class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}">Take in</button>
+                                <button class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}">Confirm Surgery Date</button>
+                                <button class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}">Complete Surgery</button>
+                                <button class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}">Inform Customer for Releasing</button>
+                            </div>
+                            
+                        </div>            
+                    </td>
+                    {% else %}
                     <td><button class="{{ button_style }} operation" type="button" id="{{ appoint.id }}">{{ button }}</button></td>
-                </tr>
+                    {% endif %}
+                </tr> 
                 {% endfor %}
             </tbody>
         </table>
@@ -83,7 +102,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3>Select Meeting Date</h3>
+                    <h3>Select Date</h3>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -117,21 +136,26 @@
             $('#myModal').modal();
         });
 
-        $("button").click(function (e) {
+        $(".operation").click(function (e) {
             // $(".modal-body p").text(e.target.value);
             console.log('check');
-            if(e.target.innerHTML=='Check'){
+            if(e.target.innerHTML==('Check' || 'Confirm Surgery Date')){
                 $('#addMeetingDateModal').modal();
                 $('#datetimepicker').datetimepicker({
                     format: 'yyyy-mm-dd hh:ii'
                 });
 
+            }else if(e.target.innerHTML=='Confirm Surgery Date'){
+                $('#addMeetingDateModal').modal();
+                $('#datetimepicker').datetimepicker({
+                    format: 'yyyy-mm-dd hh:ii'
+                });
             }else{
                 var buttonType = e.target.innerHTML;
                 var index = e.target.id
                 var form = document.createElement('form');
                 form.method = "post";
-                if(buttonType == "Finish"){
+                if(buttonType == ("Finish" || "Take in" || "Complete Surgery" || "Inform Customer for Releasing") ){
                     form.action = "/staff_check_appointments/on_going";
                 }else if(buttonType == "Active"){
                     form.action = "/staff_check_appointments/finished";
@@ -139,26 +163,39 @@
                 var idArea = document.createElement('input');
                 idArea.name = 'id';
                 idArea.value = index;
+                var buttonArea = document.createElement('input');
+                buttonArea.name = 'buttonType';
+                buttonArea.value = buttonType;
                 form.appendChild(idArea);
+                form.appendChild(buttonArea);
                 document.body.appendChild(form);
                 form.submit();
             }
+
             $('#confirm_date').click(function(){
                 var buttonType = e.target.innerHTML;
                 var index = e.target.id
                 var form = document.createElement('form');
                 form.method = "post";  
-                form.action = "/staff_check_appointments/unchecked";
+                if(buttonType == 'Check'){
+                    form.action = "/staff_check_appointments/unchecked";
+                }else{
+                    form.action = "/staff_check_appointments/on_going";
+                }
                 var idArea = document.createElement('input');
                 idArea.name = 'id';
                 idArea.value = index;
+                var buttonArea = document.createElement('input');
+                buttonArea.name = 'buttonType';
+                buttonArea.value = buttonType;
+                form.appendChild(buttonArea);
                 var timeArea = document.querySelector('#meeting_date');
                 console.log(timeArea.value);
                 form.appendChild(idArea);
                 form.append(timeArea);
                 document.body.appendChild(form);
                 form.submit();
-        });
+            });
             
         });
         
