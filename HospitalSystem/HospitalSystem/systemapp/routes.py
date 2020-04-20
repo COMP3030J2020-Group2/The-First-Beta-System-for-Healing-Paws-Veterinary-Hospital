@@ -371,8 +371,11 @@ def unchecked():
     else:
         data = request.form.to_dict()
         rowIndex = data.get('id')
+        meeting_date =  data.get('meetingDate')
         appointment = Appointment.query.filter(Appointment.id == rowIndex).first()
         appointment.status = 0
+        print(meeting_date)
+        appointment.meeting_date = datetime.strptime(meeting_date, "%Y-%m-%d %H:%M")
         db.session.commit()
         return redirect(url_for('unchecked'))
 

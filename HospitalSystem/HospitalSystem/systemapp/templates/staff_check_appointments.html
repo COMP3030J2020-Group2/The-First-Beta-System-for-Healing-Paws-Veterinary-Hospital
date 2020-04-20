@@ -6,8 +6,11 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap2.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap-datetimepicker.min.css') }}">
     <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>
     <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap-datetimepicker.min.js') }}"></script>
+    
 </head>
 
 
@@ -76,36 +79,89 @@
             </div>
         </div>
     </div>
-    <script>
+    <div class="modal fade" id="addMeetingDateModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Select Meeting Date</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
 
-        var operationButtons = document.querySelectorAll('.operation');
-        for(var i=0;i<operationButtons.length;i++){
-            operationButtons[i].addEventListener('click',operation);
-        }
-        function operation(e){
-            var buttonType = e.target.innerHTML;
-            var index = e.target.id
-            var form = document.createElement('form');
-            form.method = "post";
-            if(buttonType == "Finish"){
-                form.action = "/staff_check_appointments/on_going";
-            }else if(buttonType == "Check"){
-                form.action = "/staff_check_appointments/unchecked";
-            }else if(buttonType == "Active"){
-                form.action = "/staff_check_appointments/finished";
-            }
-            var idArea = document.createElement('input');
-            idArea.name = 'id';
-            idArea.value = index;
-            form.appendChild(idArea);
-            document.body.appendChild(form);
-            form.submit();
-        }
+                        <label>Choose Date and Time</label>
+                        <div class='input-group date' id='datetimepicker'>
+            
+                            <input type='text' class="form-control" id="meeting_date" name="meetingDate">
+            
+                            <span class="input-group-addon">
+            
+                                <span class="glyphicon glyphicon-calendar"></span>
+            
+                            </span>
+            
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="confirm_date">Confirm</button>
+                    <button class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <script>
 
         $(".description").click(function (e) {
             $(".modal-body p").text(e.target.value);
             $('#myModal').modal();
         });
+
+        $("button").click(function (e) {
+            // $(".modal-body p").text(e.target.value);
+            console.log('check');
+            if(e.target.innerHTML=='Check'){
+                $('#addMeetingDateModal').modal();
+                $('#datetimepicker').datetimepicker({
+                    format: 'yyyy-mm-dd hh:ii'
+                });
+
+            }else{
+                var buttonType = e.target.innerHTML;
+                var index = e.target.id
+                var form = document.createElement('form');
+                form.method = "post";
+                if(buttonType == "Finish"){
+                    form.action = "/staff_check_appointments/on_going";
+                }else if(buttonType == "Active"){
+                    form.action = "/staff_check_appointments/finished";
+                }
+                var idArea = document.createElement('input');
+                idArea.name = 'id';
+                idArea.value = index;
+                form.appendChild(idArea);
+                document.body.appendChild(form);
+                form.submit();
+            }
+            $('#confirm_date').click(function(){
+                var buttonType = e.target.innerHTML;
+                var index = e.target.id
+                var form = document.createElement('form');
+                form.method = "post";  
+                form.action = "/staff_check_appointments/unchecked";
+                var idArea = document.createElement('input');
+                idArea.name = 'id';
+                idArea.value = index;
+                var timeArea = document.querySelector('#meeting_date');
+                console.log(timeArea.value);
+                form.appendChild(idArea);
+                form.append(timeArea);
+                document.body.appendChild(form);
+                form.submit();
+        });
+            
+        });
+        
     </script>
 
 </body>
