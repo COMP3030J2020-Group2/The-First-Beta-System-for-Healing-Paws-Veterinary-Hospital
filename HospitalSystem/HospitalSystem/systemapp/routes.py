@@ -598,7 +598,6 @@ def staff_checkpets():
     if not session.get("USERNAME") is None:
         pets = Pet.query.filter().all()
         customers = Customer.query.filter(Customer.id == Pet.owner_id)
-
         return render_template('staff_checkpets.html',pets = pets,customers = customers)
 
 
