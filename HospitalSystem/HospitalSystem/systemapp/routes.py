@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from systemapp.forms import SignupForm, PetSignUpForm, LoginForm, PasswordForm, InformationForm, StaffLoginForm, QuestionForm, AppointmentForm, EmergencyAppointmentForm, StaffSignupForm, AnswerForm
 from systemapp.models import Customer, Pet, Staff, Question, Answer, Appointment
 from datetime import datetime
+from sqlalchemy import or_,and_
 
 
 @app.route('/')
@@ -99,15 +100,25 @@ def customer_console_main():
     formEm.pets.choices = pets_list
     if form.validate_on_submit():
         pet_selected = request.form['pets']
-        appointment = Appointment(description=form.description.data, type=1, hospital_location = form.location.data, pet_id=pet_selected)
-        db.session.add(appointment)
-        db.session.commit()
+        ongoing_appointment = Appointment.query.filter(and_(or_(Appointment.status==0, Appointment.status==1),Appointment.pet_id == pet_selected)).first()
+        if not ongoing_appointment:
+            appointment = Appointment(description=form.description.data, type=1, hospital_location = form.location.data, pet_id=pet_selected)
+            db.session.add(appointment)
+            db.session.commit()
+        else:
+            flash("This pet has on going appointment already!")
+            return redirect(url_for('customer_console_main'))
         return redirect(url_for('customer_console_main'))
     if formEm.validate_on_submit():
         pet_selected = request.form['pets']
-        appointment = Appointment(description="Emergency Appointment, please prepare!", type=0,hospital_location = form.location.data, pet_id=pet_selected)
-        db.session.add(appointment)
-        db.session.commit()
+        ongoing_appointment = Appointment.query.filter(and_(or_(Appointment.status==0, Appointment.status==1),Appointment.pet_id == pet_selected)).first()
+        if not ongoing_appointment:
+            appointment = Appointment(description="Emergency Appointment, please prepare!", type=0,hospital_location = form.location.data, pet_id=pet_selected)
+            db.session.add(appointment)
+            db.session.commit()
+        else:
+            flash("This pet has on going appointment already!")
+            return redirect(url_for('customer_console_main'))
         return redirect(url_for('customer_console_main'))
     return render_template('customer_console_main.html', user=customer_in_db, title='My Healing Paws', form=form, form0=formEm)
 
