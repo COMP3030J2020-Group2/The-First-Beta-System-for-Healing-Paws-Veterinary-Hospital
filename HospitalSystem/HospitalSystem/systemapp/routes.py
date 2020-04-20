@@ -99,13 +99,13 @@ def customer_console_main():
     formEm.pets.choices = pets_list
     if form.validate_on_submit():
         pet_selected = request.form['pets']
-        appointment = Appointment(description=form.description.data, type=1, pet_id=pet_selected)
+        appointment = Appointment(description=form.description.data, type=1, hospital_location = form.location.data, pet_id=pet_selected)
         db.session.add(appointment)
         db.session.commit()
         return redirect(url_for('customer_console_main'))
     if formEm.validate_on_submit():
         pet_selected = request.form['pets']
-        appointment = Appointment(description="Emergency Appointment, please prepare!", type=0, pet_id=pet_selected)
+        appointment = Appointment(description="Emergency Appointment, please prepare!", type=0,hospital_location = form.location.data, pet_id=pet_selected)
         db.session.add(appointment)
         db.session.commit()
         return redirect(url_for('customer_console_main'))
