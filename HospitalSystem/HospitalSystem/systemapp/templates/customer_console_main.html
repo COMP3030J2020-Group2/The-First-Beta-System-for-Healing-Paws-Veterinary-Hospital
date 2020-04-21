@@ -28,6 +28,10 @@
                                             {{ form.pets.label(class="col-4 form-control-label") }}<br>
                                             {{ form.pets(class="form-control col-7", id="pets") }}
                                         </div>
+                                        <div class="form-group row">
+                                            {{ form.location.label(class="col-4 form-control-label") }}<br>
+                                            {{ form.location(class="form-control col-7") }}
+                                        </div>
                                         <div class="form-group">
                                             {{ form.description.label(class="col-4 fcol-form-label") }}<br>
                                             {{ form.description(class="form-control", id="message-text") }}
@@ -69,6 +73,10 @@
                                             {{ form0.pets.label(class="col-4 form-control-label") }}<br>
                                             {{ form0.pets(class="form-control", id="pets") }}
                                         </div>
+                                        <div class="form-group row">
+                                            {{ form0.location.label(class="col-4 form-control-label") }}<br>
+                                            {{ form0.location(class="form-control") }}
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -82,6 +90,9 @@
                 </div>
             </div>
         </div>
+   </div>
+   <div class="col-3" text-center>
+        <h2>{{ get_flashed_messages()[0] }}</h2>
    </div>
 </div>
 

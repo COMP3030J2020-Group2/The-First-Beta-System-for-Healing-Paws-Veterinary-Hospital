@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from systemapp.forms import SignupForm, PetSignUpForm, LoginForm, PasswordForm, InformationForm, StaffLoginForm, QuestionForm, AppointmentForm, EmergencyAppointmentForm, StaffSignupForm, AnswerForm
 from systemapp.models import Customer, Pet, Staff, Question, Answer, Appointment
 from datetime import datetime
+from sqlalchemy import or_,and_
 
 
 @app.route('/')
@@ -99,15 +100,25 @@ def customer_console_main():
     formEm.pets.choices = pets_list
     if form.validate_on_submit():
         pet_selected = request.form['pets']
-        appointment = Appointment(description=form.description.data, type=1, pet_id=pet_selected)
-        db.session.add(appointment)
-        db.session.commit()
+        ongoing_appointment = Appointment.query.filter(and_(or_(Appointment.status==0, Appointment.status==1),Appointment.pet_id == pet_selected)).first()
+        if not ongoing_appointment:
+            appointment = Appointment(description=form.description.data, type=1, hospital_location = form.location.data, pet_id=pet_selected)
+            db.session.add(appointment)
+            db.session.commit()
+        else:
+            flash("This pet has on going appointment already!")
+            return redirect(url_for('customer_console_main'))
         return redirect(url_for('customer_console_main'))
     if formEm.validate_on_submit():
         pet_selected = request.form['pets']
-        appointment = Appointment(description="Emergency Appointment, please prepare!", type=0, pet_id=pet_selected)
-        db.session.add(appointment)
-        db.session.commit()
+        ongoing_appointment = Appointment.query.filter(and_(or_(Appointment.status==0, Appointment.status==1),Appointment.pet_id == pet_selected)).first()
+        if not ongoing_appointment:
+            appointment = Appointment(description="Emergency Appointment, please prepare!", type=0,hospital_location = form.location.data, pet_id=pet_selected)
+            db.session.add(appointment)
+            db.session.commit()
+        else:
+            flash("This pet has on going appointment already!")
+            return redirect(url_for('customer_console_main'))
         return redirect(url_for('customer_console_main'))
     return render_template('customer_console_main.html', user=customer_in_db, title='My Healing Paws', form=form, form0=formEm)
 
@@ -349,7 +360,21 @@ def on_going():
         data = request.form.to_dict()
         rowIndex = data.get('id')
         appointment = Appointment.query.filter(Appointment.id == rowIndex).first()
-        appointment.status = 2
+        buttonType = data.get('buttonType')
+        if buttonType == "Finish":
+            appointment.status = 2
+            appointment.pet_status = "Released"
+        elif buttonType == "Take in":
+            appointment.pet_status = "Was Taken"
+        elif buttonType == "Complete Surgery":
+            appointment.pet_status = "Surgery Completed"
+        elif buttonType == "Inform Customer for Releasing":
+            appointment.pet_status = "Ready for release"
+        elif buttonType == "Confirm Surgery Date":
+            meeting_date =  data.get('meetingDate')
+            appointment.surgery_date = datetime.strptime(meeting_date, "%Y-%m-%d %H:%M")
+            appointment.pet_status = "Surgery Date Confirmed"
+
         db.session.commit()
         return redirect(url_for('on_going'))
 
@@ -371,8 +396,11 @@ def unchecked():
     else:
         data = request.form.to_dict()
         rowIndex = data.get('id')
+        meeting_date =  data.get('meetingDate')
         appointment = Appointment.query.filter(Appointment.id == rowIndex).first()
         appointment.status = 0
+        print(meeting_date)
+        appointment.meeting_date = datetime.strptime(meeting_date, "%Y-%m-%d %H:%M")
         db.session.commit()
         return redirect(url_for('unchecked'))
 
@@ -610,7 +638,6 @@ def staff_checkpets():
     if not session.get("USERNAME") is None:
         pets = Pet.query.filter().all()
         customers = Customer.query.filter(Customer.id == Pet.owner_id)
-
         return render_template('staff_checkpets.html',pets = pets,customers = customers)
 
 

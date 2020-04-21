@@ -25,12 +25,14 @@ class LoginForm(FlaskForm):
 
 class AppointmentForm(FlaskForm):
     pets = SelectField('Choose Pet', validators=[DataRequired()], default=1, coerce=int)
+    location = SelectField('Choose Pet', choices=[(1, 'Beijing'),(2, 'Shanghai'), (3, 'Chengdu')], default=1, coerce=int)
     description = StringField('Description', validators=[DataRequired()])
     submit = SubmitField('Submit')
 
 
 class EmergencyAppointmentForm(FlaskForm):
     pets = SelectField('Choose Pet', validators=[DataRequired()], default=1, coerce=int)
+    location = SelectField('Choose Location', choices=[(1, 'Beijing'),(2, 'Shanghai'), (3, 'Chengdu')], default=1, coerce=int)
     submit = SubmitField('Submit')
 
 

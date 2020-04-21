@@ -1,6 +1,9 @@
 {% extends "staff_base.html" %}
 
+
 {% block content %}
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+
     <div class="container">
         <div class="row row-centered">
             <div class="well col-md-6 col-centered">
@@ -23,8 +26,8 @@
                             <tbody>
 
                                 <tr>
-                                    <th>Pet Name</th>
-                                    <th>Pet ID</th>
+                                    <th>Pet Name  <a href="#"> <i class="fa fa-sort" aria-hidden="true" ></i> </a></th>
+                                    <th>Pet ID </th>
                                     <th>Pet type</th>
                                     <th>Owner ID</th>
                                     <th>Owner Name</th>
@@ -60,5 +63,7 @@
             </div>
         </div>
     </div>
+
+
 
 {% endblock %}
