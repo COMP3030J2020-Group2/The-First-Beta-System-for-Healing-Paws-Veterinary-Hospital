@@ -470,7 +470,7 @@ def customer_questiondetail(id):
         return redirect(url_for('customer_login'))
 
 
-@app.route('/customer_questions/edit_question/<id>',methods = ['GET', 'POST'])
+@app.route('/edit_question/<id>',methods = ['GET', 'POST'])
 def edit_question(id):
     form = QuestionForm()
     if not session.get("USERNAME") is None:
