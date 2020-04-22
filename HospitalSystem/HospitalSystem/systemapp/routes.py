@@ -625,6 +625,49 @@ def answer_question(id):
     else:
         return redirect(url_for('staff_login'))
 
+@app.route('/staff_questions/edit_answer/<id>',methods = ['GET', 'POST'])
+def edit_answer(id):
+    form = AnswerForm()
+    if not session.get("STAFF") is None:
+        staff = Staff.query.filter(Staff.name == session.get("STAFF")).first()
+        answer = Answer.query.filter_by(id = id).first()
+        question=answer.question
+        if form.validate_on_submit():
+            update = Answer.query.filter_by(id = id).update({'content':form.content.data})
+            db.session.commit()
+            return redirect(url_for('staff_questiondetail',id=question.id))
+        return render_template('answer_question.html', form=form, question=question, content = answer.content)
+    else:
+        return redirect(url_for('staff_login'))
+
+
+@app.route('/staff_questions/delete_answer/<id>')
+def delete_answer(id):
+    if not session.get("STAFF") is None:
+        staff = Staff.query.filter(Staff.name == session.get("STAFF")).first()
+        answer = Answer.query.filter_by(id = id).first()
+        question=answer.question
+        remove = Answer.query.filter_by(id = id).delete()
+        db.session.commit()
+        return redirect(url_for('staff_questiondetail',id=question.id))
+    else:
+        return redirect(url_for('staff_login'))
+
+@app.route('/staff_questions/delete/<id>')
+def delete_QA(id):
+    if not session.get("STAFF") is None:
+        staff = Staff.query.filter(Staff.name == session.get("STAFF")).first()
+        question = Question.query.filter_by(id = id).first()
+        answer=question.answer.delete()
+        remove = Question.query.filter_by(id = id).delete()
+        db.session.commit()
+        return redirect('/staff_questions')
+    else:
+        return redirect(url_for('staff_login'))
+
+
+
+
 
 @app.route('/staff_checkpets',methods = ['GET', 'POST'])
 def staff_checkpets():

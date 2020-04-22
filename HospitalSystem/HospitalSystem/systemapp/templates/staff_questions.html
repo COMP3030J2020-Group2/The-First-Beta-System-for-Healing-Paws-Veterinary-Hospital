@@ -14,16 +14,18 @@
                         <caption><h3>Unanswered Questions</h3></caption>
                     <thead>
                         <tr>
-                            <th width="50%">Title</th>
-                            <th width="50%">Time</th>
+                            <th width="40%">Title</th>
+                            <th width="40%">Time</th>
+                            <th width="20%"></th>
                         </tr>
                     </thead>
                     <tbody>
 
                         {% for unanswered_question in unanswered_questions%}
-                        <tr onclick="location.href='/staff_questions/{{unanswered_question.id}}'">
-                            <td>{{unanswered_question.title}}</td>
-                            <td>{{unanswered_question.time}}</td>
+                        <tr >
+                            <td onclick="location.href='/staff_questions/{{unanswered_question.id}}'">{{unanswered_question.title}}</td>
+                            <td onclick="location.href='/staff_questions/{{unanswered_question.id}}'">{{unanswered_question.time}}</td>
+                            <td><div class="btn btn-primary btn-sm" onclick="window.location.href='/staff_questions/delete/{{unanswered_question.id}}'" role="button">Delete</div></td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -43,16 +45,18 @@
                 <caption><h3>Answered Questions</h3></caption>
                     <thead>
                         <tr>
-                            <th width="50%">Title</th>
-                            <th width="50%">Time</th>
+                            <th width="40%">Title</th>
+                            <th width="40%">Time</th>
+                            <th width="20%"></th>
                         </tr>
                     </thead>
                     <tbody>
 
                         {% for answered_question in answered_questions%}
-                        <tr onclick="location.href='/staff_questions/{{answered_question.id}}'">
-                            <td>{{answered_question.title}}</td>
-                            <td>{{answered_question.time}}</td>
+                        <tr >
+                            <td onclick="location.href='/staff_questions/{{answered_question.id}}'">{{answered_question.title}}</td>
+                            <td onclick="location.href='/staff_questions/{{answered_question.id}}'">{{answered_question.time}}</td>
+                            <td><div class="btn btn-primary btn-sm" onclick="window.location.href='/staff_questions/delete/{{answered_question.id}}'" role="button">Delete</div></td>
                         </tr>
                         {% endfor %}
                     </tbody>
