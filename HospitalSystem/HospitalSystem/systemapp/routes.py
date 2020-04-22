@@ -626,19 +626,13 @@ def answer_question(id):
         return redirect(url_for('staff_login'))
 
 
-
-
-
-
-
-
-
 @app.route('/staff_checkpets',methods = ['GET', 'POST'])
 def staff_checkpets():
     if not session.get("USERNAME") is None:
-        pets = Pet.query.filter().all()
-        customers = Customer.query.filter(Customer.id == Pet.owner_id)
-        return render_template('staff_checkpets.html',pets = pets,customers = customers)
+        if request.method == 'GET':
+            pets = Pet.query.filter().all()
+            customers = Customer.query.filter(Customer.id == Pet.owner_id)
+            return render_template('staff_checkpets.html',pets = pets,customers = customers)
 
 
 @app.route('/staff_checkpets/update_pet/<id>',methods = ['GET', 'POST'])
