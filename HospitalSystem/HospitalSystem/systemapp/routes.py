@@ -675,7 +675,8 @@ def staff_checkpets():
         if request.method == 'GET':
             pets = Pet.query.filter().all()
             customers = Customer.query.filter(Customer.id == Pet.owner_id)
-            return render_template('staff_checkpets.html',pets = pets,customers = customers)
+            appointments = Appointment.query.filter().all()
+            return render_template('staff_checkpets.html',pets = pets,customers = customers,appointments=appointments)
 
 
 @app.route('/staff_checkpets/update_pet/<id>',methods = ['GET', 'POST'])
