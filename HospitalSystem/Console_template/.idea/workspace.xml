@@ -1,30 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e4e5ef01-5ace-470f-9027-a90f6bcc72db" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../HospitalSystem/systemapp/static/i18n/strings_en.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HospitalSystem/systemapp/static/i18n/strings_zh.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HospitalSystem/systemapp/static/script/i18n_js/jquery.i18n.properties.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HospitalSystem/systemapp/static/script/i18n_js/jquery.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HospitalSystem/systemapp/templates/customer_appointments.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HospitalSystem/systemapp/templates/customer_appointments.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HospitalSystem/systemapp/templates/customer_console_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HospitalSystem/systemapp/templates/customer_console_base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../HospitalSystem/systemapp/templates/customer_console_main.html" beforeDir="false" afterPath="$PROJECT_DIR$/../HospitalSystem/systemapp/templates/customer_console_main.html" afterDir="false" />
-    </list>
+    <list default="true" id="e4e5ef01-5ace-470f-9027-a90f6bcc72db" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
-  </component>
   <component name="ProjectId" id="1aUG9WQkuvQRHMpS8g4s4cDRnEj" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -32,7 +15,6 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
@@ -47,7 +29,6 @@
       <option name="presentableId" value="Default" />
       <updated>1586782607866</updated>
       <workItem from="1586782609393" duration="5324000" />
-      <workItem from="1587387679209" duration="759000" />
     </task>
     <servers />
   </component>

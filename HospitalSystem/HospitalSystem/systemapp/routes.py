@@ -458,48 +458,6 @@ def create_questions():
     else:
         return redirect(url_for('customer_login'))
 
-
-@app.route('/customer_questions/<id>',methods = ['GET', 'POST'])
-def customer_questiondetail(id):
-    if not session.get("USERNAME") is None:
-        user = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-        question = Question.query.filter_by(id = id).first()
-        answer=question.answer.all()
-        return render_template('customer_questiondetail.html',question = question, answer=answer, user=user)
-    else:
-        return redirect(url_for('customer_login'))
-
-
-@app.route('/customer_questions/edit_question/<id>',methods = ['GET', 'POST'])
-def edit_question(id):
-    form = QuestionForm()
-    if not session.get("USERNAME") is None:
-        customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-        question = Question.query.filter_by(id = id).first()
-        if form.validate_on_submit():
-            update = Question.query.filter_by(id = id).update({'title':form.title.data,'content':form.content.data})
-            db.session.commit()
-            return redirect(url_for('customer_questiondetail',id=id))
-        return render_template('customer_question_update.html', user=customer_in_db, form=form, qtitle = question.title, qcontent = question.content)
-    else:
-        return redirect(url_for('customer_login'))
-
-
-@app.route('/customer_questions/delete_question/<id>')
-def delete_question(id):
-    if not session.get("USERNAME") is None:
-        user = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-        question = Question.query.filter_by(id = id).first()
-        answer=question.answer.delete()
-        remove = Question.query.filter_by(id = id).delete()
-        db.session.commit()
-        return redirect('/customer_questions')
-    else:
-        return redirect(url_for('customer_login'))
-
-
-
-
 @app.route('/check_appointment/<id>',methods=['GET','POST'])
 def check_appointment(id):
     if not session.get("STAFF"):
@@ -614,10 +572,9 @@ def staff_questiondetail(id):
 def answer_question(id):
     form = AnswerForm()
     if not session.get("STAFF") is None:
-        staff = Staff.query.filter(Staff.name == session.get("STAFF")).first()
         question = Question.query.filter_by(id = id).first()
         if form.validate_on_submit():
-            answer = Answer(content=form.content.data, question=question, respondent=staff)
+            answer = Answer(content=form.content.data, question=question)
             db.session.add(answer)
             db.session.commit()
             return redirect(url_for('staff_questions'))
@@ -625,12 +582,15 @@ def answer_question(id):
     else:
         return redirect(url_for('staff_login'))
 
-
-
-
-
-
-
+@app.route('/customer_questions/<id>',methods = ['GET', 'POST'])
+def customer_questiondetail(id):
+    if not session.get("USERNAME") is None:
+        user = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+        question = Question.query.filter_by(id = id).first()
+        answer=question.answer.all()
+        return render_template('customer_questiondetail.html',question = question, answer=answer, user=user)
+    else:
+        return redirect(url_for('customer_login'))
 
 
 @app.route('/staff_checkpets',methods = ['GET', 'POST'])
@@ -638,6 +598,7 @@ def staff_checkpets():
     if not session.get("USERNAME") is None:
         pets = Pet.query.filter().all()
         customers = Customer.query.filter(Customer.id == Pet.owner_id)
+
         return render_template('staff_checkpets.html',pets = pets,customers = customers)
 
 
