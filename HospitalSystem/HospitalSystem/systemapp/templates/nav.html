@@ -5,72 +5,142 @@
 <!DOCTYPE html>
 <html >
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- SITE TITTLE -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Healing pawls Hospital</title>
 
-    <title>Healing pawls Hospital</title>
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-
-
-      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
+      <!-- PLUGINS CSS STYLE -->
+      <!-- Bootstrap -->
+      <link href="../static/vendor/plugins_index/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <!-- Font Awesome -->
+      <link href="../static/vendor/plugins_index/font-awsome/css/font-awesome.min.css" rel="stylesheet">
+      <!-- Magnific Popup -->
+      <link href="../static/vendor/plugins_index/magnific-popup/magnific-popup.css" rel="stylesheet">
+      <!-- Slick Carousel -->
+      <link href="../static/vendor/plugins_index/slick/slick.css" rel="stylesheet">
+      <link href="../static/vendor/plugins_index/slick/slick-theme.css" rel="stylesheet">
+      <!-- CUSTOM CSS -->
+      <link href="../static/css/css_index/style.css" rel="stylesheet">
+      <!-- FAVICON -->
+      <link href="../static/images/customer_img/favicon.png" rel="shortcut icon">
   </head>
-  <body>
+  <body  class="body-wrapper">
 
-    <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>
-    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>
-    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='bootstrap/js//bootstrap-hover-dropdown.min.js') }}"></script>
+{#    <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>#}
+{#    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>#}
+{#    <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>#}
+{#    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>#}
+{#    <script src="{{ url_for('static', filename='bootstrap/js//bootstrap-hover-dropdown.min.js') }}"></script>#}
+     <!-- JAVASCRIPTS -->
+  <!-- jQuey -->
+  <script src="../static/vendor/plugins_index/jquery/jquery.js"></script>
+  <!-- Popper js -->
+  <script src="../static/vendor/plugins_index/popper/popper.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="../static/vendor/plugins_index/bootstrap/js/bootstrap.min.js"></script>
+  <!-- Smooth Scroll -->
+  <script src="../static/vendor/plugins_index/smoothscroll/SmoothScroll.min.js"></script>
+  <!-- Isotope -->
+  <script src="../static/vendor/plugins_index/isotope/mixitup.min.js"></script>
+  <!-- Magnific Popup -->
+  <script src="../static/vendor/plugins_index/magnific-popup/jquery.magnific-popup.min.js"></script>
+  <!-- Slick Carousel -->
+  <script src="../static/vendor/plugins_index/slick/slick.min.js"></script>
+  <!-- SyoTimer -->
+  <script src="../static/vendor/plugins_index/syotimer/jquery.syotimer.min.js"></script>
+  <!-- Google Mapl -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu5nZKbeK-WHQ70oqOWo-_4VmwOwKP9YQ"></script>
+  <script type="text/javascript" src="../static/vendor/plugins_index/google-map/gmap.js"></script>
+  <!-- Custom Script -->
+  <script src="../static/script/nav_js/nav.js"></script>
 
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">H2DGN</a>
-        </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
+<!--========================================
+=            Navigation Section            =
+=========================================-->
 
-            <li><a href="{{ url_for('index') }}">Home</a></li>
-            <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="{{ url_for('staff_login') }}">Staff Login</a></li>
-            </ul>
-            </li>
-        </ul>
-        <form class="navbar-form navbar-left">
-            <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{ url_for('customer_login')}}" data-hover="dropdown"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
-            <li><a href="{{ url_for('signup')}}"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
-        </ul>
-        </div>
-        </div>
-    </nav>
+<nav class="navbar main-nav border-less fixed-top navbar-expand-lg p-0">
+  <div class="container-fluid p-0">
+      <!-- logo -->
+      <a class="navbar-brand" href="index.html">
+        <img src="../static/images/customer_img/logo.png" alt="logo" height="31x">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="fa fa-bars"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item dropdown active dropdown-slide">
+          <a class="nav-link" href="{{ url_for('index') }}"  data-toggle="dropdown">Home</a>
+          <!-- Dropdown list -->
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="{{ url_for('staff_login') }}">Staff Login</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">News</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact Us</a>
+        </li>
+      </ul>
+      <a href="{{ url_for('customer_login')}}" class="ticket">
+        <img src="../static/images/index_img/icon/ticket.png" alt="ticket">
+        <span>My Account</span>
+      </a>
+      </div>
+  </div>
+</nav>
+
+<!--====  End of Navigation Section  ====-->
+
+
+{#    <nav class="navbar navbar-default">#}
+{#        <div class="container-fluid">#}
+{#        <!-- Brand and toggle get grouped for better mobile display -->#}
+{#        <div class="navbar-header">#}
+{#        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">#}
+{#            <span class="sr-only">Toggle navigation</span>#}
+{#            <span class="icon-bar"></span>#}
+{#            <span class="icon-bar"></span>#}
+{#            <span class="icon-bar"></span>#}
+{#        </button>#}
+{#        <a class="navbar-brand" href="#">H2DGN</a>#}
+{#        </div>#}
+{##}
+{#        <!-- Collect the nav links, forms, and other content for toggling -->#}
+{#        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">#}
+{#        <ul class="nav navbar-nav">#}
+{##}
+{#            <li><a href="{{ url_for('index') }}">Home</a></li>#}
+{#            <li class="dropdown">#}
+{#            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>#}
+{#            <ul class="dropdown-menu">#}
+{#                <li><a href="#">Action</a></li>#}
+{#                <li><a href="#">Another action</a></li>#}
+{#                <li><a href="#">Something else here</a></li>#}
+{#                <li role="separator" class="divider"></li>#}
+{#                <li><a href="#">Separated link</a></li>#}
+{#                <li role="separator" class="divider"></li>#}
+{#                <li><a href="{{ url_for('staff_login') }}">Staff Login</a></li>#}
+{#            </ul>#}
+{#            </li>#}
+{#        </ul>#}
+{#        <form class="navbar-form navbar-left">#}
+{#            <div class="form-group">#}
+{#            <input type="text" class="form-control" placeholder="Search">#}
+{#            </div>#}
+{#            <button type="submit" class="btn btn-default">Submit</button>#}
+{#        </form>#}
+{#        <ul class="nav navbar-nav navbar-right">#}
+{#            <li><a href="{{ url_for('customer_login')}}" data-hover="dropdown"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>#}
+{#            <li><a href="{{ url_for('signup')}}"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>#}
+{#        </ul>#}
+{#        </div>#}
+{#        </div>#}
+{#    </nav>#}
     {% block content %}
     {% endblock %}
   </body>
