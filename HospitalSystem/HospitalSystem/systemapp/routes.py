@@ -512,10 +512,25 @@ def check_appointment(id):
             return redirect(url_for('control_system'))
         return render_template('staff_operate_appointment.html', appointment=apm_in_db, pet = pet, customer = customer)
 
+@app.route('/check_pet/<id>',methods=['GET','POST'])
+def check_pet(id):
+    if not session.get("STAFF"):
+        return redirect(url_for('staff_login'))
+    else:
+        pet_in_db = Pet.query.filter(Pet.id == id).first()
+        owner = Customer.query.filter(Customer.id == pet_in_db.owner).first()
+        if not pet_in_db:
+            return redirect(url_for('control_system'))
+        return render_template('staff_check_pet.html',pet=pet_in_db,owner=owner)
+
 @app.route('/appointment_ongoing/<id>',methods=['GET','POST'])
 def appointment_ongoing(id):
     if not session.get("STAFF"):
         return redirect(url_for('staff_login'))
+    else:
+        staff_in_db = Staff.query.filter(Staff.name == session.get("STAFF")).first()
+        if staff_in_db.level < 3:
+            return redirect('control_system') #staff level
     apm_in_db = Appointment.query.filter(Appointment.id == id).first()
     if apm_in_db:
         apm_in_db = Appointment.query.filter_by(id = id).update({"status":0})
@@ -527,6 +542,10 @@ def appointment_ongoing(id):
 def appointment_finish(id):
     if not session.get("STAFF"):
         return redirect(url_for('staff_login'))
+    else:
+        staff_in_db = Staff.query.filter(Staff.name == session.get("STAFF")).first()
+        if staff_in_db.level < 3:
+            return redirect('control_system') #staff level
     apm_in_db = Appointment.query.filter(Appointment.id == id).first()
     if apm_in_db:
         apm_in_db = Appointment.query.filter_by(id = id).update({"status":2})
