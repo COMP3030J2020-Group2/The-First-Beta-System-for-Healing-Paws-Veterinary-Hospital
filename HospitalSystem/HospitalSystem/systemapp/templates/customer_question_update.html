@@ -1,33 +1,26 @@
-{% extends"staff_base.html" %}
+{% extends"customer_console_base.html" %}
 
 {% block content %}
+                <div class="col-lg-12">
+                  <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">Please enter your question.</h3>
+                    </div>
+                    <div class="card-body">
 
 
-<div class="col-md-10">
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            {{question.title}}
-        </h3>
-    </div>
-    <div class="panel-body">
-        {{question.content}}
-    </div>
-</div>
-</div>
-    <div class="container">
-        <div class="row row-centered">
-            <div class="col-md-6 col-centered">
-
-
-<div class="col-md-12">
-<div class="panel panel-default">
-        <div class="panel-heading">
                 <form action="" method="post" novalidate role="form" class="form-horizontal">
                     {{ form.hidden_tag() }}
                     <div class="form-group">
+                        {{ form.title.label(class="form-control-label") }}<br>
+                        {{ form.title(size=100, class="form-control", value=qtitle) }}
+                        {% for error in form.title.errors %}
+                        <span style="color: red">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="form-group">
                         {{ form.content.label(class="form-control-label")  }}
-                        {{ form.content(size=1500, class="form-control", rows="3") }}
+                        {{ form.content(size=1500, class="form-control", rows="3", value=qcontent) }}
                         {% for error in form.content.errors %}
                         <span style="color: red;">{{ error }}</span>
                         {% endfor %}
@@ -39,15 +32,18 @@
                         {{ form.submit(class="btn btn-primary") }}
                     </div>
                 </form>
+
+
+
                     </div>
-</div>
-</div>
+                  </div>
+                </div>
 
                 <script language="javascript"> 
                     window.onload = function()
                         { 
                         var content = document.getElementById('content');
-                        content.innerHTML="{{content}}";
+                        content.innerHTML="{{qcontent}}";
                         }
             </script>
 {% endblock %}
