@@ -22,6 +22,8 @@
                         <tr>
                             <th>Name</th>
                             <th>Category</th>
+                            <th>Has Ongoing Appointment?</th>
+                            <th>Current Status</th>
                         </tr>
                     
                         {% for pet in pets %}
@@ -32,8 +34,29 @@
                                 {% elif pet.type == 2 %}
                                 <td>Dog</td>
                                 {% endif %}
+
+                                
+                                {% for appoint in pet.appointments %}
+                                    {% if appoint.status == 0  %}
+                                    <td>Yes</td>
+                                        {% if appoint.pet_status == 'none' %}
+                                        <td>Checked</td>
+                                        {% else %}
+                                        <td>{{ appoint.pet_status }}</td>
+                                        {% endif %}
+                                    {% elif appoint.status == 1  %}
+                                    <td>Yes</td>
+                                    <td>Applied but not checked yet</td>
+                                    {% else %}
+                                    <td>No</td>
+                                    <td>None</td>
+                                    {% endif %}
+                                    
+                                {% endfor %}                         
                             </tr>
                         {% endfor%}
+
+
                         
                     </table>
                 </div>

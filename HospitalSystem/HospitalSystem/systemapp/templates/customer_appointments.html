@@ -48,7 +48,8 @@
                                     <th>Appointments Type </th>
                                     <th>Construction Time </th>
                                     <th>Appointments Description </th>
-                                    <th>Current Status</th>
+                                    <th>Meeting Date</th>
+                                    <th>Surgery Date</th>
                                     <th>Operator ID </th>
                                 </tr>
 
@@ -66,7 +67,19 @@
                                     {% endif %}
                                     <td>{{a.time}}</td>
                                     <td>{{a.description}}</td>
-                                    <td>{{ a.pet_status }}</td>
+
+                                    {% if a.meeting_date == None %}
+                                    <td>Not Decided</td>
+                                    {% else %}
+                                    <td>{{ a.meeting_date }}</td>
+                                    {% endif %}
+
+                                    {% if a.surgery_date == None %}
+                                    <td>Not Decided</td>
+                                    {% else %}
+                                    <td>{{ a.surgery_date }}</td>
+                                    {% endif %}
+                                   
                                     <td>{{a.operator_id}}</td>
                                     <td><a class="btn btn-primary btn-sm" href="/customer_appointments/update_appointments/{{a.id}}" role="button">Edit</a>
                                         <a class="btn btn-primary btn-sm" href="/customer_appointments/delete_appointment/{{a.id}}" role="button">Delete</a></td>

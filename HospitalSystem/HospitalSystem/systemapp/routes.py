@@ -459,17 +459,6 @@ def create_questions():
         return redirect(url_for('customer_login'))
 
 
-@app.route('/customer_questions/<id>',methods = ['GET', 'POST'])
-def customer_questiondetail(id):
-    if not session.get("USERNAME") is None:
-        user = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-        question = Question.query.filter_by(id = id).first()
-        answer=question.answer.all()
-        return render_template('customer_questiondetail.html',question = question, answer=answer, user=user)
-    else:
-        return redirect(url_for('customer_login'))
-
-
 @app.route('/edit_question/<id>',methods = ['GET', 'POST'])
 def edit_question(id):
     form = QuestionForm()
@@ -693,21 +682,18 @@ def delete_QA(id):
         return redirect(url_for('staff_login'))
 
 
-
-
-
 @app.route('/staff_checkpets',methods = ['GET', 'POST'])
 def staff_checkpets():
-    if not session.get("USERNAME") is None:
+    # if not session.get("USERNAME") is None:
+    #     pets = Pet.query.filter().all()
+    #     customers = Customer.query.filter(Customer.id == Pet.owner_id)
+
+    #     return render_template('staff_checkpets.html',pets = pets,customers = customers)
+    if request.method == 'GET':
         pets = Pet.query.filter().all()
         customers = Customer.query.filter(Customer.id == Pet.owner_id)
-
-        return render_template('staff_checkpets.html',pets = pets,customers = customers)
-        if request.method == 'GET':
-            pets = Pet.query.filter().all()
-            customers = Customer.query.filter(Customer.id == Pet.owner_id)
-            appointments = Appointment.query.filter().all()
-            return render_template('staff_checkpets.html',pets = pets,customers = customers,appointments=appointments)
+        appointments = Appointment.query.filter().all()
+        return render_template('staff_checkpets.html',pets = pets,customers = customers,appointments=appointments)
 
 
 @app.route('/staff_checkpets/update_pet/<id>',methods = ['GET', 'POST'])
