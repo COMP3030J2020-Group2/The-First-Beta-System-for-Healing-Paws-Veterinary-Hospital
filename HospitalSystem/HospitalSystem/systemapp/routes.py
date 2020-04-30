@@ -690,17 +690,19 @@ def delete_QA(id):
 
 @app.route('/staff_checkpets',methods = ['GET', 'POST'])
 def staff_checkpets():
-    if not session.get("USERNAME") is None:
+    if not session.get("STAFF") is None:
         if request.method == 'GET':
             pets = Pet.query.filter().all()
             customers = Customer.query.filter(Customer.id == Pet.owner_id)
             appointments = Appointment.query.filter().all()
             return render_template('staff_checkpets.html',pets = pets,customers = customers,appointments=appointments)
+    else:
+        return redirect(url_for('staff_login'))
 
 
 @app.route('/staff_checkpets/update_pet/<id>',methods = ['GET', 'POST'])
 def staff_updatepet(id):
-    if not session.get("USERNAME") is None:
+    if not session.get("STAFF") is None:
         if request.method == 'GET':
             pet = Pet.query.filter_by(id = id).first()
             return render_template('staff_updatepet.html',pet = pet)
