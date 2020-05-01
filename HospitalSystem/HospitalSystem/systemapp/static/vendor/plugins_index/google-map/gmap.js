@@ -77,7 +77,6 @@ function initialize() {
 
         // SET THE MAP STYLE & ZOOM LEVEL
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        zoom:9,
 
         // SET THE BACKGROUND COLOUR
         backgroundColor:"#000",
@@ -96,7 +95,6 @@ function initialize() {
 
     }
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
     // SET THE MAP TYPE
     var mapType = new google.maps.StyledMapType(style, {name:"Grayscale"});
     map.mapTypes.set('grey', mapType);
@@ -104,7 +102,7 @@ function initialize() {
 
     //CREATE A CUSTOM PIN ICON
     var marker_image ='plugins/google-map/images/marker.png';
-    var pinIcon = new google.maps.MarkerImage(marker_image,null,null, null,new google.maps.Size(40, 60));
+    var pinIcon = new google.maps.MarkerImage(marker_image,null,null, null,new google.maps.Size(74, 73));
 
     marker = new google.maps.Marker({
         position: nottingham,
