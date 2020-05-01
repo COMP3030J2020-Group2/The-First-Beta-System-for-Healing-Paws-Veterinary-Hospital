@@ -1,78 +1,241 @@
-<!-- <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap-theme.min.css') }}" >
-<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script> -->
-
 <!DOCTYPE html>
-<html >
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+<head>
 
-    <title>Healing pawls Hospital</title>
+  <meta charset="utf-8">
+  <title>Healing Paws Hospital</title>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+  <!-- mobile responsive meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+  <!-- Slick Carousel -->
+  <link rel="stylesheet" href="../static/vendor/plugins_index/slick/slick.css">
+  <link rel="stylesheet" href="../static/vendor/plugins_index/slick/slick-theme.css">
+  <!-- FancyBox -->
+  <link rel="stylesheet" href="../static/vendor/plugins_index/fancybox/jquery.fancybox.min.css">
 
-      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
+  <!-- Stylesheets -->
+  <link href="../static/css/css_index/style.css" rel="stylesheet">
 
-    <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>
-    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>
-    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='bootstrap/js//bootstrap-hover-dropdown.min.js') }}"></script>
+  <!--Favicon-->
+  <link rel="shortcut icon" href="../static/images/index_img/favicon1.png" type="image/x-icon">
+  <link rel="icon" href="../static/images/index_img/favicon1.png" type="image/x-icon">
 
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">H2DGN</a>
-        </div>
+</head>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
+<body>
 
-            <li><a href="{{ url_for('index') }}">Home</a></li>
-            <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="{{ url_for('staff_login') }}">Staff Login</a></li>
-            </ul>
-            </li>
-        </ul>
-        <form class="navbar-form navbar-left">
-            <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
+<div class="page-wrapper">
+
+<!--Header Upper-->
+<section class="header-uper">
+      <div class="container clearfix">
+            <div class="logo">
+                  <figure>
+                        <a href="{{ url_for('index')}}">
+                              <img src="../static/images/index_img/logo_index.png" alt="" width="70%" height="70%">
+                        </a>
+                  </figure>
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="{{ url_for('customer_login')}}" data-hover="dropdown"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
-            <li><a href="{{ url_for('signup')}}"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>
-        </ul>
-        </div>
-        </div>
-    </nav>
+            <div class="right-side">
+                  <ul class="contact-info">
+                        <li class="item">
+                              <div class="icon-box">
+                                    <i class="fa fa-envelope-o"></i>
+                              </div>
+                              <strong>Email</strong>
+                              <br>
+                              <a href="#">
+                                    <span>HealingPaws@gmail.com</span>
+                              </a>
+                        </li>
+                        <li class="item">
+                              <div class="icon-box">
+                                    <i class="fa fa-phone"></i>
+                              </div>
+                              <strong>Call Now</strong>
+                              <br>
+                              <span>+ (86) - 123 - 4567</span>
+                        </li>
+                  </ul>
+                  <div class="link-btn">
+                        <a href="{{ url_for('customer_login')}}" class="btn-style-one">My Account</a>
+                  </div>
+            </div>
+      </div>
+</section>
+<!--Header Upper-->
+
+<!--Main Header-->
+<nav class="navbar navbar-default">
+      <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                        aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                  </button>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <ul class="nav navbar-nav">
+                        <li class="active">
+                              <a href="index.html">Home</a>
+                        </li>
+                        <li>
+                              <a href="#">News</a>
+                        </li>
+                        <li>
+                              <a href="#">Services</a>
+                        </li>
+                        <li>
+                              <a href="#">Gallery</a>
+                        </li>
+                        <li>
+                              <a href="#">Blog</a>
+                        </li>
+                        <li>
+                              <a href="#">Contact</a>
+                        </li>
+                  </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+</nav>
+<!--End Main Header -->
+
     {% block content %}
     {% endblock %}
-  </body>
+
+<!--footer-main-->
+<footer class="footer-main">
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="about-widget">
+            <div class="footer-logo">
+              <figure>
+                <a href="index.html">
+                  <img src="images/logo-2.png" alt="">
+                </a>
+              </figure>
+            </div>
+            <p><strong>Healing Paws Veterinary Hospital - Your One-Call-Away Pet Butler</strong></p>
+            <ul class="location-link">
+              <li class="item">
+                <i class="fa fa-map-marker"></i>
+                <p>Beijing, Shanghai, Hangzhou</p>
+              </li>
+              <li class="item">
+                <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                <a href="#">
+                  <p>HealingPaws@gmail.com</p>
+                </a>
+              </li>
+              <li class="item">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <p>(86) +123 4567</p>
+              </li>
+            </ul>
+            <ul class="list-inline social-icons">
+              <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+              <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="social-links">
+            <h6>Recent Posts</h6>
+            <ul>
+              <li class="item">
+                <div class="media">
+                  <div class="media-left">
+                    <a href="#">
+                      <img class="media-object" src="images/blog/post-thumb-small.jpg" alt="post-thumb">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading"><a href="#">Post Title</a></h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, dolorem.</p>
+                  </div>
+                </div>
+              </li>
+              <li class="item">
+                <div class="media">
+                  <div class="media-left">
+                    <a href="#">
+                      <img class="media-object" src="images/blog/post-thumb-small.jpg" alt="post-thumb">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">
+                      <a href="#">Post Title</a>
+                    </h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, dolorem.</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container clearfix">
+      <div class="copyright-text">
+        <p>&copy; Copyright 2020. All Rights Reserved by
+          <a href="index.html">Healing Paws Veterinary Hospital</a>
+        </p>
+      </div>
+      <ul class="footer-bottom-link">
+        <li>
+          <a href="#">Home</a>
+        </li>
+        <li>
+          <a href="#">About Us</a>
+        </li>
+        <li>
+          <a href="#">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>
+<!--End footer-main-->
+
+</div>
+<!--End pagewrapper-->
+
+
+<!-- JQuery -->
+<script src="../static/vendor/plugins_index/jquery.js"></script>
+<!-- Bootstrap -->
+<script src="../static/vendor/plugins_index/bootstrap.min.js"></script>
+<script src="../static/vendor/plugins_index/bootstrap-select.min.js"></script>
+<!-- Slick Slider -->
+<script src="../static/vendor/plugins_index/slick/slick.min.js"></script>
+<!-- FancyBox -->
+<script src="../static/vendor/plugins_index/fancybox/jquery.fancybox.min.js"></script>
+<!-- Google Map -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+<script src="../static/vendor/plugins_index/google-map/gmap.js"></script>
+<!-- Others -->
+<script src="../static/vendor/plugins_index/validate.js"></script>
+<script src="../static/vendor/plugins_index/wow.js"></script>
+<script src="../static/vendor/plugins_index/jquery-ui.js"></script>
+<script src="../static/vendor/plugins_index/timePicker.js"></script>
+<script src="../static/script/index_script.js"></script>
+
+</body>
 
 </html>
