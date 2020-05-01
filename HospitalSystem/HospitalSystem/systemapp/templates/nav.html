@@ -44,7 +44,7 @@
                               <div class="icon-box">
                                     <i class="fa fa-envelope-o"></i>
                               </div>
-                              <strong>Email</strong>
+                              <strong data-locale="Email">Email</strong>
                               <br>
                               <a href="#">
                                     <span>HealingPaws@gmail.com</span>
@@ -54,13 +54,13 @@
                               <div class="icon-box">
                                     <i class="fa fa-phone"></i>
                               </div>
-                              <strong>Call Now</strong>
+                              <strong data-locale="Call Now">Call Now</strong>
                               <br>
                               <span>+ (86) - 123 - 4567</span>
                         </li>
                   </ul>
                   <div class="link-btn">
-                        <a href="{{ url_for('customer_login')}}" class="btn-style-one">My Account</a>
+                        <a href="{{ url_for('customer_login')}}" class="btn-style-one" data-locale="My Account">My Account</a>
                   </div>
             </div>
       </div>
@@ -74,7 +74,7 @@
             <div class="navbar-header">
                   <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
                         aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
+                        <span class="sr-only" data-locale="Toggle navigation">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -84,22 +84,26 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
                         <li class="active">
-                              <a href="index.html">Home</a>
+                              <a href="index.html" data-locale="Home">Home</a>
                         </li>
                         <li>
-                              <a href="#">News</a>
+                              <a href="#" data-locale="News">News</a>
                         </li>
                         <li>
-                              <a href="#">Services</a>
+                              <a href="#" data-locale="Services">Services</a>
                         </li>
                         <li>
-                              <a href="#">Gallery</a>
+                              <a href="#" data-locale="Gallery">Gallery</a>
                         </li>
                         <li>
-                              <a href="#">Blog</a>
+                              <a href="#" data-locale="Blog">Blog</a>
                         </li>
                         <li>
-                              <a href="#">Contact</a>
+                              <a href="#" data-locale="Contact">Contact</a>
+                        </li>
+                        <li>
+                              <a href="#" id='btn' class="btn-style-special"  data-locale="Change Language">Change to Chinese</a>
+{#                              <button type="button" id='btn' class="btn-style-one" data-locale="Change Language"></button>#}
                         </li>
                   </ul>
             </div>
@@ -122,15 +126,15 @@
             <div class="footer-logo">
               <figure>
                 <a href="index.html">
-                  <img src="images/logo-2.png" alt="">
+                  <img src="../static/images/index_img/logo-2.png" alt="">
                 </a>
               </figure>
             </div>
-            <p><strong>Healing Paws Veterinary Hospital - Your One-Call-Away Pet Butler</strong></p>
+            <p><strong data-locale="footer1">Healing Paws Veterinary Hospital - Your One-Call-Away Pet Butler</strong></p>
             <ul class="location-link">
               <li class="item">
                 <i class="fa fa-map-marker"></i>
-                <p>Beijing, Shanghai, Hangzhou</p>
+                <p data-locale="footer2">Beijing, Shanghai, Hangzhou</p>
               </li>
               <li class="item">
                 <i class="fa fa-envelope-o" aria-hidden="true"></i>
@@ -154,17 +158,17 @@
 
         <div class="col-md-4 col-sm-6 col-xs-12">
           <div class="social-links">
-            <h6>Recent Posts</h6>
+            <h6 data-locale="footer3">Recent Posts</h6>
             <ul>
               <li class="item">
                 <div class="media">
                   <div class="media-left">
                     <a href="#">
-                      <img class="media-object" src="images/blog/post-thumb-small.jpg" alt="post-thumb">
+                      <img class="media-object" src="../static/images/index_img/blog/post-thumb-small.jpg" alt="post-thumb">
                     </a>
                   </div>
                   <div class="media-body">
-                    <h4 class="media-heading"><a href="#">Post Title</a></h4>
+                    <h4 class="media-heading"><a href="#" data-locale="footer4">Post Title</a></h4>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, dolorem.</p>
                   </div>
                 </div>
@@ -173,12 +177,12 @@
                 <div class="media">
                   <div class="media-left">
                     <a href="#">
-                      <img class="media-object" src="images/blog/post-thumb-small.jpg" alt="post-thumb">
+                      <img class="media-object" src="../static/images/index_img/blog/post-thumb-small.jpg" alt="post-thumb">
                     </a>
                   </div>
                   <div class="media-body">
                     <h4 class="media-heading">
-                      <a href="#">Post Title</a>
+                      <a href="#" data-locale="footer4">Post Title</a>
                     </h4>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, dolorem.</p>
                   </div>
@@ -199,13 +203,13 @@
       </div>
       <ul class="footer-bottom-link">
         <li>
-          <a href="#">Home</a>
+          <a href="#" data-locale="Home">Home</a>
         </li>
         <li>
-          <a href="#">About Us</a>
+          <a href="#" data-locale="About Us">About Us</a>
         </li>
         <li>
-          <a href="#">Contact Us</a>
+          <a href="#" data-locale="Contact Us">Contact Us</a>
         </li>
       </ul>
     </div>
@@ -235,6 +239,37 @@
 <script src="../static/vendor/plugins_index/jquery-ui.js"></script>
 <script src="../static/vendor/plugins_index/timePicker.js"></script>
 <script src="../static/script/index_script.js"></script>
+
+<!-- I18N -->
+    <script src="../static/script/i18n_js/jquery.i18n.properties.min.js"></script>
+    <script type="text/javascript">
+        isEng = true
+        btn.onclick=function(){
+            if(!isEng){
+                loadProperties('en');
+            }else{
+                loadProperties('zh');
+            }
+            isEng = !isEng
+
+        }
+        function loadProperties(lang) {
+            $.i18n.properties({
+                name: 'strings',    //属性文件名     命名格式： 文件名_国家代号.properties
+                path: '../static/i18n/',   //注意这里路径是你属性文件的所在文件夹
+                mode: 'map',
+                language: lang,     //这就是国家代号 name+language刚好组成属性文件名：strings+zh -> strings_zh.properties
+                callback: function () {
+                    $("[data-locale]").each(function () {
+                        console.log($(this).data("locale"));
+                        $(this).html($.i18n.prop($(this).data("locale")));
+
+                    });
+                }
+            });
+        }
+        loadProperties('en');
+    </script>
 
 </body>
 

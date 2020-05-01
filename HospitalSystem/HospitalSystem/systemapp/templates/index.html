@@ -1,121 +1,3 @@
-{#<!DOCTYPE html>#}
-{#<html >#}
-{#  <head>#}
-{#    <meta charset="utf-8">#}
-{#    <meta http-equiv="X-UA-Compatible" content="IE=edge">#}
-{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
-{##}
-{#    <title>Healing paws Hospital</title>#}
-{##}
-{#    <!-- Bootstrap -->#}
-{#    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">#}
-{##}
-{##}
-{#      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>#}
-{#      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>#}
-{#    <![endif]-->#}
-{#  </head>#}
-{#  <body>#}
-{##}
-{#    <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>#}
-{#    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>#}
-{#    <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>#}
-{#    <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>#}
-{#    <script src="{{ url_for('static', filename='bootstrap/js//bootstrap-hover-dropdown.min.js') }}"></script>#}
-{##}
-{#    <nav class="navbar navbar-default">#}
-{#  <div class="container-fluid">#}
-{#    <!-- Brand and toggle get grouped for better mobile display -->#}
-{#    <div class="navbar-header">#}
-{#      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">#}
-{#        <span class="sr-only">Toggle navigation</span>#}
-{#        <span class="icon-bar"></span>#}
-{#        <span class="icon-bar"></span>#}
-{#        <span class="icon-bar"></span>#}
-{#      </button>#}
-{#      <a class="navbar-brand" href="#">H2DGN</a>#}
-{#    </div>#}
-{##}
-{#    <!-- Collect the nav links, forms, and other content for toggling -->#}
-{#    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">#}
-{#      <ul class="nav navbar-nav">#}
-{##}
-{#        <li><a href="{{ url_for('index') }}">Home</a></li>#}
-{#        <li class="dropdown">#}
-{#          <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>#}
-{#          <ul class="dropdown-menu">#}
-{#            <li><a href="#">Action</a></li>#}
-{#            <li><a href="#">Another action</a></li>#}
-{#            <li><a href="#">Something else here</a></li>#}
-{#            <li role="separator" class="divider"></li>#}
-{#            <li><a href="#">Separated link</a></li>#}
-{#            <li role="separator" class="divider"></li>#}
-{#            <li><a href="{{ url_for('staff_login') }}">Staff Login</a></li>#}
-{#          </ul>#}
-{#        </li>#}
-{#      </ul>#}
-{#      <form class="navbar-form navbar-left">#}
-{#        <div class="form-group">#}
-{#          <input type="text" class="form-control" placeholder="Search">#}
-{#        </div>#}
-{#        <button type="submit" class="btn btn-default">Submit</button>#}
-{#      </form>#}
-{#      <ul class="nav navbar-nav navbar-right">#}
-{#        <li><a href="{{ url_for('customer_login') }}" data-hover="dropdown"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>#}
-{#        <li><a href="{{ url_for('signup')}}"><span class="glyphicon glyphicon-user"></span>Sign Up</a></li>#}
-{#      </ul>#}
-{#    </div>#}
-{#  </div>#}
-{#</nav>#}
-{##}
-{#<div class="jumbotron">#}
-{#   <div class="container">#}
-{#  <h1>Healing Paws Hospital</h1>#}
-{#  <p>The hospital is committed to providing the best treatment for your pet.#}
-{#It is our responsibility to ensure your pet's health!</p>#}
-{#  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>#}
-{#   </div>#}
-{#</div>#}
-{##}
-{#  <div class="row">#}
-{#  <div class="col-sm-6 col-md-4">#}
-{#    <div class="thumbnail">#}
-{#      <img src="../static/images/1.png" alt="...">#}
-{#      <div class="caption">#}
-{##}
-{#        <p>Your pet will get the best care !</p>#}
-{#        <p><a href="#" class="btn btn-primary" role="button">Learn More</a> </p>#}
-{#      </div>#}
-{#    </div>#}
-{#  </div>#}
-{#    <div class="col-sm-6 col-md-4">#}
-{#    <div class="thumbnail">#}
-{#      <img src="../static/images/2.png" alt="...">#}
-{#      <div class="caption">#}
-{##}
-{#        <p>Sign up for a discount !</p>#}
-{#        <p><a href="#" class="btn btn-primary" role="button">Learn More</a> </p>#}
-{#      </div>#}
-{#    </div>#}
-{#  </div>#}
-{#    <div class="col-sm-6 col-md-4">#}
-{#    <div class="thumbnail">#}
-{#      <img src="../static/images/3.png" alt="...">#}
-{#      <div class="caption">#}
-{##}
-{#        <p>The doctors have extensive medical experience !</p>#}
-{#        <p><a href="#" class="btn btn-primary" role="button">Learn More</a> </p>#}
-{#      </div>#}
-{#    </div>#}
-{#  </div>#}
-{#</div>#}
-{##}
-{#{% block content %}#}
-{#{% endblock %}#}
-{##}
-{#  </body>#}
-{#</html>#}
-
 {% extends"nav.html" %}
 
 {% block content %}
@@ -124,23 +6,7 @@
 =            Page Slider            =
 ==================================-->
 <div class="hero-slider">
-    <!-- Slider Item -->
-    <div class="slider-item" style="background-image:url(../static/images/index_img/slider/slider-bg-3.jpg)">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <!-- Slide Content Start -->
-                    <div class="content text-center style">
-                        <h2 class="text-white text-bold mb-2">Best Pet Medical Services</h2>
-                        <p class="tag-text mb-5">Choose Healing Paws Veterinary Hospital
-                            <br>Beijing / Shanghai / Hangzhou</p>
-                        <a href="#" class="btn btn-main btn-white">See More</a>
-                    </div>
-                    <!-- Slide Content End -->
-                </div>
-            </div>
-        </div>
-    </div>
+
     <!-- Slider Item -->
     <div class="slider-item slide1" style="background-image:url(../static/images/index_img/slider/slider-bg-1.jpg)">
         <div class="container">
@@ -154,6 +20,23 @@
                              Give your pets the most comprehensive pet medical service!<br>
                              Enjoy the most convenient one-stop service!</p>
                         <a href="#" class="btn btn-main btn-white">Register an Account</a>
+                    </div>
+                    <!-- Slide Content End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Slider Item -->
+    <div class="slider-item" style="background-image:url(../static/images/index_img/slider/slider-bg-3.jpg)">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Slide Content Start -->
+                    <div class="content text-center style">
+                        <h2 class="text-white text-bold mb-2">Best Pet Medical Services</h2>
+                        <p class="tag-text mb-5">Choose Healing Paws Veterinary Hospital
+                            <br>Beijing / Shanghai / Hangzhou</p>
+                        <a href="#" class="btn btn-main btn-white">See More</a>
                     </div>
                     <!-- Slide Content End -->
                 </div>
@@ -176,6 +59,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 <!--====  End of Page Slider  ====-->
@@ -189,7 +73,7 @@
                         <i class="fa fa-phone"></i>
                         <h2>Emergency Cases</h2>
                         <a href="#">86-010-654321</a>
-                        <p>Click the numbers above for an emergency appointment!</a>
+                        <p>Click the numbers above for an emergency appointment!</p>
                     </div>
                     <div class="top-doctor item">
                         <i class="fa fa-stethoscope"></i>
@@ -231,7 +115,7 @@
 								<div class="icon-box">
 									<figure>
 										<a href="#">
-											<img src="images/resource/1.png" alt="">
+											<img src="../static/images/index_img/resource/1.png" alt="">
 										</a>
 									</figure>
 								</div>
@@ -245,7 +129,7 @@
 								<div class="icon-box">
 									<figure>
 										<a href="#">
-											<img src="images/resource/2.png" alt="">
+											<img src="../static/images/index_img/resource/2.png" alt="">
 										</a>
 									</figure>
 								</div>
@@ -259,7 +143,7 @@
 								<div class="icon-box">
 									<figure>
 										<a href="#">
-											<img src="images/resource/3.png" alt="">
+											<img src="../static/images/index_img/resource/3.png" alt="">
 										</a>
 									</figure>
 								</div>
@@ -273,7 +157,7 @@
 								<div class="icon-box">
 									<figure>
 										<a href="#">
-											<img src="images/resource/4.png" alt="">
+											<img src="../static/images/index_img/resource/4.png" alt="">
 										</a>
 									</figure>
 								</div>
@@ -320,7 +204,7 @@
                     <div class="tab-content">
                         <div class="service-box tab-pane fade in active row" id="dormitory">
                             <div class="col-md-6">
-                                <img class="img-responsive" src="images/services/service-one.jpg" alt="service-image">
+                                <img class="img-responsive" src="../static/images/index_img/services/service-one.jpg" alt="service-image">
                             </div>
                             <div class="col-md-6">
                                 <div class="contents">
@@ -349,7 +233,7 @@
                         <!--Start single tab content-->
                         <div class="service-box tab-pane fade in" id="orthopedic">
                             <div class="col-md-6">
-                                <img class="img-responsive" src="images/services/service-two.jpg" alt="service-image">
+                                <img class="img-responsive" src="../static/images/index_img/services/service-two.jpg" alt="service-image">
                             </div>
                             <div class="col-md-6">
                                 <div class="contents">
@@ -378,7 +262,7 @@
                         <!--Start single tab content-->
                         <div class="service-box tab-pane fade in" id="sonogram">
                             <div class="col-md-6">
-                                <img class="img-responsive" src="images/services/service-three.jpg" alt="service-image">
+                                <img class="img-responsive" src="../static/images/index_img/services/service-three.jpg" alt="service-image">
                             </div>
                             <div class="col-md-6">
                                 <div class="contents">
@@ -407,7 +291,7 @@
                         <!--Start single tab content-->
                         <div class="service-box tab-pane fade in" id="x-ray">
                             <div class="col-md-6">
-                                <img class="img-responsive" src="images/services/service-four.jpg" alt="service-image">
+                                <img class="img-responsive" src="../static/images/index_img/services/service-four.jpg" alt="service-image">
                             </div>
                             <div class="col-md-6">
                                 <div class="contents">
@@ -436,7 +320,7 @@
                         <!--Start single tab content-->
                         <div class="service-box tab-pane fade in" id="diagnostic">
                             <div class="col-md-6">
-                                <img class="img-responsive" src="images/services/service-five.jpg" alt="service-image">
+                                <img class="img-responsive" src="../static/images/index_img/services/service-five.jpg" alt="service-image">
                             </div>
                             <div class="col-md-6">
                                 <div class="contents">
@@ -485,7 +369,7 @@
                 <div class="inner-box">
                     <div class="img_holder">
                         <a href="service.html">
-                            <img src="images/gallery/1.jpg" alt="images" class="img-responsive">
+                            <img src="../static/images/index_img/gallery/1.jpg" alt="images" class="img-responsive">
                         </a>
                     </div>
                     <div class="image-content text-center">
@@ -501,7 +385,7 @@
                 <div class="inner-box">
                     <div class="img_holder">
                         <a href="service.html">
-                            <img src="images/gallery/2.jpg" alt="images" class="img-responsive">
+                            <img src="../static/images/index_img/gallery/2.jpg" alt="images" class="img-responsive">
                         </a>
                     </div>
                     <div class="image-content text-center">
@@ -517,7 +401,7 @@
                 <div class="inner-box">
                     <div class="img_holder">
                         <a href="service.html">
-                            <img src="images/gallery/3.jpg" alt="images" class="img-responsive">
+                            <img src="../static/images/index_img/gallery/3.jpg" alt="images" class="img-responsive">
                         </a>
                     </div>
                     <div class="image-content text-center">
@@ -533,7 +417,7 @@
                 <div class="inner-box">
                     <div class="img_holder">
                         <a href="service.html">
-                            <img src="images/gallery/1.jpg" alt="images" class="img-responsive">
+                            <img src="../static/images/index_img/gallery/1.jpg" alt="images" class="img-responsive">
                         </a>
                     </div>
                     <div class="image-content text-center">
@@ -549,7 +433,7 @@
                 <div class="inner-box">
                     <div class="img_holder">
                         <a href="service.html">
-                            <img src="images/gallery/2.jpg" alt="images" class="img-responsive">
+                            <img src="../static/images/index_img/gallery/2.jpg" alt="images" class="img-responsive">
                         </a>
                     </div>
                     <div class="image-content text-center">
@@ -565,7 +449,7 @@
                 <div class="inner-box">
                     <div class="img_holder">
                         <a href="service.html">
-                            <img src="images/gallery/3.jpg" alt="images" class="img-responsive">
+                            <img src="../static/images/index_img/gallery/3.jpg" alt="images" class="img-responsive">
                         </a>
                     </div>
                     <div class="image-content text-center">
@@ -595,7 +479,7 @@
         <div class="row">
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="team-member">
-                    <img src="images/team/doctor-2.jpg" alt="doctor" class="img-responsive">
+                    <img src="../static/images/index_img/team/doctor-2.jpg" alt="doctor" class="img-responsive">
                     <div class="contents text-center">
                         <h4>Dr. Robert Barrethion</h4>
                         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos, aspernatur.</p>
@@ -605,7 +489,7 @@
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="team-member">
-                    <img src="images/team/doctor-lab-3.jpg" alt="doctor" class="img-responsive">
+                    <img src="../static/images/index_img/team/doctor-lab-3.jpg" alt="doctor" class="img-responsive">
                     <div class="contents text-center">
                         <h4>Dr. Marry Lou</h4>
                         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos, aspernatur.</p>
@@ -615,7 +499,7 @@
             </div>
             <div class="col-md-4 col-sm-6 col-xs-12">
                 <div class="team-member">
-                    <img src="images/team/event-2.jpg" alt="doctor" class="img-responsive">
+                    <img src="../static/images/index_img/team/event-2.jpg" alt="doctor" class="img-responsive">
                     <div class="contents text-center">
                         <h4>Dr. Sansa Stark</h4>
                         <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos, aspernatur.</p>
@@ -642,7 +526,7 @@
                 <div class="inner-box text-center">
                     <div class="image-box">
                         <figure>
-                            <img src="images/testimonials/1.png" alt="">
+                            <img src="../static/images/index_img/testimonials/1.png" alt="">
                         </figure>
                     </div>
                     <h6>Adam Rose</h6>
@@ -654,7 +538,7 @@
                 <div class="inner-box text-center">
                     <div class="image-box">
                         <figure>
-                            <img src="images/testimonials/2.png" alt="">
+                            <img src="../static/images/index_img/testimonials/2.png" alt="">
                         </figure>
                     </div>
                     <h6>David Warner</h6>
@@ -666,7 +550,7 @@
                 <div class="inner-box text-center">
                     <div class="image-box">
                         <figure>
-                            <img src="images/testimonials/3.png" alt="">
+                            <img src="../static/images/index_img/testimonials/3.png" alt="">
                         </figure>
                     </div>
                     <h6>Amy Adams</h6>
@@ -678,7 +562,7 @@
                 <div class="inner-box text-center">
                     <div class="image-box">
                         <figure>
-                            <img src="images/testimonials/1.png" alt="">
+                            <img src="../static/images/index_img/testimonials/1.png" alt="">
                         </figure>
                     </div>
                     <h6>Adam Rose</h6>
@@ -690,7 +574,7 @@
                 <div class="inner-box text-center">
                     <div class="image-box">
                         <figure>
-                            <img src="images/testimonials/2.png" alt="">
+                            <img src="../static/images/index_img/testimonials/2.png" alt="">
                         </figure>
                     </div>
                     <h6>David Warner</h6>
@@ -702,7 +586,7 @@
                 <div class="inner-box text-center">
                     <div class="image-box">
                         <figure>
-                            <img src="images/testimonials/3.png" alt="">
+                            <img src="../static/images/index_img/testimonials/3.png" alt="">
                         </figure>
                     </div>
                     <h6>Amy Adams</h6>
@@ -714,7 +598,7 @@
                 <div class="inner-box text-center">
                     <div class="image-box">
                         <figure>
-                            <img src="images/testimonials/1.png" alt="">
+                            <img src="../static/images/index_img/testimonials/1.png" alt="">
                         </figure>
                     </div>
                     <h6>Adam Rose</h6>
@@ -726,7 +610,7 @@
                 <div class="inner-box text-center">
                     <div class="image-box">
                         <figure>
-                            <img src="images/testimonials/2.png" alt="">
+                            <img src="../static/images/index_img/testimonials/2.png" alt="">
                         </figure>
                     </div>
                     <h6>David Warner</h6>
@@ -738,7 +622,7 @@
                 <div class="inner-box text-center">
                     <div class="image-box">
                         <figure>
-                            <img src="images/testimonials/3.png" alt="">
+                            <img src="../static/images/index_img/testimonials/3.png" alt="">
                         </figure>
                     </div>
                     <h6>Amy Adams</h6>
