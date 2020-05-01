@@ -470,7 +470,7 @@ def customer_questiondetail(id):
         return redirect(url_for('customer_login'))
 
 
-@app.route('/customer_questions/edit_question/<id>',methods = ['GET', 'POST'])
+@app.route('/edit_question/<id>',methods = ['GET', 'POST'])
 def edit_question(id):
     form = QuestionForm()
     if not session.get("USERNAME") is None:
@@ -512,10 +512,25 @@ def check_appointment(id):
             return redirect(url_for('control_system'))
         return render_template('staff_operate_appointment.html', appointment=apm_in_db, pet = pet, customer = customer)
 
+@app.route('/check_pet/<id>',methods=['GET','POST'])
+def check_pet(id):
+    if not session.get("STAFF"):
+        return redirect(url_for('staff_login'))
+    else:
+        pet_in_db = Pet.query.filter(Pet.id == id).first()
+        owner = Customer.query.filter(Customer.id == pet_in_db.owner).first()
+        if not pet_in_db:
+            return redirect(url_for('control_system'))
+        return render_template('staff_check_pet.html',pet=pet_in_db,owner=owner)
+
 @app.route('/appointment_ongoing/<id>',methods=['GET','POST'])
 def appointment_ongoing(id):
     if not session.get("STAFF"):
         return redirect(url_for('staff_login'))
+    else:
+        staff_in_db = Staff.query.filter(Staff.name == session.get("STAFF")).first()
+        if staff_in_db.level < 3:
+            return redirect('control_system') #staff level
     apm_in_db = Appointment.query.filter(Appointment.id == id).first()
     if apm_in_db:
         apm_in_db = Appointment.query.filter_by(id = id).update({"status":0})
@@ -527,6 +542,10 @@ def appointment_ongoing(id):
 def appointment_finish(id):
     if not session.get("STAFF"):
         return redirect(url_for('staff_login'))
+    else:
+        staff_in_db = Staff.query.filter(Staff.name == session.get("STAFF")).first()
+        if staff_in_db.level < 3:
+            return redirect('control_system') #staff level
     apm_in_db = Appointment.query.filter(Appointment.id == id).first()
     if apm_in_db:
         apm_in_db = Appointment.query.filter_by(id = id).update({"status":2})
@@ -625,19 +644,65 @@ def answer_question(id):
     else:
         return redirect(url_for('staff_login'))
 
+@app.route('/staff_questions/edit_answer/<id>',methods = ['GET', 'POST'])
+def edit_answer(id):
+    form = AnswerForm()
+    if not session.get("STAFF") is None:
+        staff = Staff.query.filter(Staff.name == session.get("STAFF")).first()
+        answer = Answer.query.filter_by(id = id).first()
+        question=answer.question
+        if form.validate_on_submit():
+            update = Answer.query.filter_by(id = id).update({'content':form.content.data})
+            db.session.commit()
+            return redirect(url_for('staff_questiondetail',id=question.id))
+        return render_template('answer_question.html', form=form, question=question, content = answer.content)
+    else:
+        return redirect(url_for('staff_login'))
+
+
+@app.route('/staff_questions/delete_answer/<id>')
+def delete_answer(id):
+    if not session.get("STAFF") is None:
+        staff = Staff.query.filter(Staff.name == session.get("STAFF")).first()
+        answer = Answer.query.filter_by(id = id).first()
+        question=answer.question
+        remove = Answer.query.filter_by(id = id).delete()
+        db.session.commit()
+        return redirect(url_for('staff_questiondetail',id=question.id))
+    else:
+        return redirect(url_for('staff_login'))
+
+@app.route('/staff_questions/delete/<id>')
+def delete_QA(id):
+    if not session.get("STAFF") is None:
+        staff = Staff.query.filter(Staff.name == session.get("STAFF")).first()
+        question = Question.query.filter_by(id = id).first()
+        answer=question.answer.delete()
+        remove = Question.query.filter_by(id = id).delete()
+        db.session.commit()
+        return redirect('/staff_questions')
+    else:
+        return redirect(url_for('staff_login'))
+
+
+
+
 
 @app.route('/staff_checkpets',methods = ['GET', 'POST'])
 def staff_checkpets():
-    if not session.get("USERNAME") is None:
+    if not session.get("STAFF") is None:
         if request.method == 'GET':
             pets = Pet.query.filter().all()
             customers = Customer.query.filter(Customer.id == Pet.owner_id)
-            return render_template('staff_checkpets.html',pets = pets,customers = customers)
+            appointments = Appointment.query.filter().all()
+            return render_template('staff_checkpets.html',pets = pets,customers = customers,appointments=appointments)
+    else:
+        return redirect(url_for('staff_login'))
 
 
 @app.route('/staff_checkpets/update_pet/<id>',methods = ['GET', 'POST'])
 def staff_updatepet(id):
-    if not session.get("USERNAME") is None:
+    if not session.get("STAFF") is None:
         if request.method == 'GET':
             pet = Pet.query.filter_by(id = id).first()
             return render_template('staff_updatepet.html',pet = pet)

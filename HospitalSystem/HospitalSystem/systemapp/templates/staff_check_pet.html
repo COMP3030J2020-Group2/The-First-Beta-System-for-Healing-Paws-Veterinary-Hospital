@@ -1,0 +1,32 @@
+{% extends staff_base.html %}
+{% block content %}
+    <div class="table-responsive">
+    <table class="table">
+    <tr>
+        <th>Pet ID</th>
+        <td id="pet_id">{{ pet.id }}</td>
+    </tr>
+    <tr>
+        <th>Pet type</th>
+        {% if pet.type == 0 %}
+        <td>Emergent</td>
+        {% elif pet.type == 1 %}
+        <td>Regular</td>
+        {% endif %}
+    </tr>
+    <tr>
+        <th>Pet Name</th>
+        <td>{{ pet.name }}</td>
+    </tr>
+    <tr>
+        <th>Pet Owner Name</th>
+        <td>{{ owner.name }}</td>
+    </tr>
+    {% for appointment in pet.appointments %}
+    <tr>
+        <th>Pet appointment</th>
+        <td><a href="{{ url_for('check_appointment',id=appointment.id) }}">{{ appointment.description }}</a></td>
+    </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
