@@ -2,42 +2,69 @@
 {% extends"nav.html" %}
 
 {% block content %}
+<section class="section contact">
     <div id="signup" class="container">
-        <div class="row row-centered">
-            <div class="well col-md-6 col-centered">
-                <h1 class="text-center">Please fill the form below</h1>
-                <form action="" method="post" id="signup_form" novalidate role="form" class="form-horizontal">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="section-title text-left">
+                    <h3>Join Us Now!<br>
+                        <span>Please fill the form below.</span>
+                    </h3>
+                </div>
+
+                <br>
+                <div class="contact-form">
+                    <form action="" method="post" id="signup_form" novalidate role="form" class="row">
                     {{ form.hidden_tag() }}
-                    <div class="form-group">
+
+                    <div class="col-md-12">
                         {{ form.username.label }}<br>
-                        {{ form.username(size=32, class="form-control") }}
+                        {{ form.username(class="form-control main") }}
                         <span style="color: red">{{ usernameerror }}</span>
                         <span id="validation_username"></span>
                     </div>
-                    <div class="form-group">
+                    <div class="col-md-12">
                         {{ form.email.label }}<br>
-                        {{ form.email(size=32, class="form-control form-control-lg") }}
+                        {{ form.email(class="form-control main") }}
                         <span style="color: red">{{ emailerror }}</span>
                         <span id="validation_email"></span>
                     </div>
-                    <div class="form-group">
+                    <div class="col-md-12">
                         {{ form.password.label }}<br>
-                        {{ form.password(size=35, class="form-control form-control-lg") }}
+                        {{ form.password(class="form-control main") }}
                         <span id="validation_password"></span>
                     </div>
-                    <div class="form-group">
+                    <div class="col-md-12">
                         {{ form.password2.label }}<br>
-                        {{ form.password2(size=35, class="form-control form-control-lg") }}
+                        {{ form.password2(class="form-control main") }}
                         <span id="validation_password2"></span>
                     </div>
-                    <div class="form-group">
-                        {{ form.submit(class="btn btn-outline-info") }}
+                    <div class="col-md-12 text-right">
+                        {{ form.submit(class="btn btn-style-one") }}
                     </div>
                 </form>
+                </div>
+            </div>
+             <div class="col-md-2">
+            </div>
+            <div class="col-md-4">
+                <div class="section-title text-left">
+                    <h3>Already have one!
+                        <span>Login now!</span>
+                    </h3>
+                </div>
+                <!-- address start -->
+                <br><br>
+                <!-- submit button -->
+                <div class="col-md-12 text-center">
+{#                    <button class="btn btn-style-one" type="submit" href="{{ url_for('signup')}}">Register An Account</button>#}
+                    <a href="{{ url_for('customer_login')}}" class="btn-style-one">Login My Account</a>
+                </div>
             </div>
         </div>
-        
     </div>
+</section>
     <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static',filename='script/code.js') }}"></script>
 {% endblock %}
