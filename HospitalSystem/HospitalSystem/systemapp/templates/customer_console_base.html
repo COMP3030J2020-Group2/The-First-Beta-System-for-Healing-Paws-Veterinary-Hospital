@@ -169,7 +169,7 @@
                     </li>
                     <li>
                         <a href="#" aria-expanded="false">
-                            <i class="icon-badge menu-icon"></i><span class="nav-text" data-locale="Password" data-locale="About Us">About Us</span>
+                            <i class="icon-badge menu-icon"></i><span class="nav-text" data-locale="About Us">About Us</span>
                         </a>
                     </li>
                 </ul>
@@ -253,23 +253,29 @@
     <script src="../static/vendor/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
     <!-- JQuery -->
     <script src="../static/vendor/plugins/jquery/jquery.min.js"></script>
-
+    <script src="../static/script/jquery.cookie.js"></script>
 
     <script src="../static/script/customer_js/dashboard/dashboard-1.js"></script>
 
     <!-- I18N -->
     <script src="../static/script/i18n_js/jquery.i18n.properties.min.js"></script>
     <script type="text/javascript">
-        isEng = true
+        if ($.cookie("lan") == "zh") {
+            loadProperties('zh');
+        }
+        else{
+            loadProperties('en');
+        }
+
         btn.onclick=function(){
-            if(!isEng){
+            if($.cookie("lan") =="zh"){
                 loadProperties('en');
+                $.cookie('lan', 'en');
             }else{
                 loadProperties('zh');
+                $.cookie('lan', 'zh');
             }
-            isEng = !isEng
-
-        }
+        };
         function loadProperties(lang) {
             $.i18n.properties({
                 name: 'strings',    //属性文件名     命名格式： 文件名_国家代号.properties
@@ -285,7 +291,6 @@
                 }
             });
         }
-        loadProperties('en');
     </script>
 
 </body>

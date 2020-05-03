@@ -60,16 +60,16 @@
                                     <td>{{pet.id}}</td>
                                     <td>{{a.id}}</td>
                                     {% if a.type == 0 %}
-                                    <td>Emergent</td>
+                                    <td data-locale="Emergency">Emergency</td>
                                     {% elif a.type == 1 %}
-                                    <td>Standard</td>
+                                    <td data-locale="Standard">Standard</td>
                                     {% endif %}
                                     <td>{{a.time}}</td>
                                     <td>{{a.description}}</td>
                                     <td>{{ a.pet_status }}</td>
                                     <td>{{a.operator_id}}</td>
-                                    <td><a class="btn btn-primary btn-sm" href="/customer_appointments/update_appointments/{{a.id}}" role="button">Edit</a>
-                                        <a class="btn btn-primary btn-sm" href="/customer_appointments/delete_appointment/{{a.id}}" role="button">Delete</a></td>
+                                    <td><a class="btn btn-primary btn-sm" href="/customer_appointments/update_appointments/{{a.id}}" role="button" data-locale="Edit">Edit</a>
+                                        <a class="btn btn-primary btn-sm" href="/customer_appointments/delete_appointment/{{a.id}}" role="button" data-locale="Delete">Delete</a></td>
                                     </td>
 
                                 </tr>

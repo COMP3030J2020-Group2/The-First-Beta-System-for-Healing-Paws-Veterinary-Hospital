@@ -223,6 +223,7 @@
 
 <!-- JQuery -->
 <script src="../static/vendor/plugins_index/jquery.js"></script>
+<script src="../static/script/jquery.cookie.js"></script>
 <!-- Bootstrap -->
 <script src="../static/vendor/plugins_index/bootstrap.min.js"></script>
 <script src="../static/vendor/plugins_index/bootstrap-select.min.js"></script>
@@ -230,11 +231,8 @@
 <script src="../static/vendor/plugins_index/slick/slick.min.js"></script>
 <!-- FancyBox -->
 <script src="../static/vendor/plugins_index/fancybox/jquery.fancybox.min.js"></script>
-<!-- Google Map -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-<script src="../static/vendor/plugins_index/google-map/gmap.js"></script>
 <!-- Others -->
-<script src="../static/vendor/plugins_index/validate.js"></script>
+{#<script src="../static/vendor/plugins_index/validate.js"></script>#}
 <script src="../static/vendor/plugins_index/wow.js"></script>
 <script src="../static/vendor/plugins_index/jquery-ui.js"></script>
 <script src="../static/vendor/plugins_index/timePicker.js"></script>
@@ -243,16 +241,22 @@
 <!-- I18N -->
     <script src="../static/script/i18n_js/jquery.i18n.properties.min.js"></script>
     <script type="text/javascript">
-        isEng = true
+        if ($.cookie("lan") == "zh") {
+            loadProperties('zh');
+        }
+        else{
+            loadProperties('en');
+        }
+
         btn.onclick=function(){
-            if(!isEng){
+            if($.cookie("lan") =="zh"){
                 loadProperties('en');
+                $.cookie('lan', 'en');
             }else{
                 loadProperties('zh');
+                $.cookie('lan', 'zh');
             }
-            isEng = !isEng
-
-        }
+        };
         function loadProperties(lang) {
             $.i18n.properties({
                 name: 'strings',    //属性文件名     命名格式： 文件名_国家代号.properties
@@ -268,7 +272,6 @@
                 }
             });
         }
-        loadProperties('en');
     </script>
 
 </body>

@@ -5,10 +5,10 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col">
-                        <h2 class="no-margin-bottom">My Pets</h2>
+                        <h2 class="no-margin-bottom" data-locale="My Pets">My Pets</h2>
                     </div>
                     <div class="col">
-                        <a class="btn btn-primary" href="{{ url_for('pet_signup') }}">Add Pet</a>
+                        <a class="btn btn-primary" href="{{ url_for('pet_signup') }}" data-locale="Add Pet">Add Pet</a>
                     </div>
                 </div>
             </div>
@@ -20,17 +20,17 @@
                 <div style="width: 50%;">
                     <table class="table">
                         <tr>
-                            <th>Name</th>
-                            <th>Category</th>
+                            <th data-locale="Name">Name</th>
+                            <th data-locale="Category">Category</th>
                         </tr>
                     
                         {% for pet in pets %}
                             <tr>
                                 <td><a id="{{ pet.id }}">{{ pet.name }}</a></td>
                                 {% if pet.type == 1 %}
-                                <td>Cat</td>
+                                <td data-locale="Cat">Cat</td>
                                 {% elif pet.type == 2 %}
-                                <td>Dog</td>
+                                <td data-locale="Dog">Dog</td>
                                 {% endif %}
                             </tr>
                         {% endfor%}
