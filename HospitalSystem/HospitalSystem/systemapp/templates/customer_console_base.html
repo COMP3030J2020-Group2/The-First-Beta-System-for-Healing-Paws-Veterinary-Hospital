@@ -281,7 +281,7 @@
                     </li>
                     <li>
                         <a href="#" aria-expanded="false">
-                            <i class="icon-badge menu-icon"></i><span class="nav-text">About Us</span>
+                            <i class="icon-badge menu-icon"></i><span class="nav-text" data-locale="About Us">About Us</span>
                         </a>
                     </li>
                 </ul>
@@ -363,10 +363,46 @@
     <!-- ChartistJS -->
     <script src="../static/vendor/plugins/chartist/js/chartist.min.js"></script>
     <script src="../static/vendor/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
+    <!-- JQuery -->
+    <script src="../static/vendor/plugins/jquery/jquery.min.js"></script>
+    <script src="../static/script/jquery.cookie.js"></script>
 
 
+    <!-- I18N -->
+    <script src="../static/script/i18n_js/jquery.i18n.properties.min.js"></script>
+    <script type="text/javascript">
+        if ($.cookie("lan") == "zh") {
+            loadProperties('zh');
+        }
+        else{
+            loadProperties('en');
+        }
 
-    <script src="../static/script/customer_js/dashboard/dashboard-1.js"></script>
+        btn.onclick=function(){
+            if($.cookie("lan") =="zh"){
+                loadProperties('en');
+                $.cookie('lan', 'en');
+            }else{
+                loadProperties('zh');
+                $.cookie('lan', 'zh');
+            }
+        };
+        function loadProperties(lang) {
+            $.i18n.properties({
+                name: 'strings',    //属性文件名     命名格式： 文件名_国家代号.properties
+                path: '../static/i18n/',   //注意这里路径是你属性文件的所在文件夹
+                mode: 'map',
+                language: lang,     //这就是国家代号 name+language刚好组成属性文件名：strings+zh -> strings_zh.properties
+                callback: function () {
+                    $("[data-locale]").each(function () {
+                        console.log($(this).data("locale"));
+                        $(this).html($.i18n.prop($(this).data("locale")));
+
+                    });
+                }
+            });
+        }
+    </script>
 
 </body>
 

@@ -4,7 +4,13 @@
     <option name="enabled" value="true" />
   </component>
   <component name="NewModuleRootManager">
+<<<<<<< HEAD
     <content url="file://$MODULE_DIR$" />
+=======
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/flaskenv" />
+    </content>
+>>>>>>> 49d75078f540d680ed09a280733cfc426ee40c42
     <orderEntry type="jdk" jdkName="Python 3.8" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
