@@ -218,8 +218,8 @@ def customer_logout():
     return redirect(url_for('index'))
 
 
-@app.route('/personal_information',methods = ['GET'])
-def personal_information():
+@app.route('/customer_profile',methods = ['GET'])
+def customer_profile():
     if not session.get("USERNAME") is None:
         if request.method == 'GET':
             user = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
@@ -250,7 +250,7 @@ def update_information():
             db.session.commit()
             newone=Customer.query.filter(Customer.username == form.username.data).first()
             session["USERNAME"] = newone.username
-            return redirect('/personal_information')
+            return redirect('/customer_profile')
         else:
             return render_template('update_information.html', form=form, email = user.email, username=user.username)
     else:
@@ -290,28 +290,38 @@ def change_password():
     else:
         return redirect(url_for('customer_login'))
 
-@app.route('/personal_information/update_pet/<id>',methods = ['GET', 'POST'])
+@app.route('/update_pet/<id>',methods = ['GET', 'POST'])
 def update_pet(id):
+    form = PetSignUpForm()
+    pet = Pet.query.filter_by(id = id).first()
+
     if not session.get("USERNAME") is None:
-        if request.method == 'GET':
-            pet = Pet.query.filter_by(id = id).first()
-            return render_template('update_pet.html',pet = pet)
-        else:
-            pet_name = request.form['name']
-            pet_type = request.form['type']
-            pet = Pet.query.filter_by(id = id).update({'name':pet_name, 'type':pet_type})
-            db.session.commit()
-            return redirect('/personal_information')
+        if form.validate_on_submit():
+            customer = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+            a_pet = Pet.query.filter(Pet.name == form.petname.data and Pet.owner_id == customer.id).first()
+            if a_pet:
+                if pet is not a_pet:
+                    return render_template('pet_signup.html', information='Same name with your another pet!', form=form)
+            else:
+                if form.type.data == 0:
+                    return render_template('pet_signup.html', information='Choose a type', form=form)
+                else:
+                    pet = Pet.query.filter_by(id = id).update({'name':form.petname.data, 'type':form.type.data})
+                    db.session.commit()
+            return redirect(url_for('customer_my_pets'))
+        form.petname.data=pet.name
+        form.type.data=pet.type
+        return render_template('pet_signup.html', information='Edit your pet information' , form=form)
     else:
         return redirect(url_for('customer_login'))
 
 
-@app.route('/personal_information/delete_pet/<id>')
+@app.route('/delete_pet/<id>')
 def delete_pet(id):
     if not session.get("USERNAME") is None:
             pet = Pet.query.filter_by(id = id).delete()
             db.session.commit()
-            return redirect('/personal_information')
+            return redirect('/customer_console_main/my_pets')
     else:
         return redirect(url_for('customer_login'))
 
