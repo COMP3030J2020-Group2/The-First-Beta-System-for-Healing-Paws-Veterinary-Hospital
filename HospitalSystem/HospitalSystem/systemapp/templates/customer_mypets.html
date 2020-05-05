@@ -53,6 +53,8 @@
                                     {% endif %}
                                     
                                 {% endfor %}                         
+                                <td><a class="btn btn-primary btn-sm" href="/update_pet/{{pet.id}}" role="button">Edit</a>
+                                <a class="btn btn-primary btn-sm" href="/delete_pet/{{pet.id}}" role="button">Delete</a></td>
                             </tr>
                         {% endfor%}
 
