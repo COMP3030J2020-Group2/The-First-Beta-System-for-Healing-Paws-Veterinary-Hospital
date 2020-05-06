@@ -4,41 +4,41 @@
 
 {#    Add Appointments Card    #}
 <div class="row">
-    <div class="col-3">
+   <div class="col-3">
         <div class="card">
             <div class="card-body">
                 <div class="text-center">
                     <span class="display-5"><i class="icon-emotsmile gradient-3-text"></i></span>
-                    <h2 class="mt-3" data-locale="Standard">Standard</h2>
-                    <p data-locale="Get a regular check for your pet">Get a regular check for your pet!</p>
-                    <a href="javascript:void()" class="btn gradient-3 btn-lg border-0 btn-rounded px-5 " data-toggle="modal" data-target="#standardModal" data-locale="Book now">Book now</a>
+                    <h2 class="mt-3" data-locale="Standard"></h2>
+                    <p data-locale="Get a regular check for your pet"></p>
+                    <a href="#" class="btn gradient-3 btn-lg border-0 btn-rounded px-5 " data-toggle="modal" data-target="#standardModal" data-locale="Book now">Book now</a>
                     <div class="modal fade" id="standardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel" data-locale="Standard Appointment">Standard Appointment</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel" data-locale="Standard Appointment"></h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <form  action="" method="post" >
                                     <div class="modal-body">
-                                        <h4 data-locale="Add your appointment details here">Add your appointment details here!</h4>
+                                        <h4 data-locale="Add your appointment details here"></h4>
                                         {{ form.hidden_tag() }}
                                         <div class="form-group row">
-                                            <h5 class="modal-title col-4" data-locale="Choose pets">Choose pets</h5>
+                                            <h5 class="modal-title col-4" data-locale="Choose pets"></h5>
                                             {{ form.pets(class="form-control col-7", id="pets") }}
                                         </div>
                                         <div class="form-group row">
-                                            <h5 class="modal-title col-4" data-locale="Location">Location</h5>
+                                            <h5 class="modal-title col-4" data-locale="Location"></h5>
                                             {{ form.location(class="form-control col-7") }}
                                         </div>
                                         <div class="form-group">
-                                            <h5 class="modal-title col-4" data-locale="Description">Description</h5><br>
+                                            <h5 class="modal-title col-4" data-locale="Description"></h5><br>
                                             {{ form.description(class="form-control", id="message-text") }}
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-locale="Close">Close</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-locale="Close"></button>
                                         {{ form.submit(class="btn btn-primary") }}
                                     </div>
                                 </form>
@@ -54,32 +54,32 @@
             <div class="card-body">
                 <div class="text-center">
                     <span class="display-5"><i class="icon-grid gradient-9-text"></i></span>
-                    <h2 class="mt-3" data-locale="Emergency">Emergency</h2>
-                    <p data-locale="Dont worry we got you">Don't worry, we got you!</p>
-                    <a href="javascript:void()" class="btn gradient-9 btn-lg border-0 btn-rounded px-5" data-toggle="modal" data-target="#emergencyModal" data-locale="Call now">Call now</a>
+                    <h2 class="mt-3" data-locale="Emergency"></h2>
+                    <p data-locale="Dont worry we got you"></p>
+                    <a href="#" class="btn gradient-9 btn-lg border-0 btn-rounded px-5" data-toggle="modal" data-target="#emergencyModal" data-locale="Call now"></a>
                     <div class="modal fade" id="emergencyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel" data-locale="Emergency Appointment">Emergency Appointment</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel" data-locale="Emergency Appointment"></h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <form action="" method="post">
                                     <div class="modal-body">
-                                        <h4 data-locale="Just choose one pet">Just choose one pet!</h4>
+                                        <h4 data-locale="Just choose one pet"></h4>
                                         {{ form0.hidden_tag() }}
                                         <div class="form-group row">
-                                            <h5 class="modal-title col-4" data-locale="Choose pets">Choose pets</h5>
-                                            {{ form0.pets(class="form-control", id="pets") }}
+                                            <h5 class="modal-title col-4" data-locale="Choose pets"></h5>
+                                            {{ form0.pets(class="form-control col-7", id="pets") }}
                                         </div>
                                         <div class="form-group row">
-                                            <h5 class="modal-title col-4" data-locale="Location">Location</h5>
-                                            {{ form0.location(class="form-control") }}
+                                            <h5 class="modal-title col-4" data-locale="Location"></h5>
+                                            {{ form0.location(class="form-control col-7") }}
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-locale="Close">Close</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-locale="Close"></button>
                                         {{ form0.submit(class="btn btn-primary", id="submit") }}
                                     </div>
                                 </form>
@@ -91,9 +91,58 @@
             </div>
         </div>
    </div>
-   <div class="col-3" text-center>
-        <h2>{{ get_flashed_messages()[0] }}</h2>
-   </div>
+   {% if get_flashed_messages()[0] %}
+       <script>
+            alert("{{ get_flashed_messages()[0] }}");
+       </script>
+   {% endif %}
+
+  <div class="col-6">
+    <div class="card card-widget">
+        <div class="card-body">
+            <h5 class="text-muted">This Month</h5>
+            <h2 class="mt-4">$6,932.60</h2>
+            <span>Total Revenue</span>
+            {% for a in appointment_details %}
+                <div class="mt-4">
+                    <h4>{{ a.id }}</h4>
+                    <h6>Online Earning <span class="pull-right">80%</span></h6>
+                    <div class="progress mb-3" style="height: 7px">
+                        <div class="progress-bar gradient-1" style="width: 80%;" role="progressbar"><span class="sr-only">80% Complete</span>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+{#            <div class="mt-4">#}
+{#                <h4>1,250</h4>#}
+{#                <h6 class="m-t-10 text-muted">Offline Earning <span class="pull-right">50%</span></h6>#}
+{#                <div class="progress mb-3" style="height: 7px">#}
+{#                    <div class="progress-bar gradient-3" style="width: 50%;" role="progressbar"><span class="sr-only">50% Complete</span>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="mt-4">#}
+{#                <h4>1,250</h4>#}
+{#                <h6 class="m-t-10 text-muted">Yearly Saving <span class="pull-right">35%</span></h6>#}
+{#                <div class="progress mb-3" style="height: 7px">#}
+{#                    <div class="progress-bar gradient-4" style="width: 35%;" role="progressbar"><span class="sr-only">35% Complete</span>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+            <!-- <div class="mt-4">
+                <h4>5,250</h4>
+                <h6 class="m-t-10 text-muted">Budget Pending <span class="pull-right">70%</span></h6>
+                <div class="progress mb-3" style="height: 7px">
+                    <div class="progress-bar gradient-8" style="width: 70%;" role="progressbar"><span class="sr-only">70% Complete</span>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+  </div>
+
+
+
 </div>
 
 {% endblock %}

@@ -98,6 +98,10 @@ def customer_console_main():
     pets_list = [(i.id, i.name) for i in pets]
     form.pets.choices = pets_list
     formEm.pets.choices = pets_list
+    appointment_details=[]
+    for p in pets:
+        appointment_details.append(Appointment.query.filter(Appointment.pet_id == p.id).all())
+
     if form.validate_on_submit():
         pet_selected = request.form['pets']
         ongoing_appointment = Appointment.query.filter(and_(or_(Appointment.status==0, Appointment.status==1),Appointment.pet_id == pet_selected)).first()
@@ -120,7 +124,8 @@ def customer_console_main():
             flash("This pet has on going appointment already!")
             return redirect(url_for('customer_console_main'))
         return redirect(url_for('customer_console_main'))
-    return render_template('customer_console_main.html', user=customer_in_db, title='My Healing Paws', form=form, form0=formEm)
+    return render_template('customer_console_main.html', user=customer_in_db, title='My Healing Paws', form=form, form0=formEm,
+                           appointment_details=appointment_details)
 
 
 # @app.route('/customer_main', methods=['GET', 'POST'])
@@ -159,7 +164,7 @@ def customer_appointments():
 
     return render_template('customer_appointments.html', user=user, pets=pets, appointments=appointments)
 
-@app.route('/customer_appointments/update_appointments/<id>',methods = ['GET', 'POST'])
+@app.route('/update_appointments/<id>',methods = ['GET', 'POST'])
 def update_appointments(id):
     if not session.get("USERNAME") is None:
         if request.method == 'GET':
@@ -177,7 +182,7 @@ def update_appointments(id):
         return redirect(url_for('index'))
 
 
-@app.route('/customer_appointments/delete_appointment/<id>',methods = ['GET', 'POST'])
+@app.route('/delete_appointment/<id>',methods = ['GET', 'POST'])
 def delete_appointment(id):
     if not session.get("USERNAME") is None:
         if request.method == 'GET':

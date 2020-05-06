@@ -1,11 +1,11 @@
-{% extends"nav.html" %}
+{% extends"customer_console_base.html" %}
 
 {% block content %}
     <div class="container">
         <div class="row row-centered">
             <div class="well col-md-6 col-centered">
                     <h1 class="text-center">Please fill the form below</h1>
-<form action="/customer_appointments/update_appointments/{{appointment.id}}" method="POST">
+<form action="/update_appointments/{{appointment.id}}" method="POST">
 
     <label>Appointment ID：{{appointment.id}}</label>
     <br><br>
