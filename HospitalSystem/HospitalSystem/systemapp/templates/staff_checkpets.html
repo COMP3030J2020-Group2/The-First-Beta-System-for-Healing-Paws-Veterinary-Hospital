@@ -27,8 +27,8 @@
                                     <th id="th1" onclick="SortTable(this)" class="as">Pet ID<a href="#"> <i class="fa fa-sort" aria-hidden="true" ></i> </a></th>
                                     <th id="th2" onclick="SortTable(this)" class="as">Pet type<a href="#"> <i class="fa fa-sort" aria-hidden="true" ></i> </a></th>
                                     <th id="th3" onclick="SortTable(this)" class="as">Owner ID<a href="#"> <i class="fa fa-sort" aria-hidden="true" ></i> </a></th>
-                                    <th>Owner Name</th>
-                                    <th>Pet Status</th>
+                                    <th id="th4" onclick="SortTable(this)" class="as">Owner Name</th>
+                                    <th id="th5" onclick="SortTable(this)" class="as">Pet Status</th>
                                 </tr>
 
                                 {% for pet in pets%}
@@ -42,8 +42,8 @@
                                     <td name="td1">{{pet.id}}</td>
                                     <td name="td2">{{pet.type}}</td>
                                     <td name="td3">{{pet.owner_id}}</td>
-                                    <td>{{customer.username}}</td>
-                                    <td>{{appointment.pet_status}}</td>
+                                    <td name="td4">{{customer.username}}</td>
+                                    <td name="td5">{{appointment.pet_status}}</td>
                                     <td><a class="btn btn-primary btn-sm" href="/staff_checkpets/update_pet/{{pet.id}}" role="button">Edit</a>
                                     </td>
 
@@ -91,10 +91,14 @@
           var td1s=document.getElementsByName("td1");
           var td2s=document.getElementsByName("td2");
           var td3s=document.getElementsByName("td3");
+          var td4s=document.getElementsByName("td4");
+          var td5s=document.getElementsByName("td5");
           var tdArray0=[];
           var tdArray1=[];
           var tdArray2=[];
           var tdArray3=[];
+          var tdArray4=[];
+          var tdArray5=[];
           for(var i=0;i<td0s.length;i++){
               tdArray0.push(td0s[i].innerHTML);
           }
@@ -106,6 +110,12 @@
           }
           for(var i=0;i<td3s.length;i++){
               tdArray3.push(parseInt(td3s[i].innerHTML));
+          }
+          for(var i=0;i<td4s.length;i++){
+              tdArray4.push(td4s[i].innerHTML);
+          }
+          for(var i=0;i<td5s.length;i++){
+              tdArray5.push(td5s[i].innerHTML);
           }
           var tds=document.getElementsByName("td"+obj.id.substr(2,1));
           var columnArray=[];
@@ -132,6 +142,8 @@
                      document.getElementsByName("td1")[i].innerHTML=tdArray1[j];
                      document.getElementsByName("td2")[i].innerHTML=tdArray2[j];
                      document.getElementsByName("td3")[i].innerHTML=tdArray3[j];
+                     document.getElementsByName("td4")[i].innerHTML=tdArray4[j];
+                     document.getElementsByName("td5")[i].innerHTML=tdArray5[j];
                      orginArray[j]=null;
                      break;
                  }

@@ -168,10 +168,10 @@ li {
 
 
 .btn-style-special {
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 600;
   color: #ffffff;
-  line-height: 27px;
+  line-height: 37px;
   padding: 8px 36px;
   background: #48bdc5;
   border: 1px solid #48bdc5;
@@ -186,8 +186,7 @@ li {
 }
 
 .btn-style-special:hover {
-  color: #48b555;
-  border: 1px solid #48bdc5;
+  color: #48bdc5;
   background: #ffffff;
   transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
