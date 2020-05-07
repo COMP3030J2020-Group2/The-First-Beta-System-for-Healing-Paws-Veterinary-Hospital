@@ -96,20 +96,47 @@
             alert("{{ get_flashed_messages()[0] }}");
        </script>
    {% endif %}
+</div>
 
-  <div class="col-6">
+{#    Show Appointments Card    #}
+<div class="row">
+    <div class="col-6">
     <div class="card card-widget">
         <div class="card-body">
-            <h5 class="text-muted">This Month</h5>
-            <h2 class="mt-4">$6,932.60</h2>
-            <span>Total Revenue</span>
+            <h2 class="mt-4" data-locale="My Appointments"></h2>
+            <h5 class="text-muted"><a data-locale="This year I have made"></a>
+                {{ appointmant_num }}
+               <a data-locale="appointments"> appointments</a></h5>
             {% for a in appointment_details %}
                 <div class="mt-4">
-                    <h4>{{ a.id }}</h4>
-                    <h6>Online Earning <span class="pull-right">80%</span></h6>
+                    <h4>{{ a.pet_id }}</h4>
+                    <h6>
+                        <a data-locale="Appointment Status"></a>
+                        {% if a.status == 0 %}
+                            <a data-locale="Ongoing"></a>
+                        {% elif a.status == 1 %}
+                            <a data-locale="Unchecked"></a>
+                        {% else %}
+                            <a data-locale="Finished"></a>
+                        {% endif %}
+
+                        <span class="pull-right"><strong>
+                            {% if a.type == 0 %}
+                                <a data-locale="Emergency"></a>
+                            {% else %}
+                                <a data-locale="Standard"></a>
+                            {% endif %}
+                        </strong></span>
+                    </h6>
+
                     <div class="progress mb-3" style="height: 7px">
-                        <div class="progress-bar gradient-1" style="width: 80%;" role="progressbar"><span class="sr-only">80% Complete</span>
-                        </div>
+                        {% if a.status == 0 %}
+                            <div class="progress-bar gradient-2" style="width: 60%;" role="progressbar"><span class="sr-only">60% Complete</span></div>
+                        {% elif a.status == 1 %}
+                            <div class="progress-bar gradient-3" style="width: 10%;" role="progressbar"><span class="sr-only">10% Complete</span></div>
+                        {% else %}
+                            <div class="progress-bar gradient-4" style="width: 100%;" role="progressbar"><span class="sr-only">100% Complete</span></div>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}
@@ -140,9 +167,5 @@
         </div>
     </div>
   </div>
-
-
-
 </div>
-
 {% endblock %}

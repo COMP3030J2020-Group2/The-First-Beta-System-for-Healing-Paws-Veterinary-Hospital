@@ -98,9 +98,14 @@ def customer_console_main():
     pets_list = [(i.id, i.name) for i in pets]
     form.pets.choices = pets_list
     formEm.pets.choices = pets_list
-    appointment_details=[]
+    appointment_details = []
+    appointmant_num = 0
     for p in pets:
-        appointment_details.append(Appointment.query.filter(Appointment.pet_id == p.id).all())
+        appointment_details.extend(Appointment.query.filter(Appointment.pet_id == p.id).all())
+    appointmant_num = len(appointment_details)
+    for a in appointment_details:
+        a.pet_id = Pet.query.filter(Pet.id == a.pet_id).first().name
+
 
     if form.validate_on_submit():
         pet_selected = request.form['pets']
@@ -125,7 +130,7 @@ def customer_console_main():
             return redirect(url_for('customer_console_main'))
         return redirect(url_for('customer_console_main'))
     return render_template('customer_console_main.html', user=customer_in_db, title='My Healing Paws', form=form, form0=formEm,
-                           appointment_details=appointment_details)
+                           appointment_details=appointment_details, appointmant_num=appointmant_num)
 
 
 # @app.route('/customer_main', methods=['GET', 'POST'])
