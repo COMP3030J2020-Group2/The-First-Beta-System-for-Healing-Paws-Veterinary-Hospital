@@ -7,16 +7,16 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>User</th>
+                            <th data-locale="MyAppointment_User">User</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th>Name:</th>
+                            <th data-locale="MyAppointment_Name">Name:</th>
                             <td>{{user.username}}</td>
                         </tr>
                         <tr>
-                            <th>Email:</th>
+                            <th data-locale="MyAppointment_Email">Email:</th>
                             <td>{{user.email}}</td>
                         </tr>
                     </tbody>
@@ -36,21 +36,21 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Appointments</th>
+                                    <th data-locale="My Appointments"></th>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 <tr>
-                                    <th>Pet Name</th>
-                                    <th>Pet ID</th>
-                                    <th>Appointment ID</th>
-                                    <th>Appointments Type </th>
-                                    <th>Construction Time </th>
-                                    <th>Appointments Description </th>
-                                    <th>Meeting Date</th>
-                                    <th>Surgery Date</th>
-                                    <th>Operator ID </th>
+                                    <th data-locale="MyAppointment_Pet Name"></th>
+                                    <th data-locale="MyAppointment_Pet ID"></th>
+                                    <th data-locale="MyAppointment_Appointment ID"></th>
+                                    <th data-locale="MyAppointment_Appointments Type"></th>
+                                    <th data-locale="MyAppointment_Construction Time"></th>
+                                    <th data-locale="MyAppointment_Appointments Description"></th>
+                                    <th data-locale="Meeting Date"></th>
+                                    <th data-locale="Surgery Date"></th>
+                                    <th data-locale="MyAppointment_Operator ID"></th>
                                 </tr>
 
                                 {% for a in appointments%}
@@ -69,18 +69,23 @@
                                     <td>{{a.description}}</td>
 
                                     {% if a.meeting_date == None %}
-                                    <td>Not Decided</td>
+                                    <td data-locale="Not Decided">Not Decided</td>
                                     {% else %}
                                     <td>{{ a.meeting_date }}</td>
                                     {% endif %}
 
                                     {% if a.surgery_date == None %}
-                                    <td>Not Decided</td>
+                                    <td data-locale="Not Decided">Not Decided</td>
                                     {% else %}
                                     <td>{{ a.surgery_date }}</td>
                                     {% endif %}
-                                   
+
+                                    {% if a.operator_id == None %}
+                                    <td data-locale="None"></td>
+                                    {% else %}
                                     <td>{{a.operator_id}}</td>
+                                    {% endif %}
+
                                     <td><a class="btn btn-primary btn-sm" href="/update_appointments/{{a.id}}" role="button" data-locale="Edit">Edit</a>
                                         <a class="btn btn-primary btn-sm" href="/delete_appointment/{{a.id}}" role="button" data-locale="Delete">Delete</a></td>
                                     </td>

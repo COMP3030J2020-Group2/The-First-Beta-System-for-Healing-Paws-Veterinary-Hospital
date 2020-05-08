@@ -5,26 +5,31 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col">
-                        <h2 class="no-margin-bottom" data-locale="My Pets">My Pets</h2>
+                        <h2 class="no-margin-bottom" data-locale="My Pets"></h2>
                     </div>
                     <div class="col">
-                        <a class="btn btn-primary" href="{{ url_for('pet_signup') }}" data-locale="Add Pet">Add Pet</a>
+                        <a class="btn btn-primary" href="{{ url_for('pet_signup') }}" data-locale="Add Pet"></a>
                     </div>
                 </div>
             </div>
-           
-          
         </header>
-        <div class="container-fluid">
-            <div class="table-responsive">
-                <div style="width: 50%;">
+
+    <section class="tables">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="table-responsive">
                     <table class="table">
-                        <tr>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Has Ongoing Appointment?</th>
-                            <th>Current Status</th>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th data-locale="MyAppointment_Pet Name"></th>
+                                <th data-locale="Category"></th>
+                                <th data-locale="Has Ongoing Appointment"></th>
+                                <th data-locale="MyAppointment_Current Status"></th>
+                            </tr>
+                        </thead>
                     
                         {% for pet in pets %}
                             <tr>
@@ -38,33 +43,36 @@
                                 
                                 {% for appoint in pet.appointments %}
                                     {% if appoint.status == 0  %}
-                                    <td>Yes</td>
+                                        <td data-locale="Yes">Yes</td>
                                         {% if appoint.pet_status == 'none' %}
-                                        <td>Checked</td>
+                                            <td data-locale="Checked">Checked</td>
                                         {% else %}
-                                        <td>{{ appoint.pet_status }}</td>
+                                            <td>{{ appoint.pet_status }}</td>
                                         {% endif %}
                                     {% elif appoint.status == 1  %}
-                                    <td>Yes</td>
-                                    <td>Applied but not checked yet</td>
+                                        <td data-locale="Yes">Yes</td>
+                                        <td data-locale="Applied but not checked yet">Applied but not checked yet</td>
                                     {% else %}
-                                    <td>No</td>
-                                    <td>None</td>
+                                        <td data-locale="No">No</td>
+                                        <td data-locale="None">None</td>
                                     {% endif %}
                                     
                                 {% endfor %}                         
-                                <td><a class="btn btn-primary btn-sm" href="/update_pet/{{pet.id}}" role="button">Edit</a>
-                                <a class="btn btn-primary btn-sm" href="/delete_pet/{{pet.id}}" role="button">Delete</a></td>
+                                <td><a class="btn btn-primary btn-sm" href="/update_pet/{{pet.id}}" role="button" data-locale="Edit">Edit</a>
+                                <a class="btn btn-primary btn-sm" href="/delete_pet/{{pet.id}}" role="button" data-locale="Delete">Delete</a></td>
                             </tr>
                         {% endfor%}
 
 
                         
                     </table>
+                 </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        </div>      
-    </div>
+    </section>
     <!-- <script>
         var a_list = document.querySelectorAll('a');
         for(var i = 0;i<a_list.length;i++){

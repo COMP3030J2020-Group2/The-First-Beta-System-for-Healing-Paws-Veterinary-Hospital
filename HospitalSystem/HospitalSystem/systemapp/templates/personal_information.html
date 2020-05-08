@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h2>Your Account</h2>
+<h2 data-locale="My Account"></h2>
 
     <div class="container">
         <div class="row row-centered">
@@ -11,18 +11,18 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Your Information</th>
-                            <th><a class="btn btn-primary btn-sm" href="/personal_information/update" role="button">Edit Information</a>
-                            <a class="btn btn-primary btn-sm" href="/personal_information/check_password" role="button">Change password</a></th>
+                            <th data-locale="My Information"></th>
+                            <th><a class="btn btn-primary btn-sm" href="/personal_information/update" role="button" data-locale="Edit Information"></a>
+                            <a class="btn btn-primary btn-sm" href="/personal_information/check_password" role="button" data-locale="Change Password"></a></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th>Name:</th>
+                            <th data-locale="MyAppointment_Name"></th>
                             <td>{{user.username}}</td>
                         </tr>
                         <tr>
-                            <th>Email:</th>
+                            <th data-locale="MyAppointment_Email"></th>
                             <td>{{user.email}}</td>
                         </tr>
                     </tbody>
