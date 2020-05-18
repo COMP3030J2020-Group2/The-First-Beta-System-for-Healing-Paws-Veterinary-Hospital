@@ -17,18 +17,18 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Pets Information</th>
+                                    <th data-locale="Pets Information"></th>
                                 </tr>
                             </thead>
                             <tbody>
 
                                 <tr>
-                                    <th>Pet Name</th>
-                                    <th id="th1" onclick="SortTable(this)" class="as">Pet ID<a href="#"> <i class="fa fa-sort" aria-hidden="true" ></i> </a></th>
-                                    <th id="th2" onclick="SortTable(this)" class="as">Pet type<a href="#"> <i class="fa fa-sort" aria-hidden="true" ></i> </a></th>
-                                    <th id="th3" onclick="SortTable(this)" class="as">Owner ID<a href="#"> <i class="fa fa-sort" aria-hidden="true" ></i> </a></th>
-                                    <th id="th4" onclick="SortTable(this)" class="as">Owner Name</th>
-                                    <th id="th5" onclick="SortTable(this)" class="as">Pet Status</th>
+                                    <th data-locale="MyAppointment_Pet Name">Pet Name</th>
+                                    <th id="th1" onclick="SortTable(this)" class="as" data-locale="MyAppointment_Pet ID">Pet ID<a href="#"> <i class="fa fa-sort" aria-hidden="true" ></i> </a></th>
+                                    <th id="th2" onclick="SortTable(this)" class="as" data-locale="PetCategory">Pet type<a href="#"> <i class="fa fa-sort" aria-hidden="true" ></i> </a></th>
+                                    <th id="th3" onclick="SortTable(this)" class="as" data-locale="User ID">Owner ID<a href="#"> <i class="fa fa-sort" aria-hidden="true" ></i> </a></th>
+                                    <th id="th4" onclick="SortTable(this)" class="as" data-locale="User Name">Owner Name</th>
+                                    <th id="th5" onclick="SortTable(this)" class="as" data-locale="MyAppointment_Current Status">Pet Status</th>
                                 </tr>
 
                                 {% for pet in pets%}
@@ -43,8 +43,8 @@
                                     <td name="td2">{{pet.type}}</td>
                                     <td name="td3">{{pet.owner_id}}</td>
                                     <td name="td4">{{customer.username}}</td>
-                                    <td name="td5">{{appointment.pet_status}}</td>
-                                    <td><a class="btn btn-primary btn-sm" href="/staff_checkpets/update_pet/{{pet.id}}" role="button">Edit</a>
+                                    <td name="td5" data-locale="{{appointment.pet_status}}"></td>
+                                    <td><a class="btn btn-primary btn-sm" href="/staff_checkpets/update_pet/{{pet.id}}" role="button" data-locale="Edit">Edit</a>
                                     </td>
 
                                 </tr>

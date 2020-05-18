@@ -7,7 +7,7 @@
             <form action="" method="post" id="staff_login_form" novalidate role="form" class="form-horizontal">
                 {{ form.hidden_tag() }}
                 <div class="input-group">
-                    {{ form.staffname.label }}<br>
+                    <strong data-locale="Staff Name">Staff Name</strong><br>
                     {{ form.staffname(size=32) }}
                     <span>
                         {{ noneerror }}
@@ -18,7 +18,7 @@
                 <span id="notice_staffname"></span>
                 </div>
                 <div class="input-group">
-                    {{ form.password.label }}<br>
+                    <strong data-locale="Password">Password</strong><br>
                     {{ form.password(size=32) }}
                 </div>
                 <span>
@@ -29,7 +29,7 @@
                 {% endfor %}
                 <span id="notice_password"></span>
             <div class="input-group">
-                {{ form.remember_me() }} {{ form.remember_me.label }}<br>
+                {{ form.remember_me() }} <strong data-locale="Remember ME">Remember ME</strong><br>
                 {{ form.submit() }}
             </div>
             </form>

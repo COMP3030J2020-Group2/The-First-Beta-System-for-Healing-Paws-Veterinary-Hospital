@@ -47,7 +47,7 @@
                                         {% if appoint.pet_status == 'none' %}
                                             <td data-locale="Checked">Checked</td>
                                         {% else %}
-                                            <td>{{ appoint.pet_status }}</td>
+                                            <td data-locale="{{ appoint.pet_status }}"></td>
                                         {% endif %}
                                     {% elif appoint.status == 1  %}
                                         <td data-locale="Yes">Yes</td>

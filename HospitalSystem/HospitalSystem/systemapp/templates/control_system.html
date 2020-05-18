@@ -2,9 +2,9 @@
 {% block content %}
     <div class="jumbotron">
         <div class="container">
-            <h1>Healing Pawls Hospital</h1>
-            <p>Welcome, Staff {{ staff.name }}-[{{ staff.level }}], last login: {{ staff.last_login }}<br>
-                Put on a smile face to every customer!</p>
+            <h1 data-locale="Healing Paws">Healing Paws</h1>
+            <p><span data-locale="Staff">Staff</span> {{ staff.name }}-[{{ staff.level }}], <span data-locale="last login">last login</span>: {{ staff.last_login }}<br>
+                <span data-locale="Put on a smile face to every customer">Put on a smile face to every customer</span>!</p>
    </div>
 </div>
 {% endblock %}

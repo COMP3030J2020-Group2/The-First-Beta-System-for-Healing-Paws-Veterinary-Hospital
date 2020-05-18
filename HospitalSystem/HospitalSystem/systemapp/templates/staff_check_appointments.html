@@ -17,9 +17,9 @@
     <div class="card">
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
-                <li class="nav-item"><a class="{{ class_on_going }}" href="{{ url_for('on_going')}}">On Going</a></li>
-                <li class="nav-item"><a class="{{ class_unchecked }}" href="{{ url_for('unchecked')}}">Unchecked</a></li>
-                <li class="nav-item"><a class="{{ class_finished }}" href="{{ url_for('finished')}}">Finished</a></li>
+                <li class="nav-item"><a class="{{ class_on_going }}" href="{{ url_for('on_going')}}"><span data-locale="Ongoing"></span></a></li>
+                <li class="nav-item"><a class="{{ class_unchecked }}" href="{{ url_for('unchecked')}}" ><span data-locale="Unchecked">Unchecked</span></a></li>
+                <li class="nav-item"><a class="{{ class_finished }}" href="{{ url_for('finished')}}" ><span data-locale="Finished">Finished</span></a></li>
             </ul>
         </div>
     </div>
@@ -28,14 +28,14 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Appointment Type</th>
-                    <th>Construction Date</th>
-                    <th>Customer</th>
-                    <th>Pet Name</th>
-                    <th>Pet Type</th>
-                    <th>Pet Status</th>
-                    <th>Description</th>
-                    <th>Operation</th>
+                    <th data-locale="MyAppointment_Appointments Type">Appointment Type</th>
+                    <th data-locale="MyAppointment_Construction Time">Construction Date</th>
+                    <th data-locale="User Name">Customer</th>
+                    <th data-locale="MyAppointment_Pet Name">Pet Name</th>
+                    <th data-locale="PetCategory">Pet Type</th>
+                    <th data-locale="MyAppointment_Current Status">Pet Status</th>
+                    <th data-locale="MyAppointment_Appointments Description">Description</th>
+                    <th data-locale="Operation">Operation</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,26 +43,26 @@
                 <tr>
                     <td>{{ index+1 }}</td>
                     {% if appoint.type == 0 %}
-                    <td>Emergent</td>
+                    <td data-locale="Emergency">Emergent</td>
                     {% elif appoint.type == 1 %}
-                    <td>Standard</td>
+                    <td data-locale="Standard">Standard</td>
                     {% endif %}
                     <td>{{ appoint.time }}</td>
                     <td>{{ customers[index] }}</td>
                     <td>{{ pets[index].name }}</td>
                     {% if pets[index].type == 1 %}
-                    <td>Cat</td>
+                    <td data-locale="Cat">Cat</td>
                     {% elif pets[index].type == 2 %}
-                    <td>Dog</td>
+                    <td data-locale="Dog">Dog</td>
                     {% endif %}
-                    <td>{{ appoint.pet_status }}</td>
+                    <td><span data-locale="{{appoint.pet_status}}">{{appoint.pet_status}}</span></td>
                     <!-- <td><button class="btn btn-link" type="button"  id="description" data-toggle="modal" data-target="#myModal">view</button></td> -->
-                    <td><button class="btn btn-link description" type="button" id="{{ appoint.id }}" value="{{ appoint.description }}" >view</button></td>
+                    <td><button class="btn btn-link description" type="button" id="{{ appoint.id }}" value="{{ appoint.description }}" ><span data-locale="view"></span></button></td>
                    
                     {% if button == 'Finish' %}
                     <td>
                         <div class="dropdown">
-                            <a class="{{ button_style }} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Menu</a>
+                            <a class="{{ button_style }} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span data-locale="Menu"></span></a>
                             <!-- <div class="dropdown-menu">
                                 <button class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}">Finish</button>
                                 <button class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}">Take in</button>
@@ -70,18 +70,18 @@
                                 <button class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}">Complete Surgery</button>
                                 <button class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}">Inform Customer for Releasing</button>
                             </div> -->
-                            <div class="dropdown-menu">
-                                <li><a class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}">Finish</a></li>
-                                <li><a class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}">Take in</a></li>
-                                <li><a class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}">Confirm Surgery Date</a></li>
-                                <li><a class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}">Complete Surgery</a></li>
-                                <li><a class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}">Inform Customer for Releasing</a></li>
+                            <div class="dropdown-menu">da
+                                <li><a class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}" data-locale="Finish"></a></li>
+                                <li><a class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}" data-locale="Take in"></a></li>
+                                <li><a class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}" data-locale="Confirm Surgery Date"></a></li>
+                                <li><a class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}" data-locale="Complete Surgery"></a></li>
+                                <li><a class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}" data-locale="Inform Customer for Releasing"></a></li>
                             </div>
                             
                         </div>            
                     </td>
                     {% else %}
-                    <td><button class="{{ button_style }} operation" type="button" id="{{ appoint.id }}">{{ button }}</button></td>
+                    <td><button class="{{ button_style }} operation" type="button" id="{{ appoint.id }}" data-locale="{{ button }}">{{ button }}</button></td>
                     {% endif %}
                 </tr> 
                 {% endfor %}
@@ -142,21 +142,35 @@
         });
 
         $(".operation").click(function (e) {
-            // $(".modal-body p").text(e.target.value);
-            console.log('check');
-            if(e.target.innerHTML==('Check' || 'Confirm Surgery Date')){
+     
+            if(e.target.innerHTML=='Check' || e.target.innerHTML== '确认' ){
                 $('#addMeetingDateModal').modal();
                 $('#datetimepicker').datetimepicker({
                     format: 'yyyy-mm-dd hh:ii'
                 });
 
-            }else if(e.target.innerHTML=='Confirm Surgery Date'){
+            }else if(e.target.innerHTML=='Confirm Surgery Date'  || e.target.innerHTML=='确定手术日期' ){
                 $('#addMeetingDateModal').modal();
                 $('#datetimepicker').datetimepicker({
                     format: 'yyyy-mm-dd hh:ii'
                 });
             }else{
+
                 var buttonType = e.target.innerHTML;
+
+                if(buttonType == '通知客户取走宠物'){
+                    buttonType = "Inform Customer for Releasing";
+                }else if(buttonType == '收纳'){
+                    buttonType = "Take in";
+                }else if(buttonType == '结束'){
+                    buttonType = "Finish";
+                }else if(buttonType == '已完成手术'){
+                    buttonType = "Complete Surgery" ;
+                }else if(buttonType == '激活'){
+                    buttonType = "Active" ;
+                }                 
+
+
                 var index = e.target.id
                 var form = document.createElement('form');
                 form.method = "post";
@@ -179,6 +193,12 @@
 
             $('#confirm_date').click(function(){
                 var buttonType = e.target.innerHTML;
+                if(buttonType == '确认'){
+                    buttonType = 'Check';
+                }else if(buttonType=='确定手术日期'){
+                    buttonType = 'Confirm Surgery Date';
+                }
+
                 var index = e.target.id
                 var form = document.createElement('form');
                 form.method = "post";  
