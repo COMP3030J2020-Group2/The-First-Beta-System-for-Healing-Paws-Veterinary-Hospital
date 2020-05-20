@@ -7,10 +7,10 @@
     <!-- <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap2.min.css') }}"> -->
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap-datetimepicker.min.css') }}">
-    <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='script/jquery.js') }}"></script> -->
     <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js') }}"></script> -->
     <script src="{{ url_for('static', filename='bootstrap/js/bootstrap-datetimepicker.min.js') }}"></script>
-    
 </head>
 
 <body>
@@ -61,16 +61,9 @@
                    
                     {% if button == 'Finish' %}
                     <td>
-                        <div class="dropdown">
+                        <!-- <div class="dropdown">
                             <a class="{{ button_style }} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span data-locale="Menu"></span></a>
-                            <!-- <div class="dropdown-menu">
-                                <button class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}">Finish</button>
-                                <button class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}">Take in</button>
-                                <button class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}">Confirm Surgery Date</button>
-                                <button class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}">Complete Surgery</button>
-                                <button class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}">Inform Customer for Releasing</button>
-                            </div> -->
-                            <div class="dropdown-menu">da
+                            <div class="dropdown-menu">
                                 <li><a class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}" data-locale="Finish"></a></li>
                                 <li><a class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}" data-locale="Take in"></a></li>
                                 <li><a class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}" data-locale="Confirm Surgery Date"></a></li>
@@ -78,7 +71,23 @@
                                 <li><a class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}" data-locale="Inform Customer for Releasing"></a></li>
                             </div>
                             
-                        </div>            
+                        </div>             -->
+                        <div class="btn-group">
+                            <!-- <a class="{{ button_style }} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span data-locale="Menu"></span></a> -->
+                            <button type="button" class="{{ button_style }}"><span data-locale="Menu"></span></button>
+                            <button type="button" class="{{ button_style }} dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+                              <span class="glyphicon glyphicon-th"></span>
+                            </button>
+                            <div class="dropdown-menu">
+
+                                <li><a class="dropdown-item operation" type="button" id="{{ appoint.id }}" data-locale="Finish" href="#"></a></li>
+                                <li><a class="dropdown-item operation" type="button" id="{{ appoint.id }}" data-locale="Take in" href="#"></a></li>
+                                <li><a class="dropdown-item operation" type="button" id="{{ appoint.id }}" data-locale="Confirm Surgery Date" href="#"></a></li>
+                                <li><a class="dropdown-item operation" type="button" id="{{ appoint.id }}" data-locale="Complete Surgery" href="#"></a></li>
+                                <li><a class="dropdown-item operation" type="button" id="{{ appoint.id }}" data-locale="Inform Customer for Releasing" href="#"></a></li>
+      
+                            </div>
+                        </div>
                     </td>
                     {% else %}
                     <td><button class="{{ button_style }} operation" type="button" id="{{ appoint.id }}" data-locale="{{ button }}">{{ button }}</button></td>
@@ -135,6 +144,7 @@
     </div>
    
     <script>
+        
 
         $(".description").click(function (e) {
             $(".modal-body p").text(e.target.value);
