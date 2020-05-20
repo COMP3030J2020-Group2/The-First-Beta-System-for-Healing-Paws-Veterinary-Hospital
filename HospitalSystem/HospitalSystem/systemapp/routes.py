@@ -744,3 +744,12 @@ def staff_updatepet(id):
             return redirect('/staff_checkpets')
     else:
         return redirect(url_for('staff_login'))
+
+
+@app.route('/customer_aboutus')
+def customer_aboutus():
+    if not session.get("USERNAME") is None:
+        customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+        return render_template('customer_aboutus.html', user=customer_in_db)
+    else:
+        return redirect(url_for('customer_login'))
