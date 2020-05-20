@@ -38,7 +38,7 @@ class Appointment(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     type = db.Column(db.Integer,nullable=False)
     hospital_location = db.Column(db.Integer,nullable=False)
-    time = db.Column(db.DateTime,index=True,default=datetime.utcnow())
+    time = db.Column(db.DateTime,index=True,default=datetime.now())
     status = db.Column(db.Integer,index=True,default=1)
     pet_status = db.Column(db.String(256),default='none')
     meeting_date = db.Column(db.DateTime,index=True,default=None)

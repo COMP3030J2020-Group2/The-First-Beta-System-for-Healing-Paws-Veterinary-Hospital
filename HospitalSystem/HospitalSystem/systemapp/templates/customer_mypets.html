@@ -13,7 +13,8 @@
                 </div>
             </div>
         </header>
-
+    </div>
+    
     <section class="tables">
             <div class="container-fluid">
               <div class="row">
@@ -21,77 +22,58 @@
                   <div class="card">
                     <div class="card-body">
                       <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th data-locale="MyAppointment_Pet Name"></th>
-                                <th data-locale="Category"></th>
-                                <th data-locale="Has Ongoing Appointment"></th>
-                                <th data-locale="MyAppointment_Current Status"></th>
-                            </tr>
-                        </thead>
-                    
-                        {% for pet in pets %}
-                            <tr>
-                                <td><a id="{{ pet.id }}">{{ pet.name }}</a></td>
-                                {% if pet.type == 1 %}
-                                <td data-locale="Cat">Cat</td>
-                                {% elif pet.type == 2 %}
-                                <td data-locale="Dog">Dog</td>
-                                {% endif %}
-
-                                
-                                {% for appoint in pet.appointments %}
-                                    {% if appoint.status == 0  %}
-                                        <td data-locale="Yes">Yes</td>
-                                        {% if appoint.pet_status == 'none' %}
-                                            <td data-locale="Checked">Checked</td>
-                                        {% else %}
-                                            <td data-locale="{{ appoint.pet_status }}"></td>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th data-locale="MyAppointment_Pet Name"></th>
+                                    <th data-locale="Category"></th>
+                                    <th data-locale="Has Ongoing Appointment"></th>
+                                    <th data-locale="MyAppointment_Current Status"></th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                {% for pet in pets %}
+                                    <tr>
+                                        <td><a id="{{ pet.id }}">{{ pet.name }}</a></td>
+                                        {% if pet.type == 1 %}
+                                        <td data-locale="Cat">Cat</td>
+                                        {% elif pet.type == 2 %}
+                                        <td data-locale="Dog">Dog</td>
                                         {% endif %}
-                                    {% elif appoint.status == 1  %}
-                                        <td data-locale="Yes">Yes</td>
-                                        <td data-locale="Applied but not checked yet">Applied but not checked yet</td>
-                                    {% else %}
-                                        <td data-locale="No">No</td>
-                                        <td data-locale="None">None</td>
-                                    {% endif %}
-                                    
-                                {% endfor %}                         
-                                <td><a class="btn btn-primary btn-sm" href="/update_pet/{{pet.id}}" role="button" data-locale="Edit">Edit</a>
-                                <a class="btn btn-primary btn-sm" href="/delete_pet/{{pet.id}}" role="button" data-locale="Delete">Delete</a></td>
-                            </tr>
-                        {% endfor%}
 
+                                        
+                                        {% for appoint in pet.appointments %}
+                                            {% if appoint.status == 0  %}
+                                                <td data-locale="Yes">Yes</td>
+                                                {% if appoint.pet_status == 'none' %}
+                                                    <td data-locale="Checked">Checked</td>
+                                                {% else %}
+                                                    <td data-locale="{{ appoint.pet_status }}"></td>
+                                                {% endif %}
+                                            {% elif appoint.status == 1  %}
+                                                <td data-locale="Yes">Yes</td>
+                                                <td data-locale="Applied but not checked yet">Applied but not checked yet</td>
+                                            {% else %}
+                                                <td data-locale="No">No</td>
+                                                <td data-locale="None">None</td>
+                                            {% endif %}
+                                            
+                                        {% endfor %}                         
+                                        <td><a class="btn btn-primary btn-sm" href="/update_pet/{{pet.id}}" role="button" data-locale="Edit">Edit</a>
+                                        <a class="btn btn-primary btn-sm" href="/delete_pet/{{pet.id}}" role="button" data-locale="Delete">Delete</a></td>
+                                    </tr>
+                                {% endfor%}
+                            </tbody>
 
                         
-                    </table>
-                 </div>
+                        </table>
+                    </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
     </section>
-    <!-- <script>
-        var a_list = document.querySelectorAll('a');
-        for(var i = 0;i<a_list.length;i++){
-            a_list[i].addEventListener('click', informationPage);
-        }
-
-        function informationPage(e){
-            
-            var x = e.target;
-            var id = x.id;
-            var form = document.createElement('form');
-            form.method = "post";
-            form.action = "/pets";
-            var idArea = document.createElement('input');
-            idArea.name = 'id';
-            idArea.value = id;
-            form.appendChild(idArea);
-            document.body.appendChild(form);
-            form.submit();
-        }
-    </script> -->
+    
 {% endblock %}

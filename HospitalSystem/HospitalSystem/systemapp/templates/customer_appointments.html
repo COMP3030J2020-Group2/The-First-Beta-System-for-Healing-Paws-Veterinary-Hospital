@@ -65,19 +65,19 @@
                                     {% elif a.type == 1 %}
                                     <td data-locale="Standard">Standard</td>
                                     {% endif %}
-                                    <td>{{a.time}}</td>
+                                    <td>{{a.time.strftime('%Y-%m-%d %H:%M:%S') }}</td>
                                     <td>{{a.description}}</td>
 
                                     {% if a.meeting_date == None %}
                                     <td data-locale="Not Decided">Not Decided</td>
                                     {% else %}
-                                    <td>{{ a.meeting_date }}</td>
+                                    <td>{{ a.meeting_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
                                     {% endif %}
 
                                     {% if a.surgery_date == None %}
                                     <td data-locale="Not Decided">Not Decided</td>
                                     {% else %}
-                                    <td>{{ a.surgery_date }}</td>
+                                    <td>{{ a.surgery_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
                                     {% endif %}
 
                                     {% if a.operator_id == None %}
