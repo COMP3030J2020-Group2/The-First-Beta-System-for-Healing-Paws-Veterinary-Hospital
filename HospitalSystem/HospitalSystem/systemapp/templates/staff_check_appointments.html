@@ -56,24 +56,10 @@
                     <td data-locale="Dog">Dog</td>
                     {% endif %}
                     <td><span data-locale="{{appoint.pet_status}}">{{appoint.pet_status}}</span></td>
-                    <!-- <td><button class="btn btn-link" type="button"  id="description" data-toggle="modal" data-target="#myModal">view</button></td> -->
-                    <td><button class="btn btn-link description" type="button" id="{{ appoint.id }}" value="{{ appoint.description }}" ><span data-locale="view"></span></button></td>
-                   
+                    <td><button class="btn btn-link description" type="button" id="{{ appoint.id }}" value="{{ appoint.description }}" data-locale="view"></button></td>
                     {% if button == 'Finish' %}
                     <td>
-                        <!-- <div class="dropdown">
-                            <a class="{{ button_style }} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span data-locale="Menu"></span></a>
-                            <div class="dropdown-menu">
-                                <li><a class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}" data-locale="Finish"></a></li>
-                                <li><a class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}" data-locale="Take in"></a></li>
-                                <li><a class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}" data-locale="Confirm Surgery Date"></a></li>
-                                <li><a class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}" data-locale="Complete Surgery"></a></li>
-                                <li><a class="{{ button_style }} dropdown-item operation" type="button" id="{{ appoint.id }}" data-locale="Inform Customer for Releasing"></a></li>
-                            </div>
-                            
-                        </div>             -->
                         <div class="btn-group">
-                            <!-- <a class="{{ button_style }} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span data-locale="Menu"></span></a> -->
                             <button type="button" class="{{ button_style }}"><span data-locale="Menu"></span></button>
                             <button type="button" class="{{ button_style }} dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
                               <span class="glyphicon glyphicon-th"></span>
@@ -104,7 +90,7 @@
                     <h3>Description</h3>
                 </div>
                 <div class="modal-body">
-                    <p>Hello</p>
+                    <p></p>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-default" data-dismiss="modal">Close</button>
@@ -147,6 +133,7 @@
         
 
         $(".description").click(function (e) {
+            console.log(e.target);
             $(".modal-body p").text(e.target.value);
             $('#myModal').modal();
         });
