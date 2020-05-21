@@ -46,19 +46,23 @@
         <ul class="nav navbar-nav">
 
             <li><a href="{{ url_for('control_system') }}" data-locale="Control System">Control System</a></li>
-            <li class="dropdown">
+            <li><a href="{{ url_for('unchecked') }}" data-locale="Check Appointments">Check Appointments</a></li>
+            <li><a href="{{url_for('staff_questions')}}" data-locale="Check Questions">Check Questions</a></li>
+            <li><a href="{{url_for('staff_checkpets')}}" data-locale="Check Pets">Check Pets</a></li>
+            
+<!--             <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-locale="Dropdown">Dropdown <span class="caret"></span></a>
             <ul class="dropdown-menu">
-                <!-- <li><a href="#">Check Customer Information</a></li> -->
-                <li><a href="{{ url_for('unchecked') }}" data-locale="Check Appointments">Check Appointments</a></li>
-                <li><a href="{{url_for('staff_questions')}}" data-locale="Check Questions">Check Questions</a></li>
+                < <li><a href="#">Check Customer Information</a></li> -->
+               <!--  <li><a href="{{ url_for('unchecked') }}" data-locale="Check Appointments">Check Appointments</a></li>
+                <li><a href="{{url_for('staff_questions')}}" data-locale="Check Questions">Check Questions</a></li> -->
                 <!-- <li><a href="#">Add Appointment</a></li> -->
-                <li><a href="{{url_for('staff_checkpets')}}" data-locale="Check Pets">Check Pets</a></li>
-                <li role="separator" class="divider"></li>
+               <!--  <li><a href="{{url_for('staff_checkpets')}}" data-locale="Check Pets">Check Pets</a></li>
+                <li role="separator" class="divider"></li> -->
                 <!-- <li><a href="#">Advanced Operations</a></li> -->
 
-            </ul>
-            </li>
+            <!-- </ul>
+            </li> --> 
             <li>
               <a href="#" id='btn' data-locale="Change Language"></a>
             </li>
