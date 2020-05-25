@@ -46,8 +46,11 @@
                 <script language="javascript"> 
                     window.onload = function()
                         { 
+                        var text="{{content}}";
+                        var arr=text.split("#*#")
+                        var acontent=arr.join("\r\n")
                         var content = document.getElementById('content');
-                        content.innerHTML="{{content}}";
+                        content.value=acontent;
                         }
             </script>
 {% endblock %}

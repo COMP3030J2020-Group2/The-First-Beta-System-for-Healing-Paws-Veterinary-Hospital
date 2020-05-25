@@ -42,8 +42,11 @@
                 <script language="javascript"> 
                     window.onload = function()
                         { 
+                        var text="{{qcontent}}";
+                        var arr=text.split("#*#")
+                        var qcontent=arr.join("\r\n")
                         var content = document.getElementById('content');
-                        content.innerHTML="{{qcontent}}";
+                        content.value=qcontent;
                         }
             </script>
 {% endblock %}

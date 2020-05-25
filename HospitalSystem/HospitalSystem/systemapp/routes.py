@@ -239,6 +239,22 @@ def customer_profile():
     else:
         return redirect(url_for('customer_login'))
 
+@app.route('/personal_information/check_password_profile',methods = ['GET', 'POST'])
+def check_password_profile():
+    if not session.get("USERNAME") is None:
+        if request.method == 'GET':
+            user = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+            return render_template('password_check.html')
+        else:
+            password = request.form['password']
+            user = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
+            if (check_password_hash(user.password_hash, password)):
+                return redirect(url_for('update_information'))
+            flash('Incorrect Password')
+            return redirect(url_for('check_password'))
+    else:
+        return redirect(url_for('customer_login'))
+
 
 @app.route('/personal_information/update',methods = ['GET', 'POST'])
 def update_information():
@@ -501,11 +517,15 @@ def edit_question(id):
     if not session.get("USERNAME") is None:
         customer_in_db = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
         question = Question.query.filter_by(id = id).first()
+
+        enter=question.content.split("\r\n")
+        qcontent="#*#".join(enter)
+
         if form.validate_on_submit():
             update = Question.query.filter_by(id = id).update({'title':form.title.data,'content':form.content.data})
             db.session.commit()
             return redirect(url_for('customer_questiondetail',id=id))
-        return render_template('customer_question_update.html', user=customer_in_db, form=form, qtitle = question.title, qcontent = question.content)
+        return render_template('customer_question_update.html', user=customer_in_db, form=form, qtitle = question.title, qcontent = qcontent)
     else:
         return redirect(url_for('customer_login'))
 
@@ -684,11 +704,15 @@ def edit_answer(id):
         staff = Staff.query.filter(Staff.name == session.get("STAFF")).first()
         answer = Answer.query.filter_by(id = id).first()
         question=answer.question
+
+        enter=answer.content.split("\r\n")
+        acontent="#*#".join(enter)
+
         if form.validate_on_submit():
             update = Answer.query.filter_by(id = id).update({'content':form.content.data})
             db.session.commit()
             return redirect(url_for('staff_questiondetail',id=question.id))
-        return render_template('answer_question.html', form=form, question=question, content = answer.content)
+        return render_template('answer_question.html', form=form, question=question, content = acontent)
     else:
         return redirect(url_for('staff_login'))
 
