@@ -3,54 +3,54 @@
     <div class="table-responsive">
     <table class="table">
     <tr>
-        <th>Appointment ID</th>
+        <th data-locale="Appointment_ID">Appointment ID</th>
         <td id="apm_id">{{ appointment.id }}</td>
     </tr>
     <tr>
-        <th>Appointment type</th>
+        <th data-locale="Appointment_type">Appointment type</th>
         {% if appointment.type == 0 %}
-        <td>Emergent</td>
+        <td data-locale="Emergency">Emergent</td>
         {% elif appointment.type == 1 %}
-        <td>Regular</td>
+        <td data-locale="Standard">Regular</td>
         {% endif %}
     </tr>
     <tr>
-        <th>Appointment time</th>
+        <th data-locale="Appointment_time">Appointment time</th>
         <td>{{ appointment.time }}</td>
     </tr>
     <tr>
-        <th>Appointment status</th>
+        <th data-locale="Appointment_status">Appointment status</th>
         {% if appointment.status ==  0 %}
-            <td>On Going</td>
+            <td data-locale="Ongoing">On Going</td>
         {% elif appointment.status == 1 %}
-            <td>Unchecked</td>
+            <td data-locale="Unchecked">Unchecked</td>
         {% elif appoinement.status == 2 %}
-            <td>Finished</td>
+            <td data-locale="Finished">Finished</td>
         {% endif %}
     </tr>
     <tr>
-        <th>Pet Name</th>
+        <th data-locale="pet_name">Pet Name</th>
         <td>{{ pet.name }}</td>
     </tr>
     <tr>
-        <th>Pet Owner Name</th>
+        <th data-locale="pet_owner_name">Pet Owner Name</th>
         <td>{{ customer.name }}</td>
     </tr>
     <tr>
-        <th>Operate Staff ID</th>
+        <th data-locale="Operate_Staff_ID">Operate Staff ID</th>
         {% if appointment.operator_id %}
             <td>{{ appointment.operator_id }}</td>
         {% else %}
-            <td>No Operator Yet.</td>
+            <td data-locale="No_operator_yet">No Operator Yet.</td>
         {% endif %}
     </tr>
     <tr>
-        <th>Appointment Description</th>
+        <th data-locale="Appointment_Description">Appointment Description</th>
         <td>{{ appointment.description }}</td>
     </tr>
     </table>
-    <button id="ongoing">On Going</button>
-    <button id="finish">Finish</button>
+    <button id="ongoing" data-locale="Ongoing">On Going</button>
+    <button id="finish" data-locale="Finished">Finish</button>
     </div>
 
     <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>
