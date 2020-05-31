@@ -1,41 +1,47 @@
 {% extends "nav.html" %}
 
 {% block content %}
-    <div class="jumbotron">
+<section class="section contact">
     <div class="container">
-        <h2>
-            <form action="" method="post" id="staff_login_form" novalidate role="form" class="form-horizontal">
-                {{ form.hidden_tag() }}
-                <div class="input-group">
-                    <strong data-locale="Staff Name">Staff Name</strong><br>
-                    {{ form.staffname(size=32) }}
-                    <span>
-                        {{ noneerror }}
-                    </span>
-                    {% for error in form.staffname.errors %}
-                    {{ error }}
-                    {% endfor %}
-                <span id="notice_staffname"></span>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="contact-form">
+                    <form action="" method="post" id="staff_login_form" novalidate role="form" class="row">
+                        {{ form.hidden_tag() }}
+                        <div class="col-md-12">
+                            <strong data-locale="Staff Name">Staff Name</strong><br>
+                            {{ form.staffname(class="form-control main",size =32) }}
+                            <span>
+                                {{ noneerror }}
+                            </span>
+                            {% for error in form.staffname.errors %}
+                            {{ error }}
+                            {% endfor %}
+                        <span id="notice_staffname"></span>
+                        </div>
+                        <div class="col-md-12">
+                            <strong data-locale="Password">Password</strong><br>
+                            {{ form.password(class="form-control main",size=32) }}
+                        </div>
+                        <span>
+                            {{ pwerror }}
+                        </span>
+                        {% for error in form.password.errors %}
+                            {{ error }}
+                        {% endfor %}
+                        <span id="notice_password"></span>
+                        <div class="col-md-6 text-left">
+                            {{ form.remember_me() }} <strong data-locale="Remember ME">Remember ME</strong>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            {{ form.submit(class="btn btn-style-one") }}
+                        </div>
+                    </form>
                 </div>
-                <div class="input-group">
-                    <strong data-locale="Password">Password</strong><br>
-                    {{ form.password(size=32) }}
-                </div>
-                <span>
-                    {{ pwerror }}
-                </span>
-                {% for error in form.password.errors %}
-                    {{ error }}
-                {% endfor %}
-                <span id="notice_password"></span>
-            <div class="input-group">
-                {{ form.remember_me() }} <strong data-locale="Remember ME">Remember ME</strong><br>
-                {{ form.submit() }}
             </div>
-            </form>
-        </h2>
+        </div>
     </div>
-    </div>
+</section>
 
     <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static',filename='script/staff_login.js') }}"></script>

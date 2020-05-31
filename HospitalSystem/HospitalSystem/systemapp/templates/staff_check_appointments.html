@@ -47,7 +47,7 @@
                     {% elif appoint.type == 1 %}
                     <td data-locale="Standard">Standard</td>
                     {% endif %}
-                    <td>{{ appoint.time }}</td>
+                    <td>{{ appoint.time.strftime('%Y-%m-%d %H:%M:%S') }}</td>
                     <td>{{ customers[index] }}</td>
                     <td>{{ pets[index].name }}</td>
                     {% if pets[index].type == 1 %}

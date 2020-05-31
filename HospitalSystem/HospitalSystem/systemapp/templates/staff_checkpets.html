@@ -25,22 +25,27 @@
                                 <tr>
                                     <th data-locale="MyAppointment_Pet Name">Pet Name</th>
                                     <th id="th1" onclick="SortTable(this)" class="as" data-locale="MyAppointment_Pet ID">Pet ID<a href="#"> <i class="fa fa-sort" aria-hidden="true" ></i> </a></th>
-                                    <th id="th2" onclick="SortTable(this)" class="as" data-locale="PetCategory">Pet type<a href="#"> <i class="fa fa-sort" aria-hidden="true" ></i> </a></th>
+                                    <th id="th2" class="as" data-locale="PetCategory">Pet type<a href="#"> <i class="fa fa-sort" aria-hidden="true" ></i> </a></th>
                                     <th id="th3" onclick="SortTable(this)" class="as" data-locale="User ID">Owner ID<a href="#"> <i class="fa fa-sort" aria-hidden="true" ></i> </a></th>
                                     <th id="th4" onclick="SortTable(this)" class="as" data-locale="User Name">Owner Name</th>
                                     <th id="th5" onclick="SortTable(this)" class="as" data-locale="MyAppointment_Current Status">Pet Status</th>
                                 </tr>
 
-                                {% for pet in pets%}
+                                <!-- {% for pet in pets%}
                                     {% for customer in customers%}
-                                    {% for appointment in appointments%}
+                                    {% for appointment in pet.appointments%}
                                     {%  if pet.owner_id==customer.id %}
                                         {%  if appointment.pet_id==pet.id %}
 
                                     <tr>
                                     <td name="td0">{{pet.name}}</td>
                                     <td name="td1">{{pet.id}}</td>
-                                    <td name="td2">{{pet.type}}</td>
+                                    {% if pet.type == 1 %}
+                                    <td name="td2" data-locale="Cat">Cat</td>
+                                    {% elif pet.type == 2 %}
+                                    <td name="td2" data-locale="Dog">Dog</td>
+                                    {% endif %}
+                                   
                                     <td name="td3">{{pet.owner_id}}</td>
                                     <td name="td4">{{customer.username}}</td>
                                     <td name="td5" data-locale="{{appointment.pet_status}}"></td>
@@ -55,7 +60,32 @@
                             {% endfor %}
                           {% endfor %}
 
-                         {% endfor %}
+                         {% endfor %} -->
+                            {% for customer in customers%}
+                                {% for pet in customer.pets%}
+                                
+                                    <tr>
+                                        <td name="td0">{{pet.name}}</td>
+                                        <td name="td1">{{pet.id}}</td>
+                                        {% if pet.type == 1 %}
+                                        <td name="td2" data-locale="Cat">Cat</td>
+                                        {% elif pet.type == 2 %}
+                                        <td name="td2" data-locale="Dog">Dog</td>
+                                        {% endif %}
+                                        
+                                        <td name="td3">{{pet.owner_id}}</td>
+                                        <td name="td4">{{customer.username}}</td>
+                                        {% if pet.appointments[-1] == undefined %}
+                                        <td name="td5" data-locale="none"></td>
+                                        {% else %}
+                                        <td name="td5" data-locale="{{ pet.appointments[0].pet_status }}"></td>
+                                        {% endif %}
+                                        <td><a class="btn btn-primary btn-sm" href="/staff_checkpets/update_pet/{{pet.id}}" role="button" data-locale="Edit">Edit</a>
+                                        </td>
+
+                                    </tr>
+                                {% endfor %}
+                            {% endfor %}
 
 
                             </tbody>
@@ -106,7 +136,7 @@
               tdArray1.push(parseInt(td1s[i].innerHTML));
           }
           for(var i=0;i<td2s.length;i++){
-              tdArray2.push(parseInt(td2s[i].innerHTML));
+              tdArray2.push(td2s[i].innerHTML);
           }
           for(var i=0;i<td3s.length;i++){
               tdArray3.push(parseInt(td3s[i].innerHTML));
