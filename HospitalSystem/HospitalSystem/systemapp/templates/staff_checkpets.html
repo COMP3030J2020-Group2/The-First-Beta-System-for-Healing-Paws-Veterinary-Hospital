@@ -3,101 +3,99 @@
 {% block content %}
     <div class="container">
         <div class="row row-centered">
-            <div class="well col-md-6 col-centered">
+            <section class="tables">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th data-locale="Pets Information"></th>   
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
+                                        <tr>
+                                            <th data-locale="MyAppointment_Pet Name">Pet Name</th>
+                                            
+                                            <th id="th1" onclick="SortTable(this)" class="as"><a href="#"><span data-locale="MyAppointment_Pet ID"></span></a></th>
+                                            <!-- <th id="th2" onclick="SortTable(this)" class="as"><a href="#"><span data-locale="PetCategory"></span></a></th> -->
+                                            <th id="th2" data-locale="PetCategory"></th>
+                                            <th id="th3" onclick="SortTable(this)" class="as"><a href="#"><span data-locale="User ID"></span></a></th>
+                                            <th id="th4" onclick="SortTable(this)" class="as" data-locale="User Name">Owner Name</th>
+                                            <th id="th5" onclick="SortTable(this)" class="as" data-locale="MyAppointment_Current Status">Pet Status</th>
+                                            <th>Operation</th>
+                                        </tr>
 
+                                        <!-- {% for pet in pets%}
+                                            {% for customer in customers%}
+                                            {% for appointment in pet.appointments%}
+                                            {%  if pet.owner_id==customer.id %}
+                                                {%  if appointment.pet_id==pet.id %}
 
-    <section class="tables">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="card">
-                    <div class="card-body">
-                      <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th data-locale="Pets Information"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <th data-locale="MyAppointment_Pet Name">Pet Name</th>
-                                    <th id="th1" onclick="SortTable(this)" class="as" data-locale="MyAppointment_Pet ID">Pet ID<a href="#"> <i class="fa fa-sort" aria-hidden="true" ></i> </a></th>
-                                    <th id="th2" class="as" data-locale="PetCategory">Pet type<a href="#"> <i class="fa fa-sort" aria-hidden="true" ></i> </a></th>
-                                    <th id="th3" onclick="SortTable(this)" class="as" data-locale="User ID">Owner ID<a href="#"> <i class="fa fa-sort" aria-hidden="true" ></i> </a></th>
-                                    <th id="th4" onclick="SortTable(this)" class="as" data-locale="User Name">Owner Name</th>
-                                    <th id="th5" onclick="SortTable(this)" class="as" data-locale="MyAppointment_Current Status">Pet Status</th>
-                                </tr>
-
-                                <!-- {% for pet in pets%}
-                                    {% for customer in customers%}
-                                    {% for appointment in pet.appointments%}
-                                    {%  if pet.owner_id==customer.id %}
-                                        {%  if appointment.pet_id==pet.id %}
-
-                                    <tr>
-                                    <td name="td0">{{pet.name}}</td>
-                                    <td name="td1">{{pet.id}}</td>
-                                    {% if pet.type == 1 %}
-                                    <td name="td2" data-locale="Cat">Cat</td>
-                                    {% elif pet.type == 2 %}
-                                    <td name="td2" data-locale="Dog">Dog</td>
-                                    {% endif %}
-                                   
-                                    <td name="td3">{{pet.owner_id}}</td>
-                                    <td name="td4">{{customer.username}}</td>
-                                    <td name="td5" data-locale="{{appointment.pet_status}}"></td>
-                                    <td><a class="btn btn-primary btn-sm" href="/staff_checkpets/update_pet/{{pet.id}}" role="button" data-locale="Edit">Edit</a>
-                                    </td>
-
-                                </tr>
-
-                                    {% endif %}
-                                        {% endif %}
-
-                            {% endfor %}
-                          {% endfor %}
-
-                         {% endfor %} -->
-                            {% for customer in customers%}
-                                {% for pet in customer.pets%}
-                                
-                                    <tr>
-                                        <td name="td0">{{pet.name}}</td>
-                                        <td name="td1">{{pet.id}}</td>
-                                        {% if pet.type == 1 %}
-                                        <td name="td2" data-locale="Cat">Cat</td>
-                                        {% elif pet.type == 2 %}
-                                        <td name="td2" data-locale="Dog">Dog</td>
-                                        {% endif %}
+                                            <tr>
+                                            <td name="td0">{{pet.name}}</td>
+                                            <td name="td1">{{pet.id}}</td>
+                                            {% if pet.type == 1 %}
+                                            <td name="td2" data-locale="Cat">Cat</td>
+                                            {% elif pet.type == 2 %}
+                                            <td name="td2" data-locale="Dog">Dog</td>
+                                            {% endif %}
                                         
-                                        <td name="td3">{{pet.owner_id}}</td>
-                                        <td name="td4">{{customer.username}}</td>
-                                        {% if pet.appointments[-1] == undefined %}
-                                        <td name="td5" data-locale="none"></td>
-                                        {% else %}
-                                        <td name="td5" data-locale="{{ pet.appointments[0].pet_status }}"></td>
-                                        {% endif %}
-                                        <td><a class="btn btn-primary btn-sm" href="/staff_checkpets/update_pet/{{pet.id}}" role="button" data-locale="Edit">Edit</a>
-                                        </td>
+                                            <td name="td3">{{pet.owner_id}}</td>
+                                            <td name="td4">{{customer.username}}</td>
+                                            <td name="td5" data-locale="{{appointment.pet_status}}"></td>
+                                            <td><a class="btn btn-primary btn-sm" href="/staff_checkpets/update_pet/{{pet.id}}" role="button" data-locale="Edit">Edit</a>
+                                            </td>
 
-                                    </tr>
+                                        </tr>
+
+                                            {% endif %}
+                                                {% endif %}
+
+                                    {% endfor %}
                                 {% endfor %}
-                            {% endfor %}
+
+                                {% endfor %} -->
+                                    {% for customer in customers%}
+                                        {% for pet in customer.pets%}
+                                        
+                                            <tr>
+                                                <td name="td0">{{pet.name}}</td>
+                                                <td name="td1">{{pet.id}}</td>
+                                                {% if pet.type == 1 %}
+                                                <td name="td2" data-locale="Cat"></td>
+                                                {% elif pet.type == 2 %}
+                                                <td name="td2" data-locale="Dog"></td>
+                                                {% endif %}
+                                                
+                                                <td name="td3">{{pet.owner_id}}</td>
+                                                <td name="td4">{{customer.username}}</td>
+                                                {% if pet.appointments[-1] == undefined %}
+                                                <td name="td5" data-locale="none"></td>
+                                                {% else %}
+                                                <td name="td5" data-locale="{{ pet.appointments[0].pet_status }}"></td>
+                                                {% endif %}
+                                                <td><a class="btn btn-primary btn-sm" href="/staff_checkpets/update_pet/{{pet.id}}" role="button" data-locale="Edit">Edit</a>
+                                                </td>
+
+                                            </tr>
+                                        {% endfor %}
+                                    {% endfor %}
 
 
-                            </tbody>
-                        </table>
-                      </div>
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-    </section>
-            </div>
+                    </div>
+            </section>
         </div>
     </div>
 
@@ -126,6 +124,7 @@
           var tdArray0=[];
           var tdArray1=[];
           var tdArray2=[];
+          var tdArray2Language=[];
           var tdArray3=[];
           var tdArray4=[];
           var tdArray5=[];
@@ -136,7 +135,9 @@
               tdArray1.push(parseInt(td1s[i].innerHTML));
           }
           for(var i=0;i<td2s.length;i++){
+            
               tdArray2.push(td2s[i].innerHTML);
+           
           }
           for(var i=0;i<td3s.length;i++){
               tdArray3.push(parseInt(td3s[i].innerHTML));
@@ -148,6 +149,7 @@
               tdArray5.push(td5s[i].innerHTML);
           }
           var tds=document.getElementsByName("td"+obj.id.substr(2,1));
+
           var columnArray=[];
           for(var i=0;i<tds.length;i++){
               columnArray.push(parseInt(tds[i].innerHTML));
@@ -171,6 +173,14 @@
                      document.getElementsByName("td0")[i].innerHTML=tdArray0[j];
                      document.getElementsByName("td1")[i].innerHTML=tdArray1[j];
                      document.getElementsByName("td2")[i].innerHTML=tdArray2[j];
+                     if(tdArray2[j] == "Cat" || tdArray2[j] == "猫猫"){
+                        document.getElementsByName("td2")[i].setAttribute("data-locale","Cat");
+                        document.getElementsByName("td2")[i].innerHTML = tdArray2[j]
+                     }else{
+                        document.getElementsByName("td2")[i].setAttribute("data-locale","Dog");
+                        document.getElementsByName("td2")[i].innerHTML = tdArray2[j]
+                     }
+                     
                      document.getElementsByName("td3")[i].innerHTML=tdArray3[j];
                      document.getElementsByName("td4")[i].innerHTML=tdArray4[j];
                      document.getElementsByName("td5")[i].innerHTML=tdArray5[j];
