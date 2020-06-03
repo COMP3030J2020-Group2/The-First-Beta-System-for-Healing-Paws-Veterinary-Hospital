@@ -756,16 +756,25 @@ def staff_checkpets():
 
 @app.route('/staff_checkpets/update_pet/<id>',methods = ['GET', 'POST'])
 def staff_updatepet(id):
+    form = PetSignUpForm()
+    pet = Pet.query.filter_by(id = id).first()
+
     if not session.get("STAFF") is None:
-        if request.method == 'GET':
-            pet = Pet.query.filter_by(id = id).first()
-            return render_template('staff_updatepet.html',pet = pet)
-        else:
-            pet_name = request.form['name']
-            pet_type = request.form['type']
-            pet = Pet.query.filter_by(id = id).update({'name':pet_name, 'type':pet_type})
-            db.session.commit()
-            return redirect('/staff_checkpets')
+        if form.validate_on_submit():
+            a_pet = Pet.query.filter(Pet.name == form.petname.data and Pet.owner_id == pet.owner_id).first()
+            if a_pet:
+                if pet is not a_pet:
+                    return render_template('staff_updatepet.html', information='Same name with another pet of this customer!', form=form)
+            else:
+                if form.type.data == 0:
+                    return render_template('staff_updatepet.html', information='Choose a type', form=form)
+                else:
+                    pet = Pet.query.filter_by(id = id).update({'name':form.petname.data, 'type':form.type.data})
+                    db.session.commit()
+            return redirect(url_for('staff_checkpets'))
+        form.petname.data=pet.name
+        form.type.data=pet.type
+        return render_template('staff_updatepet.html', information='Edit pet information' , form=form)
     else:
         return redirect(url_for('staff_login'))
 
