@@ -1,6 +1,7 @@
 {% extends "staff_base.html" %}
 
 {% block content %}
+    <link href="href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <div class="container">
         <div class="row row-centered">
             <section class="tables">
@@ -21,10 +22,11 @@
                                         <tr>
                                             <th data-locale="MyAppointment_Pet Name">Pet Name</th>
                                             
-                                            <th id="th1" onclick="SortTable(this)" class="as"><a href="#"><span data-locale="MyAppointment_Pet ID"></span></a></th>
-                                            <!-- <th id="th2" onclick="SortTable(this)" class="as"><a href="#"><span data-locale="PetCategory"></span></a></th> -->
+                                            <th> <span data-locale="PetCategory"></span><a id="th1" onclick="SortTable(this)" class="as"><span class="glyphicon glyphicon-sort"></span></a></th>
+                                      
                                             <th id="th2" data-locale="PetCategory"></th>
-                                            <th id="th3" onclick="SortTable(this)" class="as"><a href="#"><span data-locale="User ID"></span></a></th>
+                        
+                                            <th> <span data-locale="User ID"></span><a id="th3" onclick="SortTable(this)" class="as"><span class="glyphicon glyphicon-sort"></span></a></th>
                                             <th id="th4" onclick="SortTable(this)" class="as" data-locale="User Name">Owner Name</th>
                                             <th id="th5" onclick="SortTable(this)" class="as" data-locale="MyAppointment_Current Status">Pet Status</th>
                                             <th>Operation</th>
