@@ -552,11 +552,13 @@ def check_appointment(id):
         return redirect(url_for('staff_login'))
     else:
         apm_in_db = Appointment.query.filter(Appointment.id == id).first()
-        pet = Pet.query.filter(Pet.id == apm_in_db.pet_id).first()
-        customer = Customer.query.filter(Customer.id == pet.owner_id).first()
+       
         if not apm_in_db:
             return redirect(url_for('control_system'))
-        return render_template('staff_operate_appointment.html', appointment=apm_in_db, pet = pet, customer = customer)
+        else:
+            pet = Pet.query.filter(Pet.id == apm_in_db.pet_id).first()
+            customer = Customer.query.filter(Customer.id == pet.owner_id).first()
+            return render_template('staff_operate_appointment.html', appointment=apm_in_db, pet = pet, customer = customer)
 
 @app.route('/check_pet/<id>',methods=['GET','POST'])
 def check_pet(id):

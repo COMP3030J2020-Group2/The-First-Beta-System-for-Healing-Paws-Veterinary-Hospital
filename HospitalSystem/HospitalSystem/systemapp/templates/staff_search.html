@@ -1,39 +1,48 @@
 {% extends "staff_base.html" %}
 {% block content %}
     <div id="search_title">
-    <h2>Here is the searching result for
-    <b>{{ query }}</b>
+        <h2>
+            <span data-locale="search result"></span>
+            <b>{{ query }}</b>
         </h2>
     </div>
     <div id='results'>
-    {% if apm %}
-        <a href="{{ url_for("check_appointment",id=apm.id ) }}" class="appointment_link"><h3><b>[Appointment]</b>id=
-            <span class="appoint_id">{{ apm.id }}</span><br></h3></a>
-        <h3>Text description:{{ apm.description }}</h3>
-    {% endif %}
-    {% if customer %}
-        <h3><b>[Customer]</b>id={{ customer.id }}<br>
-        Customer Name:{{ customer.username }}</h3>
-    {% endif %}
-    {% if apmlist %}
-        <ul>
-        {% for appoint in apmlist %}
-        <li><a href="check_appointment/{{ appoint.id }}" class="appiontment_link"><h3><b>[Appointment]</b>id=
-                {{ appoint.id }}<br></h3></a>
-        <h3>Text description:{{ appoint.description }}</h3></li>
-        {% endfor %}
-        </ul>
-    {% endif %}
-    {% if customerlist %}
-        <ul>
-        {% for cust in customerlist %}
-             <li><h3><b>[Customer]</b>id={{ cust.id }}<br>
-        Customer Name:{{ cust.username }}</h3></li>
-        {% endfor %}
-        </ul>
-    {% endif %}
+        {% if apm %}
+            <a href="{{ url_for('check_appointment',id=apm.id) }}" class="appointment_link">
+                <h3>
+                    <b>[<span data-locale="Appointment"></span>]</b>
+                    id= <span class="appoint_id">{{ apm.id }}</span><br>
+                </h3>
+            </a>
+            <h3><span data-locale="Appointment_Description"></span>:{{ apm.description }}</h3>
+        {% endif %}
+
+        {% if customer %}
+            <h3><b>[<span data-locale="MyAppointment_User"></span>]</b>id={{ customer.id }}<br>
+                <span data-locale="User Name"></span>:{{ customer.username }}</h3>
+        {% endif %}
+
+        {% if apmlist %}
+            <ul>
+            {% for appoint in apmlist %}
+            <li><a href="{{ url_for('check_appointment',id=appoint.id) }}" class="appiontment_link"><h3><b>[<span data-locale="Appointment"></span>]</b>id=
+                    {{ appoint.id }}<br></h3></a>
+            <h3><span data-locale="Appointment_Description"></span>:{{ appoint.description }}</h3></li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if customerlist %}
+            <ul>
+            {% for cust in customerlist %}
+                <li><h3><b>[<span data-locale="MyAppointment_User"></span>]</b>id={{ cust.id }}<br>
+                <span data-locale="User Name"></span>:{{ cust.username }}</h3></li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+
     </div>
 
       <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>
-      <script type="text/javascript" src="{{ url_for('static',filename='script/staff_search_list.js') }}"></script>
+      <!-- <script type="text/javascript" src="{{ url_for('static',filename='script/staff_search_list.js') }}"></script> -->
 {% endblock %}

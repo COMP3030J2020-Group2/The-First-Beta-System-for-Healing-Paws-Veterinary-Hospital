@@ -1,7 +1,3 @@
-<!-- <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap-theme.min.css') }}" >
-<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script> -->
-
 <!DOCTYPE html>
 <html >
   <head>
@@ -11,23 +7,16 @@
 
     <title>Healing pawls Hospital - Control System</title>
 
-    <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
-      <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>
-      <script type="text/javascript" src="{{ url_for('static',filename='script/staff_search.js') }}"></script>
-      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-    <![endif]-->
+
+    <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
   </head>
   <body>
 
     <script src="{{ url_for('static', filename='script/jquery.js') }}"></script>
     <script src="{{ url_for('static', filename='bootstrap_v4/bootstrap.bundle.min.js') }}"></script>
-    <!-- <script src="{{ url_for('static', filename='bootstrap_v4/bootstrap.min.js') }}"></script> -->
-   
-    <!-- <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script> -->
-    <!-- <script src="{{ url_for('static', filename='bootstrap/js//bootstrap-hover-dropdown.min.js') }}"></script> -->
-
     <nav class="navbar navbar-default">
         <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -49,30 +38,16 @@
             <li><a href="{{ url_for('unchecked') }}" data-locale="Check Appointments">Check Appointments</a></li>
             <li><a href="{{url_for('staff_questions')}}" data-locale="Check Questions">Check Questions</a></li>
             <li><a href="{{url_for('staff_checkpets')}}" data-locale="Check Pets">Check Pets</a></li>
-            
-<!--             <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" data-locale="Dropdown">Dropdown <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                < <li><a href="#">Check Customer Information</a></li> -->
-               <!--  <li><a href="{{ url_for('unchecked') }}" data-locale="Check Appointments">Check Appointments</a></li>
-                <li><a href="{{url_for('staff_questions')}}" data-locale="Check Questions">Check Questions</a></li> -->
-                <!-- <li><a href="#">Add Appointment</a></li> -->
-               <!--  <li><a href="{{url_for('staff_checkpets')}}" data-locale="Check Pets">Check Pets</a></li>
-                <li role="separator" class="divider"></li> -->
-                <!-- <li><a href="#">Advanced Operations</a></li> -->
-
-            <!-- </ul>
-            </li> --> 
             <li>
               <a href="#" id='btn' data-locale="Change Language"></a>
             </li>
         </ul>
-        <form class="navbar-form navbar-left">
+        <div class="navbar-form navbar-left">
             <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search with id or name" id="search" data-locale="Search with id or name">
+            <input type="text" class="form-control" placeholder="Search with id or name" id="search">
             </div>
-            <a id="searchlink"><button type="submit" class="btn btn-default" id="searchsubmit">Submit</button></a>
-        </form>
+            <a id="searchlink"><button type="submit" onclick="search()" class="btn btn-default" id="searchsubmit">Submit</button></a>
+        </div>
         
         </div>
         </div>
@@ -115,6 +90,16 @@
                 }
             });
         }
+
+        
+        function search() {
+            var input = document.getElementById('search');
+            var str = input.value;
+            console.log('search button '+str);
+            window.location.href="/staff_search/"+str 
+        };
+
+
     </script>
      
   </body>
