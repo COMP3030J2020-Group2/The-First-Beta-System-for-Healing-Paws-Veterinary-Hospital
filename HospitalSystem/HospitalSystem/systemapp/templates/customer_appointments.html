@@ -87,7 +87,7 @@
                                     {% endif %}
 
                                     <td><a class="btn btn-primary btn-sm" href="/update_appointments/{{a.id}}" role="button" data-locale="Edit">Edit</a>
-                                        <a class="btn btn-primary btn-sm" href="/delete_appointment/{{a.id}}" role="button" data-locale="Delete">Delete</a></td>
+                                        <a class="btn btn-primary btn-sm" href="/delete_appointment/{{a.id}}" role="button" onclick="if(confirm('Are you sure you want to delete this appointments?')==false)return false;"data-locale="Delete">Delete</a></td>
                                     </td>
 
                                 </tr>

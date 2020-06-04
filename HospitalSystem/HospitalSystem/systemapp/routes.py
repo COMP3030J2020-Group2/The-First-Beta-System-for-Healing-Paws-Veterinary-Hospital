@@ -177,11 +177,10 @@ def update_appointments(id):
             appointment = db.session.query(Appointment).filter_by(id = id).first()
             return render_template('update_appointments.html',appointment = appointment)
         else:
+            
             appointment_type = request.form['type']
-            appointment_time = request.form['time1']
             appointment_description = request.form['description']
-            appointment_pet_id = request.form['pet_id']
-            appointment = Appointment.query.filter_by(id=id).update({'type': appointment_type, 'time': datetime.utcnow(), 'description': appointment_description, 'pet_id': appointment_pet_id})
+            appointment = Appointment.query.filter_by(id=id).update({'type': appointment_type , 'description': appointment_description})
             db.session.commit()
             return redirect('/customer_appointments')
     else:
@@ -193,13 +192,11 @@ def delete_appointment(id):
     if not session.get("USERNAME") is None:
         if request.method == 'GET':
             appointment = db.session.query(Appointment).filter_by(id=id).first()
-            return render_template('delete_appointment.html', appointment=appointment)
-        else:
-             db.session.query(Appointment).filter_by(id = id).delete()
-             db.session.commit()
-             return redirect('/customer_appointments')
+            db.session.query(Appointment).filter_by(id = id).delete()
+            db.session.commit()
+            return redirect('/customer_appointments')
     else:
-        return redirect(url_for('index'))
+        return redirect(url_for('customer_login'))
 
 
 @app.route('/customer_login', methods=['GET', 'POST'])
@@ -325,10 +322,14 @@ def update_pet(id):
     if not session.get("USERNAME") is None:
         if form.validate_on_submit():
             customer = Customer.query.filter(Customer.username == session.get("USERNAME")).first()
-            a_pet = Pet.query.filter(Pet.name == form.petname.data and Pet.owner_id == customer.id).first()
+            a_pet = Pet.query.filter(and_(Pet.name == form.petname.data, Pet.owner_id == customer.id)).first()
+            b_pet = Pet.query.filter(and_(Pet.name == form.petname.data, Pet.owner_id != customer.id)).first()
+         
             if a_pet:
                 if pet is not a_pet:
                     return render_template('pet_signup.html', information='Same name with your another pet!', form=form)
+            elif b_pet:
+                return render_template('pet_signup.html', information='The Name is already taken by the other pet!', form=form)
             else:
                 if form.type.data == 0:
                     return render_template('pet_signup.html', information='Choose a type', form=form)
@@ -697,6 +698,7 @@ def customer_questiondetail(id):
         return render_template('customer_questiondetail.html',question = question, answer=answer, user=user)
     else:
         return redirect(url_for('customer_login'))
+
 @app.route('/staff_questions/edit_answer/<id>',methods = ['GET', 'POST'])
 def edit_answer(id):
     form = AnswerForm()

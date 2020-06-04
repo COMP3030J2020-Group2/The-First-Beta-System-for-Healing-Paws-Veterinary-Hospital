@@ -1,35 +1,29 @@
-{% extends"customer_console_base.html" %}
+{% extends "customer_console_base.html" %}
 
 {% block content %}
     <div class="container">
         <div class="row row-centered">
             <div class="well col-md-6 col-centered">
-                    <h1 class="text-center">Please fill the form below</h1>
-<form action="/update_appointments/{{appointment.id}}" method="POST">
+                <h1 class="text-center">Please fill the form below</h1>
+                <form class="form-horizontal" action="/update_appointments/{{appointment.id}}" method="POST">
+                    <div class="form-group">
+                        <label>Appointment type：</label>
+                        <select name="type">
+                            <option value = 1>Standard</option>
+                            <option value = 0>Emergent</option>
+                        </select>
+                    </div>
 
-    <label>Appointment ID：{{appointment.id}}</label>
-    <br><br>
-    <label>Operator ID：{{appointment.operator_id}}</label>
-    <br><br>
-    <label>Appointment type：</label>
-    <input type="text" name="type" value="{{appointment.type}}">
-    <br><br>
-    <label>Appointment Time：</label>
+                    <div class="form-group">
+                        <label>Appointment Description：</label>
+                        <input type="text" class="form-control" name="description" value="{{appointment.description}}">
+                    </div>
 
-
-    <input type="date" name="time1" value="{{appointment.time}}">
-
-
-    <br><br>
-    <label>Appointment Description：</label>
-    <input type="text" name="description" value="{{appointment.description}}">
-    <br><br>
-    <label>Appointment Pet ID：</label>
-    <input type="text" name="pet_id" value="{{appointment.pet_id}}">
-    <br><br>
-    <input type="submit" value="Update">
-</form>
- </div>
+                    <div class="form-group">
+                        <input class="btn btn-outline-info" type="submit" value="Update">
+                    </div>
+                </form>
+            </div>
         </div>
 
     </div>

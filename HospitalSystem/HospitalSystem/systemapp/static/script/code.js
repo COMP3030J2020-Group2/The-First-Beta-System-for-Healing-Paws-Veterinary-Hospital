@@ -98,7 +98,8 @@ if(informationform!=null){
 }
 
 /* username and email format*/
-var regEmail = /^[a-zA-Z][a-zA-Z0-9_@\-\!\?]*@[a-zA-Z0-9]+.[a-z]+/;
+// var regEmail = /^[a-zA-Z][a-zA-Z0-9_@\-\!\?]*@[a-zA-Z0-9]+.[a-z]+/;
+var regEmail = /^[a-zA-Z0-9._%+-]+@(?!.*\.\..*)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 var spanEmail = document.querySelector('#validation_email');
 function checkEmailFormat(){
     var input = email.value;
@@ -110,7 +111,7 @@ function checkEmailFormat(){
     }else{
         if(!regEmail.test(input)){
             console.log('not match');
-            spanEmail.innerHTML = "Please enter correct format : xxxxx@xxx.xx";
+            spanEmail.innerHTML = "Uncorrect Format, Try anothor one?";
             spanEmail.style.color = 'red';
             return false;
         }else{
